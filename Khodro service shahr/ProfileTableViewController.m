@@ -16,10 +16,12 @@
 #import "DBManager.h"
 #import "Settings.h"
 #import "DataDownloader.h"
+#import "User.h"
 
+static NSString *const ServerURL = @"http://khodroservice.kara.systems/api/mobile/UploadUserPic";
 @interface ProfileTableViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate,RSKImageCropViewControllerDelegate>
 {
-  Settings *st ;
+    User *user;
     NSString *name;
     NSURL *imageURL;
 }
@@ -32,6 +34,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self CreateMenuButton];
+    
+    self.navigationItem.hidesBackButton = YES;
 
     
     UILabel* label=[[UILabel alloc] initWithFrame:CGRectMake(0,0, self.navigationItem.titleView.frame.size.width, 40)];
@@ -39,13 +44,41 @@
     label.textColor=[UIColor whiteColor];
     label.backgroundColor =[UIColor clearColor];
     label.adjustsFontSizeToFitWidth=YES;
-    label.font = [UIFont fontWithName:@"B Yekan" size:19];
+    label.font = [UIFont fontWithName:@"B Yekan+" size:19];
     label.textAlignment = NSTextAlignmentCenter;
     self.navigationItem.titleView=label;
 
     self.tableView.estimatedRowHeight = 60;
+    
+    name = [self load][1];
+    
+    user = [User alloc];
+    user.mobile = [self load][2];
+    user.password = [self load][3];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.row) {
+        case 5:
+            [self performSegueWithIdentifier:@"gps" sender:self];
+            break;
+    
+    }
+}
+
+-(NSMutableArray*)load
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+    // get documents path
+    NSString *documentsPath = [paths objectAtIndex:0];
+    // get the path to our Data/plist file
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"user.plist"];
+    
+    NSMutableArray *array = [NSMutableArray arrayWithContentsOfFile:plistPath];
+    
+    return array;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -77,28 +110,18 @@
                 
             }
             
+            cell.mmimageView.image = [self loadCustomObjectWithKey:@"propic"];
             cell.mmimageView.layer.cornerRadius = cell.mmimageView.frame.size.width / 2;
             cell.mmimageView.layer.masksToBounds = YES;
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
            // [cell.activityView startAnimating];
-            cell.startTimeLabel.text = st.settingId;
+            //cell.startTimeLabel.text = st.settingId;
             
-          //  cell.mmlabel.text =name;
+            cell.mmlabel.text =name;
             
-            [self downloadImageWithURL:imageURL completionBlock:^(BOOL succeeded, UIImage *image) {
-                if (succeeded) {
-                    // change the image in the cell
-                    cell.mmimageView.image = image;
-                    
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        
-                        [cell.activityView stopAnimating];
-                        
-                    });
-                }
-            }];
+      
             
             return cell;
         }
@@ -264,6 +287,28 @@
     [self.tableView deselectRowAtIndexPath:tableSelection animated:NO];
 }
 
+-(void)CreateMenuButton
+{
+    UIButton *menuButton =  [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *settingImage = [[UIImage imageNamed:@"home.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [menuButton setImage:settingImage forState:UIControlStateNormal];
+    
+    menuButton.tintColor = [UIColor whiteColor];
+    [menuButton addTarget:self action:@selector(GoToMenu)forControlEvents:UIControlEventTouchUpInside];
+    [menuButton setFrame:CGRectMake(0, 0, 24, 24)];
+    
+    
+    UIBarButtonItem *settingBarButton = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
+    self.navigationItem.leftBarButtonItem = settingBarButton;
+    
+    
+}
+
+-(void)GoToMenu
+{
+    
+    [self performSegueWithIdentifier:@"first" sender:self];
+}
 
 -(void)ChangePic:(id)sender
 {
@@ -388,87 +433,98 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-//- (void)imageCropViewController:(RSKImageCropViewController *)controller didCropImage:(UIImage *)croppedImage usingCropRect:(CGRect)cropRect
-//{
-//    
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-//    MMCell *cell = (MMCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-//    cell.mmimageView.image = croppedImage;
-//    cell.mmimageView.alpha = .3;
-//    [cell.activityView startAnimating];
-//    
-//    [self PostPicture:croppedImage];
-//    
-//    // [self.addPhotoButton setImage:croppedImage forState:UIControlStateNormal];
-//    [self.navigationController popViewControllerAnimated:YES];
-//}
+- (void)imageCropViewController:(RSKImageCropViewController *)controller didCropImage:(UIImage *)croppedImage usingCropRect:(CGRect)cropRect
+{
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    MMCell *cell = (MMCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+    cell.mmimageView.image = croppedImage;
+    cell.mmimageView.alpha = .3;
+    [cell.activityView startAnimating];
+    
+    [self PostPicture:croppedImage];
+    
+    // [self.addPhotoButton setImage:croppedImage forState:UIControlStateNormal];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
-//-(void)PostPicture:(UIImage*)imageToSend
-//{
-//    NSString *fileName = [NSString stringWithFormat:@"%ld%c%c.jpg", (long)[[NSDate date] timeIntervalSince1970], arc4random_uniform(26) + 'a', arc4random_uniform(26) + 'a'];
-//    
-//    NSDictionary *parameters = @{@"phoneNumber": st.settingId,
-//                                 @"pass": st.password,
-//                                 @"Wimg":fileName};
-//    
-//    NSString *URLString = @URLaddress;
-//    
-//    
-//    NSURLRequest *request = [[AFHTTPRequestSerializer serializer]
-//                             multipartFormRequestWithMethod:
-//                             @"POST" URLString:URLString
-//                             parameters:parameters
-//                             constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-//                                 [formData
-//                                  appendPartWithFileData:UIImageJPEGRepresentation(imageToSend, .6)
-//                                  name:@"Wimg"
-//                                  fileName:fileName
-//                                  mimeType:@"jpg"];
-//                             } error:(NULL)];
-//    
-//    AFHTTPRequestOperation *operation =
-//    [[AFHTTPRequestOperation alloc] initWithRequest:request];
-//    
-//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation,
-//                                               id responseObject) {
-//        
-//        
-//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-//        MMCell *cell = (MMCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-//        cell.mmimageView.alpha = 1;
-//        cell.mmimageView.image = imageToSend;
-//        [cell.activityView stopAnimating];
-//        
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"ProfilePicIsChanged"
-//                                                            object:nil
-//                                                          userInfo:nil];
-//        
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        
-//        NSLog(@"Failure %@, %@", error, operation.responseString);
-//        
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"📢"
-//                                                        message:@"لطفا ارتباط خود با اینترنت را بررسی نمایید."
-//                                                       delegate:self
-//                                              cancelButtonTitle:@"خب"
-//                                              otherButtonTitles:nil];
-//        [alert show];
-//        
-//        
-//        
-//    }];
-//    
-//    [operation setUploadProgressBlock:^(NSUInteger __unused bytesWritten,
-//                                        long long totalBytesWritten,
-//                                        long long totalBytesExpectedToWrite) {
-//        NSLog(@"Wrote %lld/%lld", totalBytesWritten, totalBytesExpectedToWrite);
-//    }];
-//    
-//    
-//    [operation start];
-//    
-//    
-//}
+-(void)PostPicture:(UIImage*)imageToSend
+{
+    NSString *fileName = [NSString stringWithFormat:@"%ld%c%c.jpg", (long)[[NSDate date] timeIntervalSince1970], arc4random_uniform(26) + 'a', arc4random_uniform(26) + 'a'];
+    
+    NSDictionary *parameters = @{@"cellphone": user.mobile,
+                                 @"password": user.password};
+    
+    NSString *URLString = ServerURL;
+    
+    
+    NSURLRequest *request = [[AFHTTPRequestSerializer serializer]
+                             multipartFormRequestWithMethod:
+                             @"POST" URLString:URLString
+                             parameters:parameters
+                             constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+                                 [formData
+                                  appendPartWithFileData:UIImageJPEGRepresentation(imageToSend, .6)
+                                  name:@"uploadedfile"
+                                  fileName:fileName
+                                  mimeType:@"jpg"];
+                             } error:(NULL)];
+    
+    AFHTTPRequestOperation *operation =
+    [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation,
+                                               id responseObject) {
+        
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        MMCell *cell = (MMCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+        cell.mmimageView.alpha = 1;
+        cell.mmimageView.image = imageToSend;
+        [cell.activityView stopAnimating];
+        [self saveCustomObject:imageToSend key:@"propic"];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        NSLog(@"Failure %@, %@", error, operation.responseString);
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"📢"
+                                                        message:@"لطفا ارتباط خود با اینترنت را بررسی نمایید."
+                                                       delegate:self
+                                              cancelButtonTitle:@"خب"
+                                              otherButtonTitles:nil];
+        [alert show];
+        
+        
+        
+    }];
+    
+    [operation setUploadProgressBlock:^(NSUInteger __unused bytesWritten,
+                                        long long totalBytesWritten,
+                                        long long totalBytesExpectedToWrite) {
+        NSLog(@"Wrote %lld/%lld", totalBytesWritten, totalBytesExpectedToWrite);
+    }];
+    
+    
+    [operation start];
+    
+    
+}
+
+- (void)saveCustomObject:(UIImage *)object key:(NSString *)key {
+    NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:object];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:encodedObject forKey:key];
+    [defaults synchronize];
+    
+}
+
+- (UIImage *)loadCustomObjectWithKey:(NSString *)key {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData *encodedObject = [defaults objectForKey:key];
+    UIImage *object = [NSKeyedUnarchiver unarchiveObjectWithData:encodedObject];
+    return object;
+}
 
 - (void)downloadImageWithURL:(NSURL *)url completionBlock:(void (^)(BOOL succeeded, UIImage *image))completionBlock
 {

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface PolViewController : UIViewController
-
+@property (nonatomic, strong) NSString *competitionID;
+@property (nonatomic, strong) NSString *competitionTitle;
 @end

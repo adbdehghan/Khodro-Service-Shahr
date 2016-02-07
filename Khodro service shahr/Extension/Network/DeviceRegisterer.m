@@ -10,27 +10,14 @@
 #import "AFNetworking.h"
 #import "Settings.h"
 #import "DBManager.h"
-#define URLaddress "http://www.app.chargoosh.ir/api/ProfileManager/addorupdatetoken"
+#define URLaddress "http://khodroservice.kara.systems/api/mobile/SetKeyIos"
 
 @implementation DeviceRegisterer
 Settings *st ;
 
 - (void)registerDeviceWithToken:(NSString *)token {
-    
-    st = [[Settings alloc]init];
-    
-    for (Settings *item in [DBManager selectSetting])
-    {
-        st =item;
-    }
-    
-    if (st.settingId!=nil )
-    {
-        
-        NSDictionary *parameters = @{@"phoneNumber": st.settingId,
-                                     @"pass": st.password,
-                                     @"token": token,
-                                     @"device":@"ios"};
+
+        NSDictionary *parameters = @{@"key": token};
         
         
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -42,7 +29,7 @@ Settings *st ;
         NSString *URLString = @URLaddress;
         
         
-        [manager POST:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [manager GET:URLString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             
             NSLog(@"Success %@", responseObject);
             
@@ -51,7 +38,6 @@ Settings *st ;
             
             NSLog(@"Failure %@, %@", error, operation.responseString);
         }];
-    }
     
 }
 

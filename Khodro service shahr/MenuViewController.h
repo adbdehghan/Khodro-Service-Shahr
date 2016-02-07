@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LNERadialMenu.h"
 
-@interface MenuViewController : UIViewController<LNERadialMenuDataSource, LNERadialMenuDelegate>
 
+@interface MenuViewController : UIViewController
+@property(nonatomic,strong)NSNumber *MenuSelectedIndex;
 @end

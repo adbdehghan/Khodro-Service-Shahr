@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "DeviceRegisterer.h"
+
+
 @import GoogleMaps;
 
 @interface AppDelegate ()
@@ -19,7 +22,72 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
    [GMSServices provideAPIKey:@"AIzaSyBInSk-7hnajh-mL8Thc94CNs_CwgHagYY"];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+    {
+        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }
+    else
+    {
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+         (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
+    }
+
+    [self load];
+    
     return YES;
+}
+
+- (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
+{
+    NSLog(@"My token is: %@", deviceToken);
+    
+    NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<> "]];
+    token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+    DeviceRegisterer *registrar = [[DeviceRegisterer alloc] init];
+    [registrar registerDeviceWithToken:token];
+    
+    [self Save:token];
+}
+
+- (void)Save:(NSString*)token
+{
+    
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    [array addObject:token];
+    
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+    // get documents path
+    NSString *documentsPath = [paths objectAtIndex:0];
+    // get the path to our Data/plist file
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"token.plist"];
+    
+    [array writeToFile:plistPath atomically: TRUE];
+    
+}
+
+-(void)load
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+    // get documents path
+    NSString *documentsPath = [paths objectAtIndex:0];
+    // get the path to our Data/plist file
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"user.plist"];
+    
+    NSMutableArray *array = [NSMutableArray arrayWithContentsOfFile:plistPath];
+    
+    self.user = [User alloc];
+    if (array.count>0) {
+        self.user.mobile = [array objectAtIndex:2];
+        self.user.password = [array objectAtIndex:3];
+    }
+}
+
+- (void)application:(UIApplication*)application didFailToRegisterForRemoteNotificationsWithError:(NSError*)error
+{
+    NSLog(@"Failed to get token, error: %@", error);
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -7,15 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PicsLikeControl.h"
 
 @interface HomeTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIView *containertView;
-@property (weak, nonatomic) IBOutlet UIView *likeContainerView;
-@property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (weak, nonatomic) IBOutlet PicsLikeControl *likeContainerView;
+@property (weak, nonatomic) IBOutlet UIScrollView *ImageContainer;
+@property (weak, nonatomic) IBOutlet UIImageView *ImageViewContainer;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *likeCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *commnetCountLabel;
+@property (weak, nonatomic) IBOutlet UIButton *commnetButton;
 @property (retain, nonatomic) IBOutlet UIActivityIndicatorView *activityView;
 
 @end

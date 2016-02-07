@@ -10,5 +10,5 @@
 #import "PicsLikeControl.h"
 
 @interface HomeTableViewController : UITableViewController<PicsLikeControlDelegate>
-
+@property (nonatomic, strong) NSString *newsID;
 @end

@@ -24,13 +24,12 @@
     
     [brOption setImage:[UIImage imageNamed:@"menu"] forBROptionsButtonState:BROptionsButtonStateNormal];
     [brOption setImage:[UIImage imageNamed:@"close"] forBROptionsButtonState:BROptionsButtonStateOpened];
+    [self setSelectedIndex:[self.MenuSelectedIndex integerValue]];
+
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
 
-    [brOption buttonPressed];
-}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -49,22 +48,24 @@
     UIImage *image ;
     
     switch (index) {
+//        case 0:
+//            image = [UIImage imageNamed:@"mMedia"];
+//            break;
         case 0:
-            image = [UIImage imageNamed:@"home"];
+            image = [UIImage imageNamed:@"mMedia"];
             break;
         case 1:
-            image = [UIImage imageNamed:@"map"];
+            image = [UIImage imageNamed:@"mTest"];
             break;
         case 2:
-            image = [UIImage imageNamed:@"pol"];
+            image = [UIImage imageNamed:@"mMap"];
             break;
         case 3:
-            image = [UIImage imageNamed:@"globe"];
+            image = [UIImage imageNamed:@"mProfile"];
             break;
         case 4:
-            image = [UIImage imageNamed:@"user"];
+            image = [UIImage imageNamed:@"mAbout"];
             break;
-            
         default:
             break;
     }
@@ -75,7 +76,6 @@
 
 - (void)brOptionsButton:(BROptionsButton *)brOptionsButton didSelectItem:(BROptionItem *)item
 {
-    //[brOption setImage:item.imageView.image forBROptionsButtonState:BROptionsButtonStateNormal];
     [self setSelectedIndex:item.index];
 }
 

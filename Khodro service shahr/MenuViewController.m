@@ -9,10 +9,13 @@
 #import "MenuViewController.h"
 #import "UIImage+ImageEffects.h"
 #import "UIView+Genie.h"
+#import "AIMBalloon.h"
+#import "MainTabBarViewController.h"
+
 
 @interface MenuViewController ()
 {
-    LNERadialMenu *thisMenu;
+    UIView *thisMenu;
 }
 @property (nonatomic) BOOL viewIsIn;
 @end
@@ -22,258 +25,102 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+
+//    [[UINavigationBar appearance] setHeight:10];
+    
+    
+    UIView *balloonHandler = [[UIView alloc]initWithFrame:CGRectMake(40, 60, 4, 1)];
+    
+    AIMBalloon *balloonView = [AIMBalloon alloc];
+    [balloonView Create:self.view linkedToView:balloonHandler image:[UIImage imageNamed:@"map"] size:10 tag:2];
+
+
+//    UIView *balloonHandler2 = [[UIView alloc]initWithFrame:CGRectMake(90, 60, 4, 1)];
+//    
+//    AIMBalloon *balloonView2 = [AIMBalloon alloc];
+//    [balloonView2 Create:self.view linkedToView:balloonHandler2 image:[UIImage imageNamed:@"media.png"] size:5 tag:0];
+
+
+    UIView *balloonHandler3 = [[UIView alloc]initWithFrame:CGRectMake(self.view.center.x - 55, 60, 4, 1)];
+    
+    AIMBalloon *balloonView3 = [AIMBalloon alloc];
+    [balloonView3 Create:self.view linkedToView:balloonHandler3 image:[UIImage imageNamed:@"about"] size:17 tag:4];
+
+
+    UIView *balloonHandler4 = [[UIView alloc]initWithFrame:CGRectMake(self.view.center.x ,60, 4, 1)];
+
+    AIMBalloon *balloonView4 = [AIMBalloon alloc];
+
+    [balloonView4 Create:self.view linkedToView:balloonHandler4 image:[UIImage imageNamed:@"media"] size:3 tag:0];
+
+
+    
+    UIView *balloonHandler5 = [[UIView alloc]initWithFrame:CGRectMake(self.view.center.x + 60,60, 4, 1)];
+    
+    AIMBalloon *balloonView5 = [AIMBalloon alloc];
+
+    [balloonView5  Create:self.view linkedToView:balloonHandler5 image:[UIImage imageNamed:@"profile"] size:8 tag:3];
+
+
+    
+    UIView *balloonHandler6 = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width - 60, 60, 4, 1)];
+    
+    AIMBalloon *balloonView6 = [AIMBalloon alloc];
+    [balloonView6 Create:self.view linkedToView:balloonHandler6 image:[UIImage imageNamed:@"test"] size:12 tag:1];
+    
+    
+    UIView *balloonHandler7 = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width - 90, 60, 4, 1)];
+    
+    AIMBalloon *balloonView7 = [AIMBalloon alloc];
+    [balloonView7 Create:self.view linkedToView:balloonHandler7 image:[UIImage imageNamed:@"link"] size:19 tag:5];
+
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    CGPoint location =    [[[UIApplication sharedApplication] delegate] window].center;
+    [super viewWillAppear:animated];
     
-    thisMenu = [[LNERadialMenu alloc] initFromPoint:location withDataSource:self andDelegate:self];
-    [thisMenu showMenu:self.view];
-
+    [[NSNotificationCenter defaultCenter ] addObserver:self selector:@selector(notify:) name:@"menu" object:nil];
 }
 
--(NSInteger) numberOfButtonsForRadialMenu:(LNERadialMenu *)radialMenu{
+-(void)notify:(NSNotification *)notification{
     
-    return 6;
-    
-}
-
--(CGFloat) radiusLenghtForRadialMenu:(LNERadialMenu *)radialMenu{
-    return 110;
-}
-
--(UIButton *)radialMenu:(LNERadialMenu *)radialMenu elementAtIndex:(NSInteger)index{
-    
-    UIButton *element = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 75, 75)];
-    
-    switch (index) {
-        case 0:
-        {
-            
-            
-            UIImage *settingImage = [UIImage imageNamed:@"home.png"] ;
-            
-            element.backgroundColor = [UIColor whiteColor];
-            element.layer.cornerRadius = element.bounds.size.height/2.0;
-            
-            [element setImage:settingImage forState:UIControlStateNormal];
-            element.layer.borderColor = [UIColor blackColor].CGColor;
-            element.layer.borderWidth = 1;
-            element.tag = index;
-        }
-            break;
-            
-            
-        case 1:
-        {
-            
-            UIImage *settingImage = [UIImage imageNamed:@"map.png"] ;
-            element.backgroundColor = [UIColor whiteColor];
-            element.layer.cornerRadius = element.bounds.size.height/2.0;
-            
-            [element setImage:settingImage forState:UIControlStateNormal];
-            element.layer.borderColor = [UIColor blackColor].CGColor;
-            element.layer.borderWidth = 1;
-            element.tag = index;
-            
-        }
-            break;
-            
-        case 2:
-        {
-            UIImage *settingImage = [UIImage imageNamed:@"pol.png"] ;
-            
-            
-            element.backgroundColor = [UIColor whiteColor];
-            element.layer.cornerRadius = element.bounds.size.height/2.0;
-            
-            [element setImage:settingImage forState:UIControlStateNormal];
-            element.layer.borderColor = [UIColor blackColor].CGColor;
-            element.layer.borderWidth = 1;
-            element.tag = index;
-            
-        }
-            break;
-            
-        case 3:
-        {
-            UIImage *settingImage = [UIImage imageNamed:@"globe.png"] ;
-            
-            
-            element.backgroundColor = [UIColor whiteColor];
-            element.layer.cornerRadius = element.bounds.size.height/2.0;
-            
-            [element setImage:settingImage forState:UIControlStateNormal];
-            element.layer.borderColor = [UIColor blackColor].CGColor;
-            element.layer.borderWidth = 1;
-            element.tag = index;
-            
-            
-            
-        }
-            break;
-            
-        case 4:
-        {
-            
-            UIImage *settingImage = [UIImage imageNamed:@"weather"] ;
-            
-            element.backgroundColor = [UIColor whiteColor];
-            element.layer.cornerRadius = element.bounds.size.height/2.0;
-            
-            [element setImage:settingImage forState:UIControlStateNormal];
-            element.layer.borderColor = [UIColor blackColor].CGColor;
-            element.layer.borderWidth = 1;
-            element.tag = index;
-            
-        }
-            break;
-        case 5:
-        {
-            
-            UIImage *settingImage = [UIImage imageNamed:@"user"] ;
-            
-            element.backgroundColor = [UIColor whiteColor];
-            element.layer.cornerRadius = element.bounds.size.height/2.0;
-            
-            [element setImage:settingImage forState:UIControlStateNormal];
-            element.layer.borderColor = [UIColor blackColor].CGColor;
-            element.layer.borderWidth = 1;
-            element.tag = index;
-            
-        }
-            break;
-            
-        default:
-            break;
+    self.MenuSelectedIndex =[NSNumber numberWithInteger:((UIButton*)[[notification userInfo] valueForKey:@"button"]).tag];
+    if ([self.MenuSelectedIndex integerValue]== 6) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://2.144.197.202/fish.aspx"]];
     }
-    
-    
-    
-    
-    return element;
+    else
+        [self NextBoard];
 }
 
--(void)radialMenu:(LNERadialMenu *)radialMenu didSelectButton:(UIButton *)button{
-    NSLog(@"button(element) index:%ld",(long)button.tag);
-    
-    switch (button.tag) {
-        case 0:
-        {
-            
-            [radialMenu closeMenu];
-            [self PrepareForNextBoard];
-            
-        }
-            break;
-        case 1:
-        {
-            [radialMenu closeMenu];
-            [self PrepareForNextBoard];
-            
-        }
-            break;
-            
-        case 2:
-        {
-            [radialMenu closeMenu];
-            [self PrepareForNextBoard];
-            
-        }
-            break;
-            
-        case 3:
-        {
-            [radialMenu closeMenu];
-            [self PrepareForNextBoard];
-            
-            
-        }
-            break;
-            
-        case 4:
-        {
-            
-            [radialMenu closeMenu];
-            [self PrepareForNextBoard];
-        }
-            break;
-            
-        case 5:
-        {
-            [radialMenu closeMenu];
-            [self PrepareForNextBoard];
-            
-        }
-            break;
-            
-        default:
-            break;
-    }
-}
 
 -(void)PrepareForNextBoard
 {
-    [self genieToRect:CGRectMake(self.view.center.x-27, self.view.frame.size.height-90, 50, 50) edge:BCRectEdgeTop];
-    [self performSelector:@selector(NextBoard) withObject:nil afterDelay:.25];
+    [self performSelector:@selector(NextBoard) withObject:nil afterDelay:.14];
 }
 
 -(void)NextBoard
 {
-             [self performSegueWithIdentifier:@"tomain" sender:self];
+    [self performSegueWithIdentifier:@"tomain" sender:self];
 }
 
--(UIView *)viewForCenterOfRadialMenu:(LNERadialMenu *)radialMenu{
-    UIView *centerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
-    
-    UIImageView *backImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bg_splash_blur.png"]];
-    [backImage setFrame:CGRectMake(0, 0, 400, 400)];
-    
-    UIImageView *logoImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"logo (2).png"]];
-    
-    [logoImage setFrame:CGRectMake(42, 30, 70, 75)];
-    
-    [logoImage setContentMode:UIViewContentModeScaleAspectFill];
-    
-    
-    [centerView addSubview:backImage];
-    [centerView addSubview:logoImage];
 
-    return centerView;
-}
-
--(void)radialMenu:(LNERadialMenu *)radialMenu customizationForRadialMenuView:(UIView *)radialMenuView{
-    CALayer *bgLayer = [CALayer layer];
-    bgLayer.backgroundColor = [UIColor clearColor].CGColor;
-    bgLayer.borderColor = [UIColor colorWithWhite:200.0/255.0 alpha:1].CGColor;
-    bgLayer.borderWidth = 1;
-    bgLayer.cornerRadius = radialMenu.menuRadius;
-    bgLayer.frame = CGRectMake(radialMenuView.frame.size.width/2.0-radialMenu.menuRadius, radialMenuView.frame.size.height/2.0-radialMenu.menuRadius, radialMenu.menuRadius*2, radialMenu.menuRadius*2);
-    [radialMenuView.layer insertSublayer:bgLayer atIndex:0];
-}
-
--(BOOL)canDragRadialMenu:(LNERadialMenu *)radialMenu{
-    return NO;
-}
-
-- (void) genieToRect: (CGRect)rect edge: (BCRectEdge) edge
-{
-    NSTimeInterval duration = .69f;
-    
-    CGRect endRect = CGRectInset(rect, 5.0, 5.0);
-    
-        [thisMenu genieInTransitionWithDuration:duration destinationRect:endRect destinationEdge:edge  completion:^{
-
-            
-             }];
-    
-}
 
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+        MainTabBarViewController *destination = [segue destinationViewController];
+        destination.MenuSelectedIndex = self.MenuSelectedIndex;
+
+    
 }
 
 

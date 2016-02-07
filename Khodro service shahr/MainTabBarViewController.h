@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface MainTabBarViewController : UITabBarController
-
+@property(nonatomic,strong)NSNumber *MenuSelectedIndex;
 @end
