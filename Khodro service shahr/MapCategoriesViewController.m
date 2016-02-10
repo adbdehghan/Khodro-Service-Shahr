@@ -40,7 +40,7 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
     // Load the items in the table
     [self CreateNavigationBarButtons];
     
-    self.searchBarWithDelegate = [[INSSearchBar alloc] initWithFrame:CGRectMake(5, 0, CGRectGetWidth(self.view.bounds) - 40.0, 34.0)];
+    self.searchBarWithDelegate = [[INSSearchBar alloc] initWithFrame:CGRectMake(40, 0, CGRectGetWidth(self.view.bounds) - 40.0, 34.0)];
     self.searchBarWithDelegate.delegate = self;
     self.navigationItem.titleView = self.searchBarWithDelegate;
     

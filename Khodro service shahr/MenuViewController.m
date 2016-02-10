@@ -25,14 +25,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
-//    [[UINavigationBar appearance] setHeight:10];
     
-    
-    UIView *balloonHandler = [[UIView alloc]initWithFrame:CGRectMake(40, 60, 4, 1)];
+    UIView *balloonHandler = [[UIView alloc]initWithFrame:CGRectMake(self.view.center.x - 55, 19, 4, 1)];
     
     AIMBalloon *balloonView = [AIMBalloon alloc];
-    [balloonView Create:self.view linkedToView:balloonHandler image:[UIImage imageNamed:@"map"] size:10 tag:2];
+    [balloonView Create:self.view linkedToView:balloonHandler image:[UIImage imageNamed:@"map"] size:11 tag:2];
 
 
 //    UIView *balloonHandler2 = [[UIView alloc]initWithFrame:CGRectMake(90, 60, 4, 1)];
@@ -41,38 +38,38 @@
 //    [balloonView2 Create:self.view linkedToView:balloonHandler2 image:[UIImage imageNamed:@"media.png"] size:5 tag:0];
 
 
-    UIView *balloonHandler3 = [[UIView alloc]initWithFrame:CGRectMake(self.view.center.x - 55, 60, 4, 1)];
+    UIView *balloonHandler3 = [[UIView alloc]initWithFrame:CGRectMake(self.view.center.x, 19, 4, 1)];
     
     AIMBalloon *balloonView3 = [AIMBalloon alloc];
-    [balloonView3 Create:self.view linkedToView:balloonHandler3 image:[UIImage imageNamed:@"about"] size:17 tag:4];
+    [balloonView3 Create:self.view linkedToView:balloonHandler3 image:[UIImage imageNamed:@"about"] size:18 tag:4];
 
 
-    UIView *balloonHandler4 = [[UIView alloc]initWithFrame:CGRectMake(self.view.center.x ,60, 4, 1)];
+    UIView *balloonHandler4 = [[UIView alloc]initWithFrame:CGRectMake( 55,19, 4, 1)];
 
     AIMBalloon *balloonView4 = [AIMBalloon alloc];
 
-    [balloonView4 Create:self.view linkedToView:balloonHandler4 image:[UIImage imageNamed:@"media"] size:3 tag:0];
+    [balloonView4 Create:self.view linkedToView:balloonHandler4 image:[UIImage imageNamed:@"media"] size:4 tag:0];
 
 
     
-    UIView *balloonHandler5 = [[UIView alloc]initWithFrame:CGRectMake(self.view.center.x + 60,60, 4, 1)];
+    UIView *balloonHandler5 = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width - 60,19, 4, 1)];
     
     AIMBalloon *balloonView5 = [AIMBalloon alloc];
 
-    [balloonView5  Create:self.view linkedToView:balloonHandler5 image:[UIImage imageNamed:@"profile"] size:8 tag:3];
+    [balloonView5  Create:self.view linkedToView:balloonHandler5 image:[UIImage imageNamed:@"profile"] size:9 tag:3];
 
 
     
-    UIView *balloonHandler6 = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width - 60, 60, 4, 1)];
+    UIView *balloonHandler6 = [[UIView alloc]initWithFrame:CGRectMake(self.view.center.x + 60, 19, 4, 1)];
     
     AIMBalloon *balloonView6 = [AIMBalloon alloc];
-    [balloonView6 Create:self.view linkedToView:balloonHandler6 image:[UIImage imageNamed:@"test"] size:12 tag:1];
+    [balloonView6 Create:self.view linkedToView:balloonHandler6 image:[UIImage imageNamed:@"test"] size:13 tag:1];
     
     
-    UIView *balloonHandler7 = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width - 90, 60, 4, 1)];
-    
-    AIMBalloon *balloonView7 = [AIMBalloon alloc];
-    [balloonView7 Create:self.view linkedToView:balloonHandler7 image:[UIImage imageNamed:@"link"] size:19 tag:5];
+//    UIView *balloonHandler7 = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width - 90, 20, 4, 1)];
+//    
+//    AIMBalloon *balloonView7 = [AIMBalloon alloc];
+//    [balloonView7 Create:self.view linkedToView:balloonHandler7 image:[UIImage imageNamed:@"link"] size:19 tag:5];
 
 }
 
@@ -116,12 +113,10 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-
+    
         MainTabBarViewController *destination = [segue destinationViewController];
         destination.MenuSelectedIndex = self.MenuSelectedIndex;
-
-    
 }
 
-
 @end
+

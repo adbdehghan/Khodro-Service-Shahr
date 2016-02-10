@@ -35,6 +35,7 @@
     }
 
     [self load];
+    [NSThread sleepForTimeInterval:2];
     
     return YES;
 }

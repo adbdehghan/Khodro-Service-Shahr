@@ -17,6 +17,7 @@
 #import "Settings.h"
 #import "DataDownloader.h"
 #import "User.h"
+#import "NYAlertViewController.h"
 
 static NSString *const ServerURL = @"http://khodroservice.kara.systems/api/mobile/UploadUserPic";
 @interface ProfileTableViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate,RSKImageCropViewControllerDelegate>
@@ -38,7 +39,6 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems/api/mobil
     
     self.navigationItem.hidesBackButton = YES;
 
-    
     UILabel* label=[[UILabel alloc] initWithFrame:CGRectMake(0,0, self.navigationItem.titleView.frame.size.width, 40)];
     label.text=self.navigationItem.title;
     label.textColor=[UIColor whiteColor];
@@ -63,7 +63,9 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems/api/mobil
         case 5:
             [self performSegueWithIdentifier:@"gps" sender:self];
             break;
-    
+        case 7:
+            [self showCustomUIAlertView];
+            break;
     }
 }
 
@@ -276,6 +278,7 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems/api/mobil
     }
     
 }
+
 
 
 - (void)viewWillAppear:(BOOL)animated
@@ -545,6 +548,68 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems/api/mobil
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)showCustomUIAlertView {
+    NYAlertViewController *alertViewController = [[NYAlertViewController alloc] initWithNibName:nil bundle:nil];
+    
+    alertViewController.backgroundTapDismissalGestureEnabled = YES;
+    alertViewController.swipeDismissalGestureEnabled = YES;
+    
+    alertViewController.title = NSLocalizedString(@"خروج", nil);
+    alertViewController.message = NSLocalizedString(@"آیا مطمئن هستید؟", nil);
+    
+    alertViewController.buttonCornerRadius = 20.0f;
+    alertViewController.view.tintColor = self.view.tintColor;
+    
+    alertViewController.titleFont = [UIFont fontWithName:@"B Yekan+" size:18];
+    alertViewController.messageFont = [UIFont fontWithName:@"B Yekan+" size:16];
+    alertViewController.buttonTitleFont = [UIFont fontWithName:@"B Yekan+" size:alertViewController.buttonTitleFont.pointSize];
+    alertViewController.cancelButtonTitleFont = [UIFont fontWithName:@"B Yekan+" size:alertViewController.cancelButtonTitleFont.pointSize];
+    
+    alertViewController.alertViewBackgroundColor =[UIColor colorWithWhite:0.19f alpha:1.0f];
+    alertViewController.alertViewCornerRadius = 10.0f;
+    
+    alertViewController.titleColor = [UIColor colorWithRed:242/255.f green:172/255.f blue:63/255.f alpha:1.f];//[UIColor colorWithRed:0.42f green:0.78 blue:0.32f alpha:1.0f];
+    alertViewController.messageColor = [UIColor colorWithWhite:0.92f alpha:1.0f];
+    
+    alertViewController.buttonColor =[UIColor colorWithRed:240/255.f green:166/255.f blue:50/255.f alpha:1.f]; //[UIColor colorWithRed:0.42f green:0.78 blue:0.32f alpha:1.0f];
+    alertViewController.buttonTitleColor = [UIColor colorWithWhite:0.19f alpha:1.0f];
+    
+    alertViewController.cancelButtonColor = [UIColor colorWithRed:240/255.f green:166/255.f blue:50/255.f alpha:1.f];//[UIColor colorWithRed:0.42f green:0.78 blue:0.32f alpha:1.0f];
+    alertViewController.cancelButtonTitleColor = [UIColor colorWithWhite:0.19f alpha:1.0f];
+    
+    [alertViewController addAction:[NYAlertAction actionWithTitle:NSLocalizedString(@"بله", nil)
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(NYAlertAction *action) {
+                                                              [self Clear];
+                                                              [self dismissViewControllerAnimated:YES completion:nil];
+                                                              [self performSegueWithIdentifier:@"signin" sender:self];
+
+                                                          }]];
+    
+    [alertViewController addAction:[NYAlertAction actionWithTitle:NSLocalizedString(@"خیر", nil)
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:^(NYAlertAction *action) {
+                                                              [self dismissViewControllerAnimated:YES completion:nil];
+                                                              NSIndexPath *tableSelection = [self.tableView indexPathForSelectedRow];
+                                                              [self.tableView deselectRowAtIndexPath:tableSelection animated:NO];
+                                                          }]];
+    
+    [self presentViewController:alertViewController animated:YES completion:nil];
+}
+
+-(void)Clear
+{
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+    // get documents path
+    NSString *documentsPath = [paths objectAtIndex:0];
+    // get the path to our Data/plist file
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"user.plist"];
+    
+    [array writeToFile:plistPath atomically: TRUE];
 }
 
 - (DataDownloader *)getData

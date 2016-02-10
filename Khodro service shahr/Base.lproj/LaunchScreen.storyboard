@@ -18,17 +18,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash.png" translatesAutoresizingMaskIntoConstraints="NO" id="INn-Ba-Ff9">
-                                <rect key="frame" x="59" y="59" width="482" height="483"/>
+                                <rect key="frame" x="98" y="118" width="405" height="363"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="INn-Ba-Ff9" secondAttribute="trailing" constant="59" id="5EF-qZ-WkK"/>
+                            <constraint firstAttribute="trailing" secondItem="INn-Ba-Ff9" secondAttribute="trailing" constant="97" id="5EF-qZ-WkK"/>
                             <constraint firstItem="INn-Ba-Ff9" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="VwP-bK-agk"/>
-                            <constraint firstItem="INn-Ba-Ff9" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="39" id="YvP-hZ-tkj"/>
+                            <constraint firstItem="INn-Ba-Ff9" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="98" id="YvP-hZ-tkj"/>
                             <constraint firstItem="INn-Ba-Ff9" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="d2E-0h-N0t"/>
-                            <constraint firstItem="INn-Ba-Ff9" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="59" id="nDy-u3-ouO"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="INn-Ba-Ff9" secondAttribute="bottom" constant="58" id="ujI-3r-MWi"/>
+                            <constraint firstItem="INn-Ba-Ff9" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="98" id="nDy-u3-ouO"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="INn-Ba-Ff9" secondAttribute="bottom" constant="119" id="ujI-3r-MWi"/>
                         </constraints>
                     </view>
                 </viewController>

@@ -34,7 +34,7 @@
     if (userData.count >0) {
 
 //        [self setViewControllers:[NSArray arrayWithObject:viewController] animated:NO];
-        [self addChildViewController:profile];
+     //   [self addChildViewController:profile];
 
         //[self addChildViewController:setGPS];
 

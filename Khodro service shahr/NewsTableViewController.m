@@ -440,7 +440,7 @@ UIActivityIndicatorView *activityIndicator;
         cell.titleLabel.text = news.Title;
         cell.descriptionLabel.text = news.Detail;
 
-        cell.commnetCountLabel.text = [NSString stringWithFormat:@"%@",news.CommentCount];
+//        cell.commnetCountLabel.text = [NSString stringWithFormat:@"%@",news.CommentCount];
     
     cell.commnetButton.tag = indexPath.row;
     [cell.commnetButton addTarget:self action:@selector(AddComment:) forControlEvents:UIControlEventTouchUpInside];
@@ -511,17 +511,12 @@ UIActivityIndicatorView *activityIndicator;
 
         NSInteger likeCount = [news.LikeCount integerValue];
         
-   
         cell.likeCountLabel.text = [NSString stringWithFormat:@"%ld",likeCount + 1];
-        
-       
-        
         [cell.likeContainerView ManualTap];
         cell.likeContainerView.tag = [news.ID integerValue];
         
         cell.likeContainerView.delegate = self;
 
-    
     }
     
 //        if ([[cell.likeContainerView subviews] count]==0) {

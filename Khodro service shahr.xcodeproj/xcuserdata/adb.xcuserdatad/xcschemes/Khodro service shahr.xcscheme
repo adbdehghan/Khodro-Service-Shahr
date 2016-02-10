@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "64DDB00D1C14957100416B22"
-               BuildableName = "Khodro service shahr.app"
-               BlueprintName = "Khodro service shahr"
+               BuildableName = "&#x62e;&#x648;&#x62f;&#x631;&#x648; &#x633;&#x631;&#x648;&#x6cc;&#x633;.app"
+               BlueprintName = "&#x62e;&#x648;&#x62f;&#x631;&#x648; &#x633;&#x631;&#x648;&#x6cc;&#x633;"
                ReferencedContainer = "container:Khodro service shahr.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -53,8 +53,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "64DDB00D1C14957100416B22"
-            BuildableName = "Khodro service shahr.app"
-            BlueprintName = "Khodro service shahr"
+            BuildableName = "&#x62e;&#x648;&#x62f;&#x631;&#x648; &#x633;&#x631;&#x648;&#x6cc;&#x633;.app"
+            BlueprintName = "&#x62e;&#x648;&#x62f;&#x631;&#x648; &#x633;&#x631;&#x648;&#x6cc;&#x633;"
             ReferencedContainer = "container:Khodro service shahr.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -76,8 +76,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "64DDB00D1C14957100416B22"
-            BuildableName = "Khodro service shahr.app"
-            BlueprintName = "Khodro service shahr"
+            BuildableName = "&#x62e;&#x648;&#x62f;&#x631;&#x648; &#x633;&#x631;&#x648;&#x6cc;&#x633;.app"
+            BlueprintName = "&#x62e;&#x648;&#x62f;&#x631;&#x648; &#x633;&#x631;&#x648;&#x6cc;&#x633;"
             ReferencedContainer = "container:Khodro service shahr.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -95,8 +95,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "64DDB00D1C14957100416B22"
-            BuildableName = "Khodro service shahr.app"
-            BlueprintName = "Khodro service shahr"
+            BuildableName = "&#x62e;&#x648;&#x62f;&#x631;&#x648; &#x633;&#x631;&#x648;&#x6cc;&#x633;.app"
+            BlueprintName = "&#x62e;&#x648;&#x62f;&#x631;&#x648; &#x633;&#x631;&#x648;&#x6cc;&#x633;"
             ReferencedContainer = "container:Khodro service shahr.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

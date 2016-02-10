@@ -13,12 +13,16 @@
 #import "SMCalloutView.h"
 #import "UIImageView+UIActivityIndicatorForSDWebImage.h"
 #import "UIWindow+YzdHUD.h"
+#import "LGFilterView.h"
+#import "MapCategory.h"
+#import "JTProgressHUD.h"
+#import "INSSearchBar.h"
 
 #define SCREEN_HEIGHT_WITHOUT_STATUS_BAR     [[UIScreen mainScreen] bounds].size.height - 60
 #define SCREEN_WIDTH                         [[UIScreen mainScreen] bounds].size.width
 #define HEIGHT_STATUS_BAR                    60
 #define Y_DOWN_TABLEVIEW                     SCREEN_HEIGHT_WITHOUT_STATUS_BAR - 60
-#define DEFAULT_HEIGHT_HEADER                140.0f
+#define DEFAULT_HEIGHT_HEADER                240.0f
 #define MIN_HEIGHT_HEADER                    10.0f
 #define DEFAULT_Y_OFFSET                     ([[UIScreen mainScreen] bounds].size.height == 480.0f) ? -200.0f : -250.0f
 #define FULL_Y_OFFSET                        -200.0f
@@ -28,7 +32,7 @@
 
 @import GoogleMaps;
 static const CGFloat CalloutYOffset = 50.0f;
-@interface MapViewController () <CLLocationManagerDelegate,UIGestureRecognizerDelegate,GMSMapViewDelegate>
+@interface MapViewController () <CLLocationManagerDelegate,UIGestureRecognizerDelegate,GMSMapViewDelegate,INSSearchBarDelegate>
 @property (strong, nonatomic)   UITapGestureRecognizer  *tapMapViewGesture;
 @property (strong, nonatomic)   UITapGestureRecognizer  *tapTableViewGesture;
 @property (nonatomic)           CGRect                  headerFrame;
@@ -44,6 +48,11 @@ static const CGFloat CalloutYOffset = 50.0f;
 @property (nonatomic, strong) NSMutableArray *placesCopy;
 @property (strong, nonatomic) SMCalloutView *calloutView;
 @property (strong, nonatomic) UIView *emptyCalloutView;
+@property (nonatomic) NSInteger *selectedCatIndex;
+@property (strong, nonatomic) LGFilterView  *categoryView;
+@property (nonatomic, strong) NSMutableArray *tableItems;
+@property (nonatomic, strong) NSMutableArray *categoryNameItems;
+@property (nonatomic, strong) INSSearchBar *searchBarWithDelegate;
 @end
 static NSString *const ServerURL = @"http://khodroservice.kara.systems";
 @implementation MapViewController
@@ -59,9 +68,23 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.selectedCatIndex = 0;
     [self setup];
     [self setupTableView];
     [self setupMapView];
+    [self CreateMenuButton];
+    
+    
+    self.searchBarWithDelegate = [[INSSearchBar alloc] initWithFrame:CGRectMake(10, 72, CGRectGetWidth(self.view.bounds) - 20.0, 38.0)];
+    self.searchBarWithDelegate.delegate = self;
+      [self.view addSubview:self.searchBarWithDelegate];
+    [self.searchBarWithDelegate showSearchBar:nil];
+    
+    
+    [self.tableView setHidden:YES];
+
+    
     
     self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.distanceFilter = kCLDistanceFilterNone;
@@ -95,7 +118,8 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
     
     self.emptyCalloutView = [[UIView alloc] initWithFrame:CGRectZero];
     
-
+    self.tableItems = [[NSMutableArray alloc]init];
+    self.categoryNameItems = [[NSMutableArray alloc]init];
     self.places = [[NSMutableArray alloc]init];
     NSString *fullURL = [NSString stringWithFormat:@"%@%@",ServerURL,self.categoryURL];
     
@@ -103,34 +127,30 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
    // [markerImage setImageWithURL:[NSURL URLWithString:fullURL]
      //                       placeholderImage:[UIImage imageNamed:@"annotationPin"] options:SDWebImageRefreshCached usingActivityIndicatorStyle:(UIActivityIndicatorViewStyle)UIActivityIndicatorViewStyleGray];
     
-    RequestCompleteBlock callback = ^(BOOL wasSuccessful,NSObject *data) {
+    [JTProgressHUD show];
+    
+    RequestCompleteBlock callback2 = ^(BOOL wasSuccessful,NSObject *data) {
         if (wasSuccessful) {
             
             
             for (NSDictionary *item in (NSMutableArray*)data) {
                 
-                MapPlace *place = [MapPlace modelFromJSONDictionary:item];
-                [self.places addObject:place];
-                
+                MapCategory *category = [MapCategory modelFromJSONDictionary:item];
+                [self.tableItems addObject:category];
+                [self.categoryNameItems addObject:category.Name];
 
-                GMSMarker *marker = [[GMSMarker alloc] init];
-            
-                marker.position = CLLocationCoordinate2DMake([place.Lat doubleValue],[place.Lng doubleValue]);
-                marker.title = place.Title;
-                marker.snippet = @"";
-                marker.appearAnimation = kGMSMarkerAnimationPop;
-                marker.icon =[UIImage imageNamed:@"marker.png"]; //markerImage.image;
-                marker.map = mapView;
-                
+                [JTProgressHUD hide];
             }
-
-            self.placesCopy = [self.places mutableCopy];
-            [self.locationManager startUpdatingLocation];
             
+            UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Filter"] style:UIBarButtonItemStylePlain target:self action:@selector(filterAction:)];
+            self.navigationItem.rightBarButtonItem = rightButton;
+            
+            [self setupFilterViewsWithTransitionStyle:(LGFilterViewTransitionStyle)0];
         }
         
         else
         {
+            [JTProgressHUD hide];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"📢"
                                                             message:@"لطفا ارتباط خود با اینترنت را بررسی نمایید."
                                                            delegate:self
@@ -142,59 +162,288 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
             NSLog( @"Unable to fetch Data. Try again.");
         }
     };
-
-
-
+    
+    
+    [self.getData GetMapCategories:callback2];
+    
+    
 
     
-    if (self.searchplaces.count> 0 ) {
-        for (MapPlace *place in self.searchplaces) {
-            
-            
-            
-            
-            GMSMarker *marker = [[GMSMarker alloc] init];
-            
-            marker.position = CLLocationCoordinate2DMake([place.Lat doubleValue],[place.Lng doubleValue]);
-            marker.title = place.Title;
-            marker.snippet = @"";
-            marker.appearAnimation = kGMSMarkerAnimationPop;
-            marker.icon =[UIImage imageNamed:@"marker.png"]; //markerImage.image;
-            marker.map = mapView;
-            
-        }
-        
-        self.placesCopy = [self.searchplaces mutableCopy];
-        self.places = [self.searchplaces mutableCopy];
-        [self.locationManager startUpdatingLocation];
-        
-    }
-    else{
-        [self.getData GetCategoryLocations:self.categoryID withCallback:callback];
-    }
+//    RequestCompleteBlock callback = ^(BOOL wasSuccessful,NSObject *data) {
+//        if (wasSuccessful) {
+//            
+//            
+//            for (NSDictionary *item in (NSMutableArray*)data) {
+//                
+//                MapPlace *place = [MapPlace modelFromJSONDictionary:item];
+//                [self.places addObject:place];
+//                
+//
+//                GMSMarker *marker = [[GMSMarker alloc] init];
+//            
+//                marker.position = CLLocationCoordinate2DMake([place.Lat doubleValue],[place.Lng doubleValue]);
+//                marker.title = place.Title;
+//                marker.snippet = @"";
+//                marker.appearAnimation = kGMSMarkerAnimationPop;
+//                marker.icon =[UIImage imageNamed:@"marker.png"]; //markerImage.image;
+//                marker.map = mapView;
+//                
+//            }
+//
+//            self.placesCopy = [self.places mutableCopy];
+//            [self.locationManager startUpdatingLocation];
+//            
+//        }
+//        
+//        else
+//        {
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"📢"
+//                                                            message:@"لطفا ارتباط خود با اینترنت را بررسی نمایید."
+//                                                           delegate:self
+//                                                  cancelButtonTitle:@"خب"
+//                                                  otherButtonTitles:nil];
+//            [alert show];
+//            
+//            
+//            NSLog( @"Unable to fetch Data. Try again.");
+//        }
+//    };
+//
+//
+//
+//
+//    
+//    if (self.searchplaces.count> 0 ) {
+//        for (MapPlace *place in self.searchplaces) {
+//            
+//            
+//            
+//            
+//            GMSMarker *marker = [[GMSMarker alloc] init];
+//            
+//            marker.position = CLLocationCoordinate2DMake([place.Lat doubleValue],[place.Lng doubleValue]);
+//            marker.title = place.Title;
+//            marker.snippet = @"";
+//            marker.appearAnimation = kGMSMarkerAnimationPop;
+//            marker.icon =[UIImage imageNamed:@"marker.png"]; //markerImage.image;
+//            marker.map = mapView;
+//            
+//        }
+//        
+//        self.placesCopy = [self.searchplaces mutableCopy];
+//        self.places = [self.searchplaces mutableCopy];
+//        [self.locationManager startUpdatingLocation];
+//        
+//    }
+//    else{
+//        [self.getData GetCategoryLocations:self.categoryID withCallback:callback];
+//    }
     
     
     // Creates a marker in the center of the map.
 
     UILabel* label=[[UILabel alloc] initWithFrame:CGRectMake(0,0, self.navigationItem.titleView.frame.size.width, 40)];
-    label.text=self.categoryName;
+    label.text=@"نقشه";
     label.textColor=[UIColor whiteColor];
     label.backgroundColor =[UIColor clearColor];
     label.adjustsFontSizeToFitWidth=YES;
     label.font = [UIFont fontWithName:@"B Yekan+" size:19];
     label.textAlignment = NSTextAlignmentCenter;
+    
     self.navigationItem.titleView=label;
     
-    UIViewController *previousVC = [self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - 2];
+
     
-    // Create a UIBarButtonItem
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(popViewController)];
+
+}
+
+
+
+- (void)searchBarDidTapReturn:(INSSearchBar *)searchBar
+{
+    if (searchBar.searchField.text.length > 0) {
+        
+        [self.view.window showHUDWithText:@"لطفا صبر کنید" Type:ShowLoading Enabled:YES];
+        [self.places removeAllObjects];
+        
+        RequestCompleteBlock callback = ^(BOOL wasSuccessful,NSObject *data) {
+            if (wasSuccessful) {
+                
+                
+                for (NSDictionary *item in (NSMutableArray*)data) {
+                    
+                    MapPlace *place = [MapPlace modelFromJSONDictionary:item];
+                    [self.places addObject:place];
+                    
+                    
+                    
+                    
+                }
+                if (self.places.count > 0) {
+                    [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
+                    
+                    
+                }
+                else
+                {
+                    [self.view.window showHUDWithText:@"مکان مورد نظر یافت نشد" Type:ShowDismiss Enabled:YES];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"📢"
+                                                                    message:@"مکان مورد نظر یافت نشد"
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"خب"
+                                                          otherButtonTitles:nil];
+                    [alert show];
+                }
+                
+                
+                
+                
+            }
+            
+            else
+            {
+                [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"📢"
+                                                                message:@"لطفا ارتباط خود با اینترنت را بررسی نمایید."
+                                                               delegate:self
+                                                      cancelButtonTitle:@"خب"
+                                                      otherButtonTitles:nil];
+                [alert show];
+                
+                
+                NSLog( @"Unable to fetch Data. Try again.");
+            }
+        };
+        
+        
+        [self.getData SearchLocations:searchBar.searchField.text  withCallback:callback];
+
+    }
     
+    [self.view endEditing:YES];
+    [searchBar.searchField endEditing:YES];
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
     
-    barButtonItem.tintColor = [UIColor whiteColor];
+    CGFloat topInset = self.navigationController.navigationBar.frame.size.height+([UIApplication sharedApplication].isStatusBarHidden ? 0.f : [UIApplication sharedApplication].statusBarFrame.size.height);
+    if ([UIDevice currentDevice].systemVersion.floatValue < 7.0) topInset = 0.f;
+
+    [self updateFilterProperties:nil];
+}
+
+- (void)updateFilterProperties:(UISegmentedControl *)segmentControl
+{
     
-    // Associate the barButtonItem to the previous view
-    [previousVC.navigationItem setBackBarButtonItem:barButtonItem];
+    CGFloat topInset = self.navigationController.navigationBar.frame.size.height+([UIApplication sharedApplication].isStatusBarHidden ? 0.f : [UIApplication sharedApplication].statusBarFrame.size.height);
+    if ([UIDevice currentDevice].systemVersion.floatValue < 7.0) topInset = 0.f;
+    
+    if (_categoryView.transitionStyle == LGFilterViewTransitionStyleCenter)
+    {
+        _categoryView.offset = CGPointMake(0.f, topInset/2);
+        _categoryView.contentInset = UIEdgeInsetsZero;
+    }
+    else if (_categoryView.transitionStyle == LGFilterViewTransitionStyleTop)
+    {
+        _categoryView.contentInset = UIEdgeInsetsMake(topInset, 0.f, 0.f, 0.f);
+        _categoryView.offset = CGPointZero;
+    }
+
+}
+
+- (void)filterAction:(UIButton *)button
+{
+    if (!_categoryView.isShowing)
+    {
+        _categoryView.selectedIndex =self.selectedCatIndex;
+        
+        [_categoryView showInView:self.view animated:YES completionHandler:nil];
+    }
+    else [_categoryView dismissAnimated:YES completionHandler:nil];
+}
+
+- (void)setupFilterViewsWithTransitionStyle:(LGFilterViewTransitionStyle)style
+{
+    __weak typeof(self) wself = self;
+    
+    _categoryView = [[LGFilterView alloc] initWithTitles:self.categoryNameItems
+                                          actionHandler:^(LGFilterView *filterView, NSString *title, NSUInteger index)
+                    {
+                        if (wself)
+                        {
+                            __strong typeof(wself) self = wself;
+                            
+                            UILabel* label=[[UILabel alloc] initWithFrame:CGRectMake(0,0, self.navigationItem.titleView.frame.size.width, 40)];
+                            label.text=title;
+                            label.textColor=[UIColor whiteColor];
+                            label.backgroundColor =[UIColor clearColor];
+                            label.adjustsFontSizeToFitWidth=YES;
+                            label.font = [UIFont fontWithName:@"B Yekan+" size:19];
+                            label.textAlignment = NSTextAlignmentCenter;
+                            self.navigationItem.titleView=label;
+                            
+                            [self.places removeAllObjects];
+                            [self.placesCopy removeAllObjects];
+                            [mapView clear];
+                            [JTProgressHUD show];
+                            
+                            RequestCompleteBlock callback = ^(BOOL wasSuccessful,NSObject *data) {
+                                if (wasSuccessful) {
+                        
+                                    [JTProgressHUD hide];
+                                    
+                                    for (NSDictionary *item in (NSMutableArray*)data) {
+                        
+                                        MapPlace *place = [MapPlace modelFromJSONDictionary:item];
+                                        [self.places addObject:place];
+                        
+                        
+                                        GMSMarker *marker = [[GMSMarker alloc] init];
+                        
+                                        marker.position = CLLocationCoordinate2DMake([place.Lat doubleValue],[place.Lng doubleValue]);
+                                        marker.title = place.Title;
+                                        marker.snippet = @"";
+                                        marker.appearAnimation = kGMSMarkerAnimationPop;
+                                        marker.icon =[UIImage imageNamed:@"marker.png"]; //markerImage.image;
+                                        marker.map = mapView;
+
+                                    }
+                                    [self.tableView setHidden:NO];
+
+                                    self.placesCopy = [self.places mutableCopy];
+                                    [self.locationManager startUpdatingLocation];
+                        
+                                }
+                        
+                                else
+                                {
+                                    [JTProgressHUD hide];
+                                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"📢"
+                                                                                    message:@"لطفا ارتباط خود با اینترنت را بررسی نمایید."
+                                                                                   delegate:self
+                                                                          cancelButtonTitle:@"خب"
+                                                                          otherButtonTitles:nil];
+                                    [alert show];
+                                    
+                                    
+                                    NSLog( @"Unable to fetch Data. Try again.");
+                                }
+                            };
+                            
+                            self.selectedCatIndex = index;
+                            
+                            self.categoryID = ((MapCategory*)self.tableItems[index]).ID;
+                            [self.getData GetCategoryLocations:self.categoryID withCallback:callback];
+                        
+                        }
+                    }
+                                          cancelHandler:nil];
+    _categoryView.transitionStyle = style;
+    _categoryView.numberOfLines = 0;
+    
+
 }
 
 
@@ -239,6 +488,29 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
     }];
 
 
+}
+
+-(void)CreateMenuButton
+{
+    UIButton *menuButton =  [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *settingImage = [[UIImage imageNamed:@"home.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [menuButton setImage:settingImage forState:UIControlStateNormal];
+    
+    menuButton.tintColor = [UIColor whiteColor];
+    [menuButton addTarget:self action:@selector(GoToMenu)forControlEvents:UIControlEventTouchUpInside];
+    [menuButton setFrame:CGRectMake(0, 0, 24, 24)];
+    
+    
+    UIBarButtonItem *settingBarButton = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
+    self.navigationItem.leftBarButtonItem = settingBarButton;
+    
+    
+}
+
+-(void)GoToMenu
+{
+    
+    [self performSegueWithIdentifier:@"first" sender:self];
 }
 
 - (void)mapView:(GMSMapView *)pMapView didChangeCameraPosition:(GMSCameraPosition *)position {
@@ -297,6 +569,7 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
 }
 
 - (void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate {
+    [self.view endEditing:YES];
     self.calloutView.hidden = YES;
 }
 
@@ -305,6 +578,8 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
     mapView.selectedMarker = marker;
     return YES;
 }
+
+
 
 -(void)setup{
     _heighTableViewHeader       = DEFAULT_HEIGHT_HEADER;
@@ -435,6 +710,7 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
 #pragma mark - Internal Methods
 
 - (void)handleTapMapView:(UIGestureRecognizer *)gesture {
+
     if(!self.isShutterOpen){
         // Move the tableView down to let the map appear entirely
         [self openShutter];
@@ -446,6 +722,7 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
 }
 
 - (void)handleTapTableView:(UIGestureRecognizer *)gesture {
+
     if(self.isShutterOpen){
         // Move the tableView up to reach is origin position
         [self closeShutter];
@@ -690,6 +967,8 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
     
     return _getData;
 }
+
+
 
 /*
 #pragma mark - Navigation
