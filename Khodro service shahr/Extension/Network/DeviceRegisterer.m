@@ -13,7 +13,6 @@
 #define URLaddress "http://khodroservice.kara.systems/api/mobile/SetKeyIos"
 
 @implementation DeviceRegisterer
-Settings *st ;
 
 - (void)registerDeviceWithToken:(NSString *)token {
 

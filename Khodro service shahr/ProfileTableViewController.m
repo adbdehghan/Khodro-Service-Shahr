@@ -35,12 +35,13 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems/api/mobil
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+   
     [self CreateMenuButton];
     
     self.navigationItem.hidesBackButton = YES;
 
     UILabel* label=[[UILabel alloc] initWithFrame:CGRectMake(0,0, self.navigationItem.titleView.frame.size.width, 40)];
-    label.text=self.navigationItem.title;
+    label.text=@"حساب کاربری";
     label.textColor=[UIColor whiteColor];
     label.backgroundColor =[UIColor clearColor];
     label.adjustsFontSizeToFitWidth=YES;
@@ -55,11 +56,15 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems/api/mobil
     user = [User alloc];
     user.mobile = [self load][2];
     user.password = [self load][3];
+    user.itemId =[self load][0];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.row) {
+        case 4:
+            [self performSegueWithIdentifier:@"elec" sender:self];
+            break;
         case 5:
             [self performSegueWithIdentifier:@"gps" sender:self];
             break;
@@ -122,7 +127,7 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems/api/mobil
             //cell.startTimeLabel.text = st.settingId;
             
             cell.mmlabel.text =name;
-            
+            cell.scorePerPic.text = user.itemId;
       
             
             return cell;
@@ -583,8 +588,9 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems/api/mobil
                                                             style:UIAlertActionStyleDefault
                                                           handler:^(NYAlertAction *action) {
                                                               [self Clear];
+                                                              [self ClearSerial];
                                                               [self dismissViewControllerAnimated:YES completion:nil];
-                                                              [self performSegueWithIdentifier:@"signin" sender:self];
+                                                              [self performSegueWithIdentifier:@"login" sender:self];
 
                                                           }]];
     
@@ -608,6 +614,19 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems/api/mobil
     NSString *documentsPath = [paths objectAtIndex:0];
     // get the path to our Data/plist file
     NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"user.plist"];
+    
+    [array writeToFile:plistPath atomically: TRUE];
+}
+
+-(void)ClearSerial
+{
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+    // get documents path
+    NSString *documentsPath = [paths objectAtIndex:0];
+    // get the path to our Data/plist file
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"serial.plist"];
     
     [array writeToFile:plistPath atomically: TRUE];
 }

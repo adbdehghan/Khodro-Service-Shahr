@@ -13,6 +13,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic,retain)User *user;
+@property (nonatomic)BOOL adShown;
 
 @end
 

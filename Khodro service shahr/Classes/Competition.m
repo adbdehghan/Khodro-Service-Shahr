@@ -8,6 +8,7 @@
 
 #import "Competition.h"
 #import "NewsMedia.h"
+#import "CompetitionQuestion.h"
 
 @implementation Competition
 + (NSDictionary *)JSONKeyTranslationDictionary
@@ -17,13 +18,9 @@
              @"Title" : @"Title",
              @"StartDate" : @"StartDate",
              @"ExpireDate" : @"ExpireDate",
-             @"Question" : @"Question",
-             @"Option1" : @"Option1",
-             @"Option2" : @"Option2",
-             @"Option3" : @"Option3",
-             @"Option4" : @"Option4",
              @"Comment" : @"Comment",
              @"data.Competition.medias" : @{@"class" : NSStringFromClass([NewsMedia class]), @"relationship" : @"medias", @"isArray" : @YES},
+             @"data.Competition.questions" : @{@"class" : NSStringFromClass([CompetitionQuestion class]), @"relationship" : @"questions", @"isArray" : @YES},
              };
 }
 @end

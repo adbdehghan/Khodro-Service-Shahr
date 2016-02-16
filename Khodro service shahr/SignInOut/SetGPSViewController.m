@@ -24,6 +24,13 @@
     AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
     self.user = app.user;
+    
+    NSMutableArray *Serial = [self loadSerial];
+    
+    if (Serial.count>0) {
+        serialTextField.text = Serial[0];
+        simcardTextField.text = Serial[1];
+    }
 }
 
 
@@ -33,12 +40,14 @@
         if (wasSuccessful) {
             [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"💭"
-                                                            message:((NSMutableArray*)data)[0]
+                                                            message:@"با موفقیت انجام شد"
                                                            delegate:self
-                                                  cancelButtonTitle:@"خب"
+                                                  cancelButtonTitle:@"تایید"
                                                   otherButtonTitles:nil];
             
             [alert show];
+            
+            [self Save];
             
         }
         
@@ -48,7 +57,7 @@
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"❗️"
                                                             message:@"لطفا ارتباط خود با اینترنت را بررسی نمایید"
                                                            delegate:self
-                                                  cancelButtonTitle:@"خب"
+                                                  cancelButtonTitle:@"تایید"
                                                   otherButtonTitles:nil];
             
             [alert show];
@@ -66,7 +75,7 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"❗️"
                                                         message:@"لطفا مقادیر ورودی را بررسی نمایید"
                                                        delegate:self
-                                              cancelButtonTitle:@"خب"
+                                              cancelButtonTitle:@"تایید"
                                               otherButtonTitles:nil];
         
         [alert show];
@@ -75,6 +84,36 @@
     
 }
 
+-(NSMutableArray*)loadSerial
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+    // get documents path
+    NSString *documentsPath = [paths objectAtIndex:0];
+    // get the path to our Data/plist file
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"serial.plist"];
+    
+    NSMutableArray *array = [NSMutableArray arrayWithContentsOfFile:plistPath];
+    
+    return array;
+}
+
+- (void)Save
+{
+    
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    [array addObject:serialTextField.text];
+    [array addObject:simcardTextField.text];
+    //
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+    // get documents path
+    NSString *documentsPath = [paths objectAtIndex:0];
+    // get the path to our Data/plist file
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"serial.plist"];
+    
+    [array writeToFile:plistPath atomically: TRUE];
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

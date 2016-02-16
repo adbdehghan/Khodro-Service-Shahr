@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "News.h"
+#import "MHGallery.h"
+#import "NJKScrollFullScreen.h"
+#import "NewsTableViewCell.h"
+#import "PicsLikeControl.h"
 
-@interface NewsDetailViewController : UIViewController
-@property(nonatomic,strong)News *news;
-@property(nonatomic,strong)IBOutlet UIView *containerView;
+@interface NewsDetailViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIViewControllerTransitioningDelegate,MHGalleryDataSource,MHGalleryDelegate,PicsLikeControlDelegate>
+@property (strong,nonatomic) IBOutlet UITableView *tableView;
+@property (nonatomic,strong)News *news;
 @end

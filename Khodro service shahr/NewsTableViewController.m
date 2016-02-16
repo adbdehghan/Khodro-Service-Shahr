@@ -21,6 +21,7 @@
 #import "CommentViewController.h"
 #import "NewsDetailViewController.h"
 #import "AppDelegate.h"
+#import "MHOverViewController.h"
 
 static NSString *const ServerURL = @"http://khodroservice.kara.systems";
 static NSString *const cellIdentifier = @"identifier";
@@ -28,7 +29,6 @@ static NSString *const menuCellIdentifier = @"rotationCell";
 
 @interface NewsTableViewController ()<LCBannerViewDelegate>
 {
-    UITableView *_rightTbale;
     UIView *_contentView;
     UIButton *filterButton;
 
@@ -57,6 +57,9 @@ UIActivityIndicatorView *activityIndicator;
     [super viewDidLoad];
 
     [self CreateMenuButton];
+    
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 44;
     
     [[NSNotificationCenter defaultCenter ] addObserver:self selector:@selector(notify) name:@"Dismiss" object:nil];
     
@@ -104,6 +107,7 @@ UIActivityIndicatorView *activityIndicator;
             for (NSDictionary *item in (NSMutableArray*)data) {
                 
                 News *news = [News modelFromJSONDictionary:item];
+                
                 [self.tableItems addObject:news];
                 
             }
@@ -411,10 +415,10 @@ UIActivityIndicatorView *activityIndicator;
     return 1;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 460;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return 460;
+//}
 
 #pragma mark - Table view data source
 
@@ -454,6 +458,15 @@ UIActivityIndicatorView *activityIndicator;
             
             NSString *fullURL = [NSString stringWithFormat:@"%@%@",ServerURL,item.ThumbUrl];
             [URLs addObject:fullURL];
+            
+            if ([item.MIMEType isEqualToString:@"image"]) {
+                MHGalleryItem *image1 = [MHGalleryItem itemWithURL:fullURL galleryType:MHGalleryTypeImage];
+            }
+            else
+            {
+                MHGalleryItem *video = [[MHGalleryItem alloc]initWithURL:fullURL
+                                                           galleryType:MHGalleryTypeVideo];
+            }
         }
         
         int time = 4;
@@ -539,7 +552,6 @@ UIActivityIndicatorView *activityIndicator;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     self.newsTO = [self.tableItems objectAtIndex:indexPath.row];
      [self.scrollCoordinator disable];
     [self performSegueWithIdentifier:@"detail" sender:self];

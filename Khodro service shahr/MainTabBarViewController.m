@@ -8,10 +8,15 @@
 
 #import "MainTabBarViewController.h"
 #import "BROptionsButton.h"
+#import "GetAd.h"
+#import "AdViewController.h"
+#import "AppDelegate.h"
+
 
 @interface MainTabBarViewController ()<BROptionButtonDelegate>
 {
     BROptionsButton *brOption ;
+    AppDelegate *app;
 }
 @end
 
@@ -20,16 +25,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    
     brOption = [[BROptionsButton alloc] initForTabBar:self.tabBar forItemIndex:2 delegate:self];
     
     [brOption setImage:[UIImage imageNamed:@"menu"] forBROptionsButtonState:BROptionsButtonStateNormal];
     [brOption setImage:[UIImage imageNamed:@"close"] forBROptionsButtonState:BROptionsButtonStateOpened];
     [self setSelectedIndex:[self.MenuSelectedIndex integerValue]];
 
+    [[NSNotificationCenter defaultCenter ] addObserver:self selector:@selector(notify:) name:@"AD" object:nil];
+    
+    GetAd *ad = [[GetAd alloc]init];
+    [ad CheckAd];
 }
 
 
+-(void)notify:(NSNotification *)notification{
+    
+    AdViewController *adController =[[AdViewController alloc]init];
+    if (!app.adShown) {
 
+        app.adShown = YES;
+        [self presentViewController:adController animated:YES completion:nil];
+    }
+
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

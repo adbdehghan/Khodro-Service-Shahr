@@ -22,25 +22,26 @@
     
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
-    UIViewController *profile = [storyboard instantiateViewControllerWithIdentifier:@"profile"];
-  //  UIViewController *setGPS = [storyboard instantiateViewControllerWithIdentifier:@"setGPS"];
     UIViewController *login = [storyboard instantiateViewControllerWithIdentifier:@"login"];
-    //UIViewController *registerClient = [storyboard instantiateViewControllerWithIdentifier:@"register"];
-    
 
-    
-    NSMutableArray *userData =  [self load];
+    NSMutableArray *userData =  [self load]; 
     
     if (userData.count >0) {
 
-//        [self setViewControllers:[NSArray arrayWithObject:viewController] animated:NO];
-     //   [self addChildViewController:profile];
 
-        //[self addChildViewController:setGPS];
 
     }
     else
     {
+        UILabel* label=[[UILabel alloc] initWithFrame:CGRectMake(0,0, self.navigationItem.titleView.frame.size.width, 40)];
+        label.text=@"وارد شوید";
+        label.textColor=[UIColor whiteColor];
+        label.backgroundColor =[UIColor clearColor];
+        label.adjustsFontSizeToFitWidth=YES;
+        label.font =[UIFont fontWithName:@"B Yekan+" size:17];
+        label.textAlignment = NSTextAlignmentCenter;
+        self.navigationItem.titleView=label;
+        
         [self addChildViewController:login];
       //  [self addChildViewController:registerClient];
     

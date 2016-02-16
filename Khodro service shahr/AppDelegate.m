@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "DeviceRegisterer.h"
 
-
 @import GoogleMaps;
 
 @interface AppDelegate ()
@@ -20,9 +19,10 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-   [GMSServices provideAPIKey:@"AIzaSyBInSk-7hnajh-mL8Thc94CNs_CwgHagYY"];
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+   [GMSServices provideAPIKey:@"AIzaSyDaFDvKl4gf5-s7N51_vfF_0T2ve27SYvE"];
     
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [application setStatusBarStyle:UIStatusBarStyleLightContent];
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
     {
         [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
@@ -35,6 +35,9 @@
     }
 
     [self load];
+    
+    self.adShown = NO;
+    
     [NSThread sleepForTimeInterval:2];
     
     return YES;
@@ -46,6 +49,7 @@
     
     NSString *token = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<> "]];
     token = [token stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
     DeviceRegisterer *registrar = [[DeviceRegisterer alloc] init];
     [registrar registerDeviceWithToken:token];
     
