@@ -49,7 +49,9 @@ static NSString *const menuCellIdentifier = @"rotationCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
+    self.user = app.user;
     [self CreateMenuButton];
     [self requestData];
     
@@ -64,9 +66,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     
     [[NSNotificationCenter defaultCenter ] addObserver:self selector:@selector(notify) name:@"Dismiss" object:nil];
     
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    
-    self.user = app.user;
+
     
     activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [self.view addSubview:activityIndicator];
@@ -217,8 +217,11 @@ static NSString *const menuCellIdentifier = @"rotationCell";
         }
     };
     
-    
-    [self.getData GetEvents:@"" withCallback:callback];
+    if (self.user.itemId != nil) {
+        [self.getData GetEventsByID:self.user.itemId withCallback:callback];
+    }
+    else
+        [self.getData GetEvents:@"" withCallback:callback];
     
     
     RequestCompleteBlock callback2 = ^(BOOL wasSuccessful,NSObject *data) {
@@ -304,6 +307,10 @@ static NSString *const menuCellIdentifier = @"rotationCell";
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    
+    self.user = app.user;
     
     NSIndexPath *tableSelection = [self.tableView indexPathForSelectedRow];
     [self.tableView deselectRowAtIndexPath:tableSelection animated:NO];
@@ -541,7 +548,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
 
 - (void)controlTappedAtIndex:(int)index Sender:(id)sender
 {
-    if (self.user != nil) {
+    if (self.user.itemId != nil) {
         
         
         NSLog(@"index at %d tapped", index);
@@ -600,7 +607,11 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     }
     else
     {
+        CGPoint hitPoint = [sender convertPoint:CGPointZero toView:self.tableView];
+        NSIndexPath *hitIndex = [self.tableView indexPathForRowAtPoint:hitPoint];
         
+        HomeTableViewCell *cell=[self.tableView cellForRowAtIndexPath:hitIndex];
+        [cell.likeContainerView Dislike];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"📢"
                                                         message:@"ابتدا وارد شوید"
                                                        delegate:self
@@ -720,6 +731,9 @@ static NSString *const menuCellIdentifier = @"rotationCell";
         
         cell.likeContainerView.delegate = self;
 
+    }
+    if ([[NSString stringWithFormat:@"%@",news.IsLiked] isEqualToString:@"1"]) {
+        [cell.likeContainerView ManualTap];
     }
     cell.backgroundColor =[UIColor clearColor];
     

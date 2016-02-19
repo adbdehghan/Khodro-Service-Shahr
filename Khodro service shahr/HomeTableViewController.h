@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "PicsLikeControl.h"
+#import "NJKScrollFullScreen.h"
+#import "MHGallery.h"
 
-@interface HomeTableViewController : UITableViewController<PicsLikeControlDelegate>
+@interface HomeTableViewController : UIViewController<PicsLikeControlDelegate,NJKScrollFullscreenDelegate,UIViewControllerTransitioningDelegate,MHGalleryDataSource,MHGalleryDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 @property (nonatomic, strong) NSString *newsID;
+@property (strong,nonatomic) IBOutlet UITableView *tableView;
 @end

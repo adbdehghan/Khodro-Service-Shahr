@@ -18,5 +18,5 @@
 @property(nonatomic,copy) NSArray *Medias;
 @property(nonatomic,copy) NSString *CommentCount;
 @property(nonatomic,copy) NSString *LikeCount;
-@property(nonatomic) BOOL *IsLiked;
+@property(nonatomic,copy) NSString *IsLiked;
 @end

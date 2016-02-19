@@ -33,6 +33,7 @@
         [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
          (UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert)];
     }
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:49.f/255.f green:148.f/255.f blue:16.f/255.f alpha:1]];
 
     [self load];
     
@@ -85,8 +86,10 @@
     
     self.user = [User alloc];
     if (array.count>0) {
+        self.user.itemId =[array objectAtIndex:0];
         self.user.mobile = [array objectAtIndex:2];
         self.user.password = [array objectAtIndex:3];
+        self.user.PicThumb = [array objectAtIndex:4];
     }
 }
 

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface AdViewController : UIViewController
-
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 @end

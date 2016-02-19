@@ -10,6 +10,7 @@
 #import "PicsLikeControl.h"
 
 @interface HomeTableViewCell : UITableViewCell
+@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIView *containertView;
 @property (weak, nonatomic) IBOutlet PicsLikeControl *likeContainerView;
 @property (weak, nonatomic) IBOutlet UIScrollView *ImageContainer;

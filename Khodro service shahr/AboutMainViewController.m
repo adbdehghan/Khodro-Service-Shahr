@@ -21,12 +21,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     isShown = NO;
-
+  
+   // [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+     //[self.navigationController setNavigationBarHidden:YES animated:YES];
+    
     if (!isShown) {
         NSMutableArray *nameArray = [[NSMutableArray alloc]initWithObjects:@"خدمات",@"تاریخچه",@"باشگاه مشتریان",@"مزیت های رقابتی",@"تماس با ما",@"تسهیلات رانندگی",nil];
         
@@ -45,7 +49,28 @@
         
         isShown = YES;
     }
+  [self CreateMenuButton];
+}
 
+-(void)CreateMenuButton
+{
+    UIButton *menuButton =  [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *settingImage = [[UIImage imageNamed:@"downarrow.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [menuButton setImage:[UIImage imageNamed:@"downarrow.png"] forState:UIControlStateNormal];
+    
+    // menuButton.tintColor = [UIColor whiteColor];
+    [menuButton addTarget:self action:@selector(CloseView)forControlEvents:UIControlEventTouchUpInside];
+    [menuButton setFrame:CGRectMake(14, 25, 32, 32)];
+    
+    [self.view addSubview:menuButton];
+    
+    
+}
+
+-(void)CloseView
+{
+
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark App JKPopMenuViewSelectDelegate
@@ -62,6 +87,10 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)PopView:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

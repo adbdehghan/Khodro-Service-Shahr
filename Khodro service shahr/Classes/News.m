@@ -20,6 +20,7 @@
              @"Category_Name" : @"CategoryName",
              @"Comment_Count" : @"CommentCount",
              @"Like_Count" : @"LikeCount",
+             @"isLiked":@"IsLiked",
              @"data.news.Medias" : @{@"class" : NSStringFromClass([NewsMedia class]), @"relationship" : @"Medias", @"isArray" : @YES},
              };
 }

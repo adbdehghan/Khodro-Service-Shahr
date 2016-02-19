@@ -19,6 +19,7 @@
              @"CreateTime" : @{@"isDate" : @YES, @"format" : @"yyyy-MM-dd'T'HH:mm:ss.SSS", @"property" : @"CreateTime"},
              @"Comment_Count" : @"CommentCount",
              @"Like_Count" : @"LikeCount",
+             @"isLiked":@"IsLiked",
              @"data.media.items" : @{@"class" : NSStringFromClass([NewsMedia class]), @"relationship" : @"items", @"isArray" : @YES},
              };
 }

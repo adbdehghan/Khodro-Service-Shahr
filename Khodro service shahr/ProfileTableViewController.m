@@ -18,8 +18,11 @@
 #import "DataDownloader.h"
 #import "User.h"
 #import "NYAlertViewController.h"
+#import "TNSexyImageUploadProgress.h"
+#import "AppDelegate.h"
 
 static NSString *const ServerURL = @"http://khodroservice.kara.systems/api/mobile/UploadUserPic";
+static NSString *const PicURL = @"http://khodroservice.kara.systems";
 @interface ProfileTableViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate,RSKImageCropViewControllerDelegate>
 {
     User *user;
@@ -27,6 +30,8 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems/api/mobil
     NSURL *imageURL;
 }
 @property (strong, nonatomic) DataDownloader *getData;
+@property (strong, nonatomic) TNSexyImageUploadProgress *imageUploadProgress;
+@property (nonatomic,strong)User *user;
 @end
 
 @implementation ProfileTableViewController
@@ -34,9 +39,13 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems/api/mobil
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-   
     [self CreateMenuButton];
+    
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    
+    self.user = app.user;
+    
+      [self.navigationController setNavigationBarHidden:NO animated:YES];
     
     self.navigationItem.hidesBackButton = YES;
 
@@ -51,12 +60,19 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems/api/mobil
 
     self.tableView.estimatedRowHeight = 60;
     
-    name = [self load][1];
+    NSMutableArray *userData =  [self load];
     
-    user = [User alloc];
-    user.mobile = [self load][2];
-    user.password = [self load][3];
-    user.itemId =[self load][0];
+    if (userData.count >0) {
+        name = userData[1];
+        
+        user = [User alloc];
+        user.mobile = userData[2];
+        user.password = userData[3];
+        user.itemId =userData[0];
+        
+    }
+    
+
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -73,6 +89,7 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems/api/mobil
             break;
     }
 }
+
 
 -(NSMutableArray*)load
 {
@@ -117,7 +134,26 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems/api/mobil
                 
             }
             
-            cell.mmimageView.image = [self loadCustomObjectWithKey:@"propic"];
+            
+            if ([self loadCustomObjectWithKey:@"propic"] == nil) {
+                 [cell.activityView startAnimating];
+                NSString *fullURL = [NSString stringWithFormat:@"%@%@",PicURL,self.user.PicThumb];
+                
+                UIImageView *proPic = [[UIImageView alloc]init];
+                [proPic sd_setImageWithURL:[NSURL URLWithString:fullURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL){
+                
+                    cell.mmimageView.image = image;
+                    [self saveCustomObject:image key:@"propic"];
+                    [cell.activityView stopAnimating];
+                }];
+
+            }
+            else
+                cell.mmimageView.image = [self loadCustomObjectWithKey:@"propic"];
+            
+            
+         
+            
             cell.mmimageView.layer.cornerRadius = cell.mmimageView.frame.size.width / 2;
             cell.mmimageView.layer.masksToBounds = YES;
             
@@ -259,7 +295,7 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems/api/mobil
         }
         case 3:
         {
-            return 57;
+            return 1;
         }
         case 4:
         {   return 57;
@@ -290,6 +326,11 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems/api/mobil
 {
     [super viewWillAppear:animated];
     
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    
+    self.user = app.user;
+    
+        [self.navigationController setNavigationBarHidden:NO animated:YES];
     // this UIViewController is about to re-appear, make sure we remove the current selection in our table view
     NSIndexPath *tableSelection = [self.tableView indexPathForSelectedRow];
     [self.tableView deselectRowAtIndexPath:tableSelection animated:NO];
@@ -381,6 +422,7 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems/api/mobil
             [mediaTypes addObject:(__bridge NSString *)kUTTypeImage];
             controller.mediaTypes = mediaTypes;
             controller.delegate = self;
+            controller.modalPresentationStyle = UIModalPresentationCustom;
             [self presentViewController:controller
                                animated:YES
                              completion:^(void){
@@ -458,6 +500,15 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems/api/mobil
 
 -(void)PostPicture:(UIImage*)imageToSend
 {
+    self.imageUploadProgress = [[TNSexyImageUploadProgress alloc] init];
+    self.imageUploadProgress.imageToUpload = imageToSend;
+    self.imageUploadProgress.radius = 100;
+    self.imageUploadProgress.progressBorderThickness = -10;
+    self.imageUploadProgress.trackColor = [UIColor blackColor];
+    self.imageUploadProgress.progressColor = [UIColor greenColor];
+    self.imageUploadProgress.progress = 0;
+    [self.imageUploadProgress show];
+
     NSString *fileName = [NSString stringWithFormat:@"%ld%c%c.jpg", (long)[[NSDate date] timeIntervalSince1970], arc4random_uniform(26) + 'a', arc4random_uniform(26) + 'a'];
     
     NSDictionary *parameters = @{@"cellphone": user.mobile,
@@ -487,9 +538,13 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems/api/mobil
         
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         MMCell *cell = (MMCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-        cell.mmimageView.alpha = 1;
-        cell.mmimageView.image = imageToSend;
-        [cell.activityView stopAnimating];
+ 
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.imageUploadProgress.progress = 1;
+            cell.mmimageView.alpha = 1;
+            cell.mmimageView.image = imageToSend;
+            [cell.activityView stopAnimating];
+        });
         [self saveCustomObject:imageToSend key:@"propic"];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -510,6 +565,11 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems/api/mobil
     [operation setUploadProgressBlock:^(NSUInteger __unused bytesWritten,
                                         long long totalBytesWritten,
                                         long long totalBytesExpectedToWrite) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            float test =(float)totalBytesWritten/(float)totalBytesExpectedToWrite;
+            self.imageUploadProgress.progress = test;
+        });
         NSLog(@"Wrote %lld/%lld", totalBytesWritten, totalBytesExpectedToWrite);
     }];
     

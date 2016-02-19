@@ -203,7 +203,12 @@ static NSString *const ServerURL2 = @"http://khodroservice.kara.systems/api/mobi
     
 }
 
-
+-(void)viewDidAppear:(BOOL)animated
+{
+    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    
+    self.user = app.user;
+}
 
 -(void)getAnswersPressed:(id)sender
 {

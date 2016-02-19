@@ -19,16 +19,14 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
+
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle: nil];
     UIViewController *login = [storyboard instantiateViewControllerWithIdentifier:@"login"];
 
     NSMutableArray *userData =  [self load]; 
-    
+
     if (userData.count >0) {
-
-
 
     }
     else
@@ -61,6 +59,8 @@
     
     return array;
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

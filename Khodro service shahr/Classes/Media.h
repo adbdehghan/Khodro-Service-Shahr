@@ -17,5 +17,5 @@
 @property(nonatomic,strong) NSArray *items;
 @property(nonatomic,strong) NSString *CommentCount;
 @property(nonatomic,strong) NSString *LikeCount;
-
+@property(nonatomic,copy) NSString *IsLiked;
 @end

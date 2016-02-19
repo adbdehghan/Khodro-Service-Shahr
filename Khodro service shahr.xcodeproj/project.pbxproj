@@ -15,7 +15,6 @@
 		640D14F01C17B84B00E769F7 /* iranFlag.png in Resources */ = {isa = PBXBuildFile; fileRef = 640D14E41C17B84B00E769F7 /* iranFlag.png */; };
 		640D14F21C17B84B00E769F7 /* photoPlaceHolder.png in Resources */ = {isa = PBXBuildFile; fileRef = 640D14E61C17B84B00E769F7 /* photoPlaceHolder.png */; };
 		640D14F41C17B84B00E769F7 /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = 640D14E81C17B84B00E769F7 /* setting.png */; };
-		640D14F61C17B84B00E769F7 /* sub.caf in Resources */ = {isa = PBXBuildFile; fileRef = 640D14EA1C17B84B00E769F7 /* sub.caf */; };
 		640D14F81C17C0D400E769F7 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 640D14F71C17C0D400E769F7 /* menu.png */; };
 		640F6C0B1C38456300C63583 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 640F6C061C38456300C63583 /* user.png */; };
 		640F6C1E1C3869FA00C63583 /* checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 640F6C0D1C3869FA00C63583 /* checked.png */; };
@@ -43,6 +42,10 @@
 		642067391C6690AA00416F02 /* SetGPSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 642067381C6690AA00416F02 /* SetGPSViewController.m */; };
 		642B03C91C2EABF300F33B22 /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 642B03C81C2EABF300F33B22 /* HomeTableViewController.m */; };
 		642B8BF91C2EEE6D00516ECD /* JDFPeekabooCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 642B8BF81C2EEE6D00516ECD /* JDFPeekabooCoordinator.m */; };
+		642DB3CA1C74553F003F28CB /* MediaCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 642DB3C91C74553F003F28CB /* MediaCollectionViewCell.m */; };
+		642DB3CE1C749FC3003F28CB /* ZFModalTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 642DB3CD1C749FC3003F28CB /* ZFModalTransitionAnimator.m */; };
+		642DB3D21C770CF9003F28CB /* MZLoadingCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 642DB3D11C770CF9003F28CB /* MZLoadingCircle.m */; };
+		642DB3D41C773288003F28CB /* sub.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 642DB3D31C773288003F28CB /* sub.aiff */; };
 		64458EA01C60D26D00A27432 /* NewsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64458E9F1C60D26D00A27432 /* NewsTableViewController.m */; };
 		64458EA31C60D3C700A27432 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 64458EA21C60D3C700A27432 /* News.m */; };
 		64458EA61C60D89300A27432 /* NewsMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 64458EA51C60D89300A27432 /* NewsMedia.m */; };
@@ -258,7 +261,6 @@
 		640D14E41C17B84B00E769F7 /* iranFlag.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iranFlag.png; sourceTree = "<group>"; };
 		640D14E61C17B84B00E769F7 /* photoPlaceHolder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photoPlaceHolder.png; sourceTree = "<group>"; };
 		640D14E81C17B84B00E769F7 /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
-		640D14EA1C17B84B00E769F7 /* sub.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sub.caf; sourceTree = "<group>"; };
 		640D14F71C17C0D400E769F7 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		640F6C061C38456300C63583 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		640F6C0D1C3869FA00C63583 /* checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checked.png; sourceTree = "<group>"; };
@@ -302,6 +304,13 @@
 		642B03C81C2EABF300F33B22 /* HomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewController.m; sourceTree = "<group>"; };
 		642B8BF71C2EEE6D00516ECD /* JDFPeekabooCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JDFPeekabooCoordinator.h; sourceTree = "<group>"; };
 		642B8BF81C2EEE6D00516ECD /* JDFPeekabooCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JDFPeekabooCoordinator.m; sourceTree = "<group>"; };
+		642DB3C81C74553F003F28CB /* MediaCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaCollectionViewCell.h; sourceTree = "<group>"; };
+		642DB3C91C74553F003F28CB /* MediaCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaCollectionViewCell.m; sourceTree = "<group>"; };
+		642DB3CC1C749FC3003F28CB /* ZFModalTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFModalTransitionAnimator.h; sourceTree = "<group>"; };
+		642DB3CD1C749FC3003F28CB /* ZFModalTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFModalTransitionAnimator.m; sourceTree = "<group>"; };
+		642DB3D01C770CF9003F28CB /* MZLoadingCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZLoadingCircle.h; sourceTree = "<group>"; };
+		642DB3D11C770CF9003F28CB /* MZLoadingCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZLoadingCircle.m; sourceTree = "<group>"; };
+		642DB3D31C773288003F28CB /* sub.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sub.aiff; sourceTree = "<group>"; };
 		64458E9E1C60D26D00A27432 /* NewsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsTableViewController.h; sourceTree = "<group>"; };
 		64458E9F1C60D26D00A27432 /* NewsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsTableViewController.m; sourceTree = "<group>"; };
 		64458EA11C60D3C700A27432 /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
@@ -626,6 +635,8 @@
 		640D14D31C17B73700E769F7 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				642DB3CF1C770CF9003F28CB /* LoadingCircle */,
+				642DB3CB1C749FC3003F28CB /* ZFModal */,
 				645F4F181C71F95E00A0373F /* AFNetworking */,
 				64FDBF751C70049100426088 /* about us text */,
 				64FDBF331C6D87C200426088 /* JKPopMenu */,
@@ -664,6 +675,7 @@
 		640D14DE1C17B84B00E769F7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				642DB3D31C773288003F28CB /* sub.aiff */,
 				64EC63901C7198BE0032F777 /* closeAd.png */,
 				64EC63851C7148140032F777 /* mycar.png */,
 				64EC63801C70301D0032F777 /* downarrow.png */,
@@ -737,7 +749,6 @@
 				640D14E41C17B84B00E769F7 /* iranFlag.png */,
 				640D14E61C17B84B00E769F7 /* photoPlaceHolder.png */,
 				640D14E81C17B84B00E769F7 /* setting.png */,
-				640D14EA1C17B84B00E769F7 /* sub.caf */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -802,6 +813,8 @@
 				64458F101C62D15F00A27432 /* CommentTableViewCell.m */,
 				64FDBF151C6D3A7800426088 /* NewsTableViewCell.h */,
 				64FDBF161C6D3A7800426088 /* NewsTableViewCell.m */,
+				642DB3C81C74553F003F28CB /* MediaCollectionViewCell.h */,
+				642DB3C91C74553F003F28CB /* MediaCollectionViewCell.m */,
 			);
 			path = TableCell;
 			sourceTree = "<group>";
@@ -822,6 +835,24 @@
 				642B8BF81C2EEE6D00516ECD /* JDFPeekabooCoordinator.m */,
 			);
 			path = JDFPeekaboo;
+			sourceTree = "<group>";
+		};
+		642DB3CB1C749FC3003F28CB /* ZFModal */ = {
+			isa = PBXGroup;
+			children = (
+				642DB3CC1C749FC3003F28CB /* ZFModalTransitionAnimator.h */,
+				642DB3CD1C749FC3003F28CB /* ZFModalTransitionAnimator.m */,
+			);
+			path = ZFModal;
+			sourceTree = "<group>";
+		};
+		642DB3CF1C770CF9003F28CB /* LoadingCircle */ = {
+			isa = PBXGroup;
+			children = (
+				642DB3D01C770CF9003F28CB /* MZLoadingCircle.h */,
+				642DB3D11C770CF9003F28CB /* MZLoadingCircle.m */,
+			);
+			path = LoadingCircle;
 			sourceTree = "<group>";
 		};
 		64458EA71C60ED9400A27432 /* LCBannerView */ = {
@@ -1516,6 +1547,7 @@
 				64FDBF4F1C6D894D00426088 /* top5.png in Resources */,
 				64FDBF611C6D8C8D00426088 /* icon4.png in Resources */,
 				640D14EB1C17B84B00E769F7 /* avatar.png in Resources */,
+				642DB3D41C773288003F28CB /* sub.aiff in Resources */,
 				64FDBF631C6D8C8D00426088 /* icon6.png in Resources */,
 				640F6C0B1C38456300C63583 /* user.png in Resources */,
 				64DDB0241C14957100416B22 /* LaunchScreen.storyboard in Resources */,
@@ -1526,7 +1558,6 @@
 				64458EE81C621B5200A27432 /* main.png in Resources */,
 				64E5C9F61C66F8E800077F57 /* NavBarIconSearch_blue.png in Resources */,
 				640F6C231C3869FA00C63583 /* GWQuestionnaireCellSelection.xib in Resources */,
-				640D14F61C17B84B00E769F7 /* sub.caf in Resources */,
 				64EC637E1C702E760032F777 /* 4.html in Resources */,
 				64FDBF621C6D8C8D00426088 /* icon5.png in Resources */,
 				640D14F41C17B84B00E769F7 /* setting.png in Resources */,
@@ -1717,6 +1748,7 @@
 				64458EC91C613E7600A27432 /* PCStackMenu.m in Sources */,
 				64FDBE511C6AD8BF00426088 /* UIImageView+UIActivityIndicatorForSDWebImage.m in Sources */,
 				64C9F0D61C5D0F7F0032C8FB /* MBJSONModel.m in Sources */,
+				642DB3CA1C74553F003F28CB /* MediaCollectionViewCell.m in Sources */,
 				64458F151C62D96800A27432 /* UIImageView+Letters.m in Sources */,
 				640F6C261C3869FA00C63583 /* GWQuestionnaireItem.m in Sources */,
 				64DF803A1C4462F3001CAF9D /* SignUpTableViewController.m in Sources */,
@@ -1737,6 +1769,7 @@
 				64CBAA9D1C655B0F003067B8 /* LRouteController.m in Sources */,
 				640F6C1F1C3869FA00C63583 /* GWQuestionnaire.m in Sources */,
 				645F4F341C71F95E00A0373F /* AFURLSessionManager.m in Sources */,
+				642DB3CE1C749FC3003F28CB /* ZFModalTransitionAnimator.m in Sources */,
 				64458EA31C60D3C700A27432 /* News.m in Sources */,
 				64DF80161C409E93001CAF9D /* SBJsonBase.m in Sources */,
 				642B8BF91C2EEE6D00516ECD /* JDFPeekabooCoordinator.m in Sources */,
@@ -1773,6 +1806,7 @@
 				64FDBF171C6D3A7800426088 /* NewsTableViewCell.m in Sources */,
 				645F4F301C71F95E00A0373F /* AFSecurityPolicy.m in Sources */,
 				64FDBF381C6D87C200426088 /* JKPopMenuItem.m in Sources */,
+				642DB3D21C770CF9003F28CB /* MZLoadingCircle.m in Sources */,
 				64DF80551C44645C001CAF9D /* SignupTableViewCell.m in Sources */,
 				64EC63891C715C990032F777 /* electricFormViewController.m in Sources */,
 				64DF804E1C44636C001CAF9D /* UIWindow+YzdHUD.m in Sources */,
@@ -1929,7 +1963,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "Khodro service shahr/App-Prefix.pch";
 				INFOPLIST_FILE = "Khodro service shahr/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Gama.Khodro-service";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1944,7 +1978,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "Khodro service shahr/App-Prefix.pch";
 				INFOPLIST_FILE = "Khodro service shahr/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Gama.Khodro-service";
 				PRODUCT_NAME = "$(TARGET_NAME)";

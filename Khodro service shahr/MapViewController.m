@@ -18,7 +18,7 @@
 #import "JTProgressHUD.h"
 #import "INSSearchBar.h"
 #import "AppDelegate.h"
-
+#import "NYAlertViewController.h"
 
 #define SCREEN_HEIGHT_WITHOUT_STATUS_BAR     [[UIScreen mainScreen] bounds].size.height - 60
 #define SCREEN_WIDTH                         [[UIScreen mainScreen] bounds].size.width
@@ -58,6 +58,7 @@ static const CGFloat CalloutYOffset = 50.0f;
 @property (nonatomic, strong) NSMutableArray *categoryNameItems;
 @property (nonatomic, strong) INSSearchBar *searchBarWithDelegate;
 @property (nonatomic,strong)User *user;
+@property (nonatomic,strong)NSString *searchedString;
 
 
 @property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
@@ -332,6 +333,65 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
     return array;
 }
 
+- (void)showCustomUIAlertView {
+    NYAlertViewController *alertViewController = [[NYAlertViewController alloc] initWithNibName:nil bundle:nil];
+    
+    alertViewController.backgroundTapDismissalGestureEnabled = YES;
+    alertViewController.swipeDismissalGestureEnabled = YES;
+    
+    alertViewController.title = NSLocalizedString(@"یافت نشد", nil);
+    alertViewController.message = NSLocalizedString(@"آیا مایلید گوگل مپ اجرا شود؟", nil);
+    
+    alertViewController.buttonCornerRadius = 20.0f;
+    alertViewController.view.tintColor = self.view.tintColor;
+    
+    alertViewController.titleFont = [UIFont fontWithName:@"B Yekan+" size:18];
+    alertViewController.messageFont = [UIFont fontWithName:@"B Yekan+" size:16];
+    alertViewController.buttonTitleFont = [UIFont fontWithName:@"B Yekan+" size:alertViewController.buttonTitleFont.pointSize];
+    alertViewController.cancelButtonTitleFont = [UIFont fontWithName:@"B Yekan+" size:alertViewController.cancelButtonTitleFont.pointSize];
+    
+    alertViewController.alertViewBackgroundColor =[UIColor colorWithWhite:0.19f alpha:1.0f];
+    alertViewController.alertViewCornerRadius = 10.0f;
+    
+    alertViewController.titleColor = [UIColor colorWithRed:242/255.f green:172/255.f blue:63/255.f alpha:1.f];//[UIColor colorWithRed:0.42f green:0.78 blue:0.32f alpha:1.0f];
+    alertViewController.messageColor = [UIColor colorWithWhite:0.92f alpha:1.0f];
+    
+    alertViewController.buttonColor =[UIColor colorWithRed:240/255.f green:166/255.f blue:50/255.f alpha:1.f]; //[UIColor colorWithRed:0.42f green:0.78 blue:0.32f alpha:1.0f];
+    alertViewController.buttonTitleColor = [UIColor colorWithWhite:0.19f alpha:1.0f];
+    
+    alertViewController.cancelButtonColor = [UIColor colorWithRed:240/255.f green:166/255.f blue:50/255.f alpha:1.f];//[UIColor colorWithRed:0.42f green:0.78 blue:0.32f alpha:1.0f];
+    alertViewController.cancelButtonTitleColor = [UIColor colorWithWhite:0.19f alpha:1.0f];
+    
+    [alertViewController addAction:[NYAlertAction actionWithTitle:NSLocalizedString(@"بله", nil)
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(NYAlertAction *action) {
+                                                            
+                                                              [self dismissViewControllerAnimated:YES completion:nil];
+                                                              if ([[UIApplication sharedApplication] canOpenURL:
+                                                                   [NSURL URLWithString:@"comgooglemaps://"]]) {
+                                                                  [[UIApplication sharedApplication] openURL:
+                                                                   [NSURL URLWithString:[NSString stringWithFormat:@"comgooglemaps://?q=%@",self.searchedString]]];
+                                                              } else {
+                                                                  NSURL *url = [NSURL URLWithString: [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@",self.searchedString]];
+                                                                  if ([[UIApplication sharedApplication] canOpenURL:url]) {
+                                                                      [[UIApplication sharedApplication] openURL:url];
+                                                                  }                    }
+                                                              
+                                                          }]];
+    
+    [alertViewController addAction:[NYAlertAction actionWithTitle:NSLocalizedString(@"خیر", nil)
+                                                            style:UIAlertActionStyleCancel
+                                                          handler:^(NYAlertAction *action) {
+                                                              
+                                                              
+                                                              [self dismissViewControllerAnimated:YES completion:nil];
+                                                  
+                                                              
+                                                          }]];
+    
+    [self presentViewController:alertViewController animated:YES completion:nil];
+}
+
 
 - (void)searchBarDidTapReturn:(INSSearchBar *)searchBar
 {
@@ -377,11 +437,13 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
 //                    self.actualRequest2 = [[FTGooglePlacesAPITextSearchRequest alloc] initWithQuery:searchBar.searchField.text];
 //                    [self startSearching];
                     [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
-                    GMSAutocompleteViewController *acController = [[GMSAutocompleteViewController alloc] init];
-                    acController.delegate = self;
-[[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:100/255.f green:184/255.f blue:34/255.f alpha:1]];
-                    [self presentViewController:acController animated:YES completion:nil];
                     
+//                    GMSAutocompleteViewController *acController = [[GMSAutocompleteViewController alloc] init];
+//                    acController.delegate = self;
+//                    [self presentViewController:acController animated:YES completion:nil];
+        [self showCustomUIAlertView];
+                    
+                    self.searchedString = searchBar.searchField.text;
 //                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"📢"
 //                                                                    message:@"مکان مورد نظر یافت نشد"
 //                                                                   delegate:self

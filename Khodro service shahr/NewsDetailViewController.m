@@ -464,7 +464,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     gallery.galleryItems = galleryData;
     gallery.presentingFromImageView = imageView;
     gallery.presentationIndex = indexPath.row;
-
+    gallery.transitionCustomization.interactiveDismiss = NO;
     gallery.UICustomization.hideShare = YES;
     gallery.galleryDelegate = self;
     //gallery.dataSource = self;
