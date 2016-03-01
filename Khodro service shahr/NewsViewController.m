@@ -264,7 +264,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"📢"
                                                             message:@"لطفا ارتباط خود با اینترنت را بررسی نمایید."
                                                            delegate:self
-                                                  cancelButtonTitle:@"خب"
+                                                  cancelButtonTitle:@"تایید"
                                                   otherButtonTitles:nil];
             [alert show];
             
@@ -317,7 +317,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     [_scrollProxy reset];
     [self showNavigationBar:YES];
     [self showToolbar:YES];
-   // [self.navigationController.shyNavigationBar adjustForSequeInto:animated scrollView:self.tableView];
+
     [[NSNotificationCenter defaultCenter ] addObserver:self selector:@selector(notify) name:@"Dismiss" object:nil];
 
 }
@@ -330,12 +330,27 @@ static NSString *const menuCellIdentifier = @"rotationCell";
 
 -(void)notify
 {
-    self.view.alpha = 1;
+    [UIView animateWithDuration:0.2 animations:^{
+
+        self.view.alpha = 1;
+        
+    } completion:^(BOOL finished) {
+  
+    }];
+  
 }
 
 -(void)ShowStackMenu
 {
-    self.view.alpha = .3;
+
+    [UIView animateWithDuration:0.2 animations:^{
+        
+         self.view.alpha = .3;
+        
+    } completion:^(BOOL finished) {
+        
+    }];
+    
     self.stackMenu = [[PCStackMenu alloc] initWithTitles:self.titles
                                               withImages:self.images
                                             atStartPoint:CGPointMake(self.view.frame.size.width - 11,70 )
@@ -437,7 +452,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"📢"
                                                                     message:@"لطفا ارتباط خود با اینترنت را بررسی نمایید."
                                                                    delegate:self
-                                                          cancelButtonTitle:@"خب"
+                                                          cancelButtonTitle:@"تایید"
                                                           otherButtonTitles:nil];
                     [alert show];
                     
@@ -585,7 +600,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"📢"
                                                                     message:@"لطفا ارتباط خود با اینترنت را بررسی نمایید."
                                                                    delegate:self
-                                                          cancelButtonTitle:@"خب"
+                                                          cancelButtonTitle:@"تایید"
                                                           otherButtonTitles:nil];
                     [alert show];
                     
@@ -603,6 +618,8 @@ static NSString *const menuCellIdentifier = @"rotationCell";
         {
             cell.likeCountLabel.text = [NSString stringWithFormat:@"%ld",likeCount - 1];
             [self.newsLiked removeObject:item.ID];
+            item.LikeCount = [NSString stringWithFormat:@"%ld",likeCount - 1];
+            item.IsLiked = @"0";
         }
     }
     else
@@ -611,11 +628,13 @@ static NSString *const menuCellIdentifier = @"rotationCell";
         NSIndexPath *hitIndex = [self.tableView indexPathForRowAtPoint:hitPoint];
         
         HomeTableViewCell *cell=[self.tableView cellForRowAtIndexPath:hitIndex];
+        
+        
         [cell.likeContainerView Dislike];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"📢"
                                                         message:@"ابتدا وارد شوید"
                                                        delegate:self
-                                              cancelButtonTitle:@"خب"
+                                              cancelButtonTitle:@"تایید"
                                               otherButtonTitles:nil];
         [alert show];
     }

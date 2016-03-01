@@ -792,7 +792,7 @@ didFailAutocompleteWithError:(NSError *)error {
     _latitudeUserDown           = OPEN_SHUTTER_LATITUDE_MINUS;
     _default_Y_mapView          = DEFAULT_Y_OFFSET;
     _headerYOffSet              = DEFAULT_Y_OFFSET;
-    _heightMap                  = 1000.0f;
+    _heightMap                  = self.view.frame.size.height+200;
     _regionAnimated             = YES;
     _userLocationUpdateAnimated = YES;
 }

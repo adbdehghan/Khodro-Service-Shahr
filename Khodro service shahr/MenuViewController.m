@@ -20,7 +20,9 @@
 @interface MenuViewController ()
 {
     UIView *thisMenu;
+    float location;
     AppDelegate *app;
+    NSInteger ropeSize;
 }
 @property (nonatomic) BOOL viewIsIn;
 @property (nonatomic, strong) ZFModalTransitionAnimator *animator;
@@ -31,31 +33,36 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    ropeSize = 18;
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-    
+    if (self.view.frame.size.height == 480) {
+            self.secondImage.image = [UIImage imageNamed:@"greeting4s"];
+        ropeSize = 13;
+    }
+
+    location = self.view.frame.size.width/8;
     
     app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
     
-    UIView *balloonHandler = [[UIView alloc]initWithFrame:CGRectMake(self.view.center.x - 55, 19, 4, 1)];
+    UIView *balloonHandler = [[UIView alloc]initWithFrame:CGRectMake(3*location, 19, 4, 1)];
     
     AIMBalloon *balloonView = [AIMBalloon alloc];
     [balloonView Create:self.view linkedToView:balloonHandler image:[UIImage imageNamed:@"map"] size:11 tag:3];
 
 
-    UIView *balloonHandler2 = [[UIView alloc]initWithFrame:CGRectMake(90, 19, 4, 1)];
+    UIView *balloonHandler2 = [[UIView alloc]initWithFrame:CGRectMake(2*location, 19, 4, 1)];
     
     AIMBalloon *balloonView2 = [AIMBalloon alloc];
     [balloonView2 Create:self.view linkedToView:balloonHandler2 image:[UIImage imageNamed:@"media.png"] size:4 tag:1];
 
 
-    UIView *balloonHandler3 = [[UIView alloc]initWithFrame:CGRectMake(self.view.center.x, 19, 4, 1)];
+    UIView *balloonHandler3 = [[UIView alloc]initWithFrame:CGRectMake(4*location, 19, 4, 1)];
     
     AIMBalloon *balloonView3 = [AIMBalloon alloc];
-    [balloonView3 Create:self.view linkedToView:balloonHandler3 image:[UIImage imageNamed:@"about"] size:18 tag:5];
+    [balloonView3 Create:self.view linkedToView:balloonHandler3 image:[UIImage imageNamed:@"about"] size:ropeSize tag:5];
 
 
-    UIView *balloonHandler4 = [[UIView alloc]initWithFrame:CGRectMake( 55,19, 4, 1)];
+    UIView *balloonHandler4 = [[UIView alloc]initWithFrame:CGRectMake( location,19, 4, 1)];
 
     AIMBalloon *balloonView4 = [AIMBalloon alloc];
 
@@ -63,7 +70,7 @@
 
 
     
-    UIView *balloonHandler5 = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width - 60,19, 4, 1)];
+    UIView *balloonHandler5 = [[UIView alloc]initWithFrame:CGRectMake(6*location,19, 4, 1)];
     
     AIMBalloon *balloonView5 = [AIMBalloon alloc];
 
@@ -71,7 +78,7 @@
 
 
     
-    UIView *balloonHandler6 = [[UIView alloc]initWithFrame:CGRectMake(self.view.center.x + 60, 19, 4, 1)];
+    UIView *balloonHandler6 = [[UIView alloc]initWithFrame:CGRectMake(5*location, 19, 4, 1)];
     
     AIMBalloon *balloonView6 = [AIMBalloon alloc];
     [balloonView6 Create:self.view linkedToView:balloonHandler6 image:[UIImage imageNamed:@"test"] size:6 tag:2];

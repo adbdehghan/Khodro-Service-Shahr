@@ -181,7 +181,7 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"📢"
                                                             message:@"لطفا ارتباط خود با اینترنت را بررسی نمایید."
                                                            delegate:self
-                                                  cancelButtonTitle:@"خب"
+                                                  cancelButtonTitle:@"تایید"
                                                   otherButtonTitles:nil];
             [alert show];
             
@@ -303,7 +303,7 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"📢"
                                                                     message:@"لطفا ارتباط خود با اینترنت را بررسی نمایید."
                                                                    delegate:self
-                                                          cancelButtonTitle:@"خب"
+                                                          cancelButtonTitle:@"تایید"
                                                           otherButtonTitles:nil];
                     [alert show];
                     
@@ -321,6 +321,8 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
         {
             cell.likeCountLabel.text = [NSString stringWithFormat:@"%ld",likeCount - 1];
             [self.newsLiked removeObject:item.ID];
+            item.LikeCount = [NSString stringWithFormat:@"%ld",likeCount - 1];
+            item.IsLiked = @"0";
         }
     }
     else
@@ -333,7 +335,7 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"📢"
                                                         message:@" ابتدا وارد شوید"
                                                        delegate:self
-                                              cancelButtonTitle:@"خب"
+                                              cancelButtonTitle:@"تایید"
                                               otherButtonTitles:nil];
         [alert show];
     }

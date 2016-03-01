@@ -234,7 +234,7 @@ UIActivityIndicatorView *activityIndicator;
     self.stackMenu = [[PCStackMenu alloc] initWithTitles:self.titles
                                               withImages:self.images
                                             atStartPoint:CGPointMake(self.view.frame.size.width - 11,70 )
-                                                  inView:self.view.superview
+                                                  inView:self.view
                                               itemHeight:40
                                            menuDirection:PCStackMenuDirectionCounterClockWiseDown];
     for(PCStackMenuItem *item in self.stackMenu.items)

@@ -39,7 +39,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-        [self setSelectedIndex:[self.MenuSelectedIndex integerValue]];
+    [self setSelectedIndex:[self.MenuSelectedIndex integerValue]];
 }
 
 
@@ -89,6 +89,7 @@
 - (void)brOptionsButton:(BROptionsButton *)brOptionsButton didSelectItem:(BROptionItem *)item
 {
     [self setSelectedIndex:item.index];
+    self.MenuSelectedIndex =[NSNumber numberWithInteger:item.index ];
 }
 
 

@@ -46,6 +46,7 @@
 		642DB3CE1C749FC3003F28CB /* ZFModalTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 642DB3CD1C749FC3003F28CB /* ZFModalTransitionAnimator.m */; };
 		642DB3D21C770CF9003F28CB /* MZLoadingCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = 642DB3D11C770CF9003F28CB /* MZLoadingCircle.m */; };
 		642DB3D41C773288003F28CB /* sub.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 642DB3D31C773288003F28CB /* sub.aiff */; };
+		642DB3D61C78C286003F28CB /* greeting4s.png in Resources */ = {isa = PBXBuildFile; fileRef = 642DB3D51C78C286003F28CB /* greeting4s.png */; };
 		64458EA01C60D26D00A27432 /* NewsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64458E9F1C60D26D00A27432 /* NewsTableViewController.m */; };
 		64458EA31C60D3C700A27432 /* News.m in Sources */ = {isa = PBXBuildFile; fileRef = 64458EA21C60D3C700A27432 /* News.m */; };
 		64458EA61C60D89300A27432 /* NewsMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 64458EA51C60D89300A27432 /* NewsMedia.m */; };
@@ -311,6 +312,7 @@
 		642DB3D01C770CF9003F28CB /* MZLoadingCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MZLoadingCircle.h; sourceTree = "<group>"; };
 		642DB3D11C770CF9003F28CB /* MZLoadingCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MZLoadingCircle.m; sourceTree = "<group>"; };
 		642DB3D31C773288003F28CB /* sub.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = sub.aiff; sourceTree = "<group>"; };
+		642DB3D51C78C286003F28CB /* greeting4s.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greeting4s.png; sourceTree = "<group>"; };
 		64458E9E1C60D26D00A27432 /* NewsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsTableViewController.h; sourceTree = "<group>"; };
 		64458E9F1C60D26D00A27432 /* NewsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsTableViewController.m; sourceTree = "<group>"; };
 		64458EA11C60D3C700A27432 /* News.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = News.h; sourceTree = "<group>"; };
@@ -675,6 +677,7 @@
 		640D14DE1C17B84B00E769F7 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				642DB3D51C78C286003F28CB /* greeting4s.png */,
 				642DB3D31C773288003F28CB /* sub.aiff */,
 				64EC63901C7198BE0032F777 /* closeAd.png */,
 				64EC63851C7148140032F777 /* mycar.png */,
@@ -1602,6 +1605,7 @@
 				64458EF41C6225EA00A27432 /* main_logo.png in Resources */,
 				64EC63811C70301D0032F777 /* downarrow.png in Resources */,
 				64FDBF6A1C6E41FA00426088 /* login_left_corner.png in Resources */,
+				642DB3D61C78C286003F28CB /* greeting4s.png in Resources */,
 				64FDBF771C70049100426088 /* history.html in Resources */,
 				64458EEC1C621B5200A27432 /* splash.png in Resources */,
 				640D14F21C17B84B00E769F7 /* photoPlaceHolder.png in Resources */,
@@ -1961,12 +1965,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "Khodro service shahr/App-Prefix.pch";
 				INFOPLIST_FILE = "Khodro service shahr/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Gama.Khodro-service";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1976,12 +1982,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "Khodro service shahr/App-Prefix.pch";
 				INFOPLIST_FILE = "Khodro service shahr/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Gama.Khodro-service";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface MenuViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIImageView *sympolsImage;
+@property (strong, nonatomic) IBOutlet UIImageView *firstImage;
+@property (strong, nonatomic) IBOutlet UIImageView *secondImage;
 @property(nonatomic,strong)NSNumber *MenuSelectedIndex;
 @end

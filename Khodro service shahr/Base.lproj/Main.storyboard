@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="tsh-WC-VEA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="tsh-WC-VEA">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -17,9 +17,9 @@
             <string>BYekan+-Bold</string>
             <string>BYekan+-Bold</string>
             <string>BYekan+-Bold</string>
+            <string>BYekan+-Bold</string>
         </mutableArray>
         <mutableArray key="BYekan+.ttf">
-            <string>BYekan+</string>
             <string>BYekan+</string>
             <string>BYekan+</string>
             <string>BYekan+</string>
@@ -375,7 +375,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wAQ-am-G1e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2065" y="78"/>
+            <point key="canvasLocation" x="2065" y="84"/>
         </scene>
         <!--Item-->
         <scene sceneID="qur-w7-gsh">
@@ -437,7 +437,7 @@
             </objects>
             <point key="canvasLocation" x="724" y="78"/>
         </scene>
-        <!--نظرسنجی-->
+        <!--مسابقه-->
         <scene sceneID="gie-2T-NYe">
             <objects>
                 <viewController id="OJQ-xm-krU" customClass="PolViewController" sceneMemberID="viewController">
@@ -450,7 +450,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="نظرسنجی" id="QFP-jA-uYr"/>
+                    <navigationItem key="navigationItem" title="مسابقه" id="QFP-jA-uYr"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d90-lv-FV7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -484,7 +484,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lC1-kj-ocP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-756" y="-587"/>
+            <point key="canvasLocation" x="-684" y="-587"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DeR-5a-pDy">
@@ -500,7 +500,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KEC-cP-qsA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1461" y="84"/>
+            <point key="canvasLocation" x="-1368" y="84"/>
         </scene>
         <!--Menu View Controller-->
         <scene sceneID="H0O-fC-h3X">
@@ -517,14 +517,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Okd-4d-Woz">
                                 <rect key="frame" x="0.0" y="397" width="600" height="203"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ea1-JM-CzD">
-                                        <rect key="frame" x="0.0" y="160" width="600" height="82"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ea1-JM-CzD">
+                                        <rect key="frame" x="0.0" y="151" width="600" height="82"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_thirdText.png" translatesAutoresizingMaskIntoConstraints="NO" id="coJ-44-NiL">
-                                                <rect key="frame" x="248" y="0.0" width="104" height="47"/>
+                                                <rect key="frame" x="254" y="0.0" width="93" height="40"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="47" id="6is-92-FfF"/>
-                                                    <constraint firstAttribute="width" constant="104" id="tLu-cF-rcI"/>
+                                                    <constraint firstAttribute="height" constant="40" id="6is-92-FfF"/>
+                                                    <constraint firstAttribute="width" constant="93" id="tLu-cF-rcI"/>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
@@ -535,7 +535,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="STR-5K-gO9">
-                                        <rect key="frame" x="0.0" y="115" width="600" height="45"/>
+                                        <rect key="frame" x="0.0" y="107" width="600" height="45"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="main_secondText.png" translatesAutoresizingMaskIntoConstraints="NO" id="3b3-2y-ccE">
                                                 <rect key="frame" x="219" y="-32" width="163" height="110"/>
@@ -552,7 +552,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kuj-iA-30y">
-                                        <rect key="frame" x="0.0" y="71" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="63" width="600" height="44"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_firstText.png" translatesAutoresizingMaskIntoConstraints="NO" id="Me5-Tn-N0g">
                                                 <rect key="frame" x="251" y="-12" width="99" height="68"/>
@@ -571,13 +571,13 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9EG-vu-iwd">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="71"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="63"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="tAO-HT-zer">
-                                                <rect key="frame" x="254" y="5" width="92" height="61"/>
+                                                <rect key="frame" x="259" y="5" width="83" height="58"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="92" id="VMe-od-h0O"/>
-                                                    <constraint firstAttribute="height" constant="61" id="jh0-n4-QT1"/>
+                                                    <constraint firstAttribute="width" constant="83" id="VMe-od-h0O"/>
+                                                    <constraint firstAttribute="height" constant="58" id="jh0-n4-QT1"/>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
@@ -585,24 +585,24 @@
                                         <constraints>
                                             <constraint firstItem="tAO-HT-zer" firstAttribute="top" secondItem="9EG-vu-iwd" secondAttribute="top" constant="5" id="Jf2-9a-E9r"/>
                                             <constraint firstItem="tAO-HT-zer" firstAttribute="centerX" secondItem="9EG-vu-iwd" secondAttribute="centerX" id="SkK-SQ-Rev"/>
-                                            <constraint firstItem="tAO-HT-zer" firstAttribute="centerY" secondItem="9EG-vu-iwd" secondAttribute="centerY" id="ces-iJ-ejo"/>
-                                            <constraint firstAttribute="bottom" secondItem="tAO-HT-zer" secondAttribute="bottom" constant="5" id="qHy-Lj-WxS"/>
-                                            <constraint firstAttribute="height" constant="71" id="vad-Fw-wEI"/>
+                                            <constraint firstItem="tAO-HT-zer" firstAttribute="centerY" secondItem="9EG-vu-iwd" secondAttribute="centerY" constant="2.5" id="ces-iJ-ejo"/>
+                                            <constraint firstAttribute="bottom" secondItem="tAO-HT-zer" secondAttribute="bottom" id="qHy-Lj-WxS"/>
+                                            <constraint firstAttribute="height" constant="63" id="vad-Fw-wEI"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.89534011989999995" green="0.3842815792" blue="0.44867005500000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="STR-5K-gO9" firstAttribute="top" secondItem="kuj-iA-30y" secondAttribute="bottom" id="8Jh-9H-Cqu"/>
-                                    <constraint firstItem="ea1-JM-CzD" firstAttribute="top" secondItem="STR-5K-gO9" secondAttribute="bottom" id="BsB-P9-x6L"/>
+                                    <constraint firstItem="ea1-JM-CzD" firstAttribute="top" secondItem="STR-5K-gO9" secondAttribute="bottom" constant="-1" id="BsB-P9-x6L"/>
                                     <constraint firstItem="ea1-JM-CzD" firstAttribute="leading" secondItem="Okd-4d-Woz" secondAttribute="leading" id="DFU-8w-2do"/>
                                     <constraint firstItem="9EG-vu-iwd" firstAttribute="top" secondItem="Okd-4d-Woz" secondAttribute="top" id="Djb-1g-qiI"/>
                                     <constraint firstItem="STR-5K-gO9" firstAttribute="top" secondItem="kuj-iA-30y" secondAttribute="bottom" id="Fox-ua-tLk"/>
                                     <constraint firstItem="9EG-vu-iwd" firstAttribute="leading" secondItem="Okd-4d-Woz" secondAttribute="leading" id="HYb-if-5Tm"/>
                                     <constraint firstAttribute="trailing" secondItem="ea1-JM-CzD" secondAttribute="trailing" id="NIh-ky-nDE"/>
                                     <constraint firstItem="kuj-iA-30y" firstAttribute="top" secondItem="9EG-vu-iwd" secondAttribute="bottom" id="PAx-dM-6YP"/>
-                                    <constraint firstAttribute="bottom" secondItem="ea1-JM-CzD" secondAttribute="bottom" id="SbR-CR-SJa"/>
-                                    <constraint firstItem="ea1-JM-CzD" firstAttribute="top" secondItem="STR-5K-gO9" secondAttribute="bottom" id="U6r-Rm-0fM"/>
+                                    <constraint firstAttribute="bottom" secondItem="ea1-JM-CzD" secondAttribute="bottom" constant="-30" id="SbR-CR-SJa"/>
+                                    <constraint firstItem="ea1-JM-CzD" firstAttribute="top" secondItem="STR-5K-gO9" secondAttribute="bottom" constant="-1" id="U6r-Rm-0fM"/>
                                     <constraint firstAttribute="trailing" secondItem="STR-5K-gO9" secondAttribute="trailing" id="b51-Rw-gXk"/>
                                     <constraint firstAttribute="trailing" secondItem="9EG-vu-iwd" secondAttribute="trailing" id="gYL-kk-DrG"/>
                                     <constraint firstItem="STR-5K-gO9" firstAttribute="leading" secondItem="Okd-4d-Woz" secondAttribute="leading" id="iKI-FS-JzS"/>
@@ -613,7 +613,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main_milad.png" translatesAutoresizingMaskIntoConstraints="NO" id="CwT-CQ-VnY">
                                 <rect key="frame" x="163" y="259" width="274" height="139"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="139" id="Q1G-Bl-gAx"/>
+                                    <constraint firstAttribute="height" constant="139" id="Ydy-fs-zPi"/>
                                     <constraint firstAttribute="width" constant="274" id="nmR-wd-N8C"/>
                                 </constraints>
                             </imageView>
@@ -649,13 +649,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="oV5-gM-r17"/>
                     <connections>
-                        <segue destination="49e-Tb-3d3" kind="presentation" identifier="tomain" modalTransitionStyle="crossDissolve" id="PSs-NV-R1h"/>
+                        <outlet property="firstImage" destination="Me5-Tn-N0g" id="A7w-yv-sFq"/>
+                        <outlet property="secondImage" destination="3b3-2y-ccE" id="b6y-2W-AvK"/>
+                        <segue destination="49e-Tb-3d3" kind="presentation" identifier="tomain" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="PSs-NV-R1h"/>
                         <segue destination="jGj-IC-Rw9" kind="presentation" identifier="about" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="JAr-rp-89g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U7v-A9-5BQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-756" y="78"/>
+            <point key="canvasLocation" x="-684" y="78"/>
         </scene>
         <!--Main Tab Bar View Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -696,11 +698,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="176"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cover.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="dtP-ub-itC">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cover.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Rwv-uE-uhF">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="176"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ادیب دهقان" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tDj-ky-pRA">
-                                            <rect key="frame" x="56" y="117" width="489" height="29"/>
+                                            <rect key="frame" x="8" y="117" width="584" height="29"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="29" id="Tcr-3c-WJ5"/>
                                             </constraints>
@@ -709,7 +711,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="112" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQp-h1-ZQH">
-                                            <rect key="frame" x="55" y="149" width="489" height="22"/>
+                                            <rect key="frame" x="8" y="149" width="584" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="22" id="ifz-JX-v7x"/>
                                             </constraints>
@@ -720,8 +722,8 @@
                                         <imageView userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.png" translatesAutoresizingMaskIntoConstraints="NO" id="SBi-wf-QdN">
                                             <rect key="frame" x="245" y="7" width="111" height="107"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="107" id="B5j-e5-9uD"/>
-                                                <constraint firstAttribute="width" constant="111" id="dtY-Zn-QOk"/>
+                                                <constraint firstAttribute="height" constant="107" id="8Rg-BL-UqZ"/>
+                                                <constraint firstAttribute="width" constant="111" id="QJF-Bi-GWI"/>
                                             </constraints>
                                         </imageView>
                                         <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="64y-iV-ozX">
@@ -734,20 +736,20 @@
                                         </activityIndicatorView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="64y-iV-ozX" firstAttribute="centerY" secondItem="SBi-wf-QdN" secondAttribute="centerY" constant="-0.5" id="2JQ-BL-hSU"/>
-                                        <constraint firstItem="64y-iV-ozX" firstAttribute="centerX" secondItem="SBi-wf-QdN" secondAttribute="centerX" id="36B-Dm-biK"/>
-                                        <constraint firstItem="tDj-ky-pRA" firstAttribute="leading" secondItem="1YN-3c-K2U" secondAttribute="leading" constant="56" id="9FR-Ex-WZ1"/>
-                                        <constraint firstAttribute="trailing" secondItem="tDj-ky-pRA" secondAttribute="trailing" constant="55" id="9vx-fz-1w4"/>
-                                        <constraint firstItem="tDj-ky-pRA" firstAttribute="top" secondItem="SBi-wf-QdN" secondAttribute="bottom" constant="3" id="DSL-hW-dYf"/>
-                                        <constraint firstAttribute="bottom" secondItem="MQp-h1-ZQH" secondAttribute="bottom" constant="5" id="Jy4-fT-1ln"/>
-                                        <constraint firstAttribute="bottom" secondItem="dtP-ub-itC" secondAttribute="bottom" id="OvO-d9-sGN"/>
-                                        <constraint firstAttribute="trailing" secondItem="MQp-h1-ZQH" secondAttribute="trailing" constant="56" id="UKr-ao-sgK"/>
-                                        <constraint firstAttribute="trailing" secondItem="dtP-ub-itC" secondAttribute="trailing" id="Yni-5i-3d9"/>
+                                        <constraint firstItem="Rwv-uE-uhF" firstAttribute="leading" secondItem="1YN-3c-K2U" secondAttribute="leading" id="3Kj-e6-haW"/>
+                                        <constraint firstItem="tDj-ky-pRA" firstAttribute="leading" secondItem="1YN-3c-K2U" secondAttribute="leading" constant="8" id="58I-S7-cCo"/>
+                                        <constraint firstItem="SBi-wf-QdN" firstAttribute="centerY" secondItem="64y-iV-ozX" secondAttribute="centerY" id="62P-Zw-XRo"/>
+                                        <constraint firstItem="SBi-wf-QdN" firstAttribute="centerX" secondItem="64y-iV-ozX" secondAttribute="centerX" id="Acu-G2-bRo"/>
+                                        <constraint firstItem="tDj-ky-pRA" firstAttribute="top" secondItem="SBi-wf-QdN" secondAttribute="bottom" constant="3" id="Anf-fE-K6u"/>
+                                        <constraint firstItem="SBi-wf-QdN" firstAttribute="top" secondItem="1YN-3c-K2U" secondAttribute="topMargin" constant="-1" id="F5D-DX-Y28"/>
+                                        <constraint firstItem="Rwv-uE-uhF" firstAttribute="centerX" secondItem="SBi-wf-QdN" secondAttribute="centerX" id="H1N-09-GVb"/>
+                                        <constraint firstItem="SBi-wf-QdN" firstAttribute="centerX" secondItem="tDj-ky-pRA" secondAttribute="centerX" id="Jvw-pd-7ta"/>
+                                        <constraint firstAttribute="trailing" secondItem="tDj-ky-pRA" secondAttribute="trailing" constant="8" id="Kg6-ek-jdI"/>
+                                        <constraint firstAttribute="bottom" secondItem="Rwv-uE-uhF" secondAttribute="bottom" id="N1t-kB-CPe"/>
+                                        <constraint firstAttribute="trailing" secondItem="MQp-h1-ZQH" secondAttribute="trailing" constant="8" id="aDs-cl-B1T"/>
                                         <constraint firstItem="MQp-h1-ZQH" firstAttribute="top" secondItem="tDj-ky-pRA" secondAttribute="bottom" constant="3" id="apZ-e6-0Wx"/>
-                                        <constraint firstItem="dtP-ub-itC" firstAttribute="leading" secondItem="1YN-3c-K2U" secondAttribute="leading" id="b3c-FR-dM8"/>
-                                        <constraint firstItem="SBi-wf-QdN" firstAttribute="centerX" secondItem="1YN-3c-K2U" secondAttribute="centerX" id="oaY-E1-FdN"/>
-                                        <constraint firstItem="dtP-ub-itC" firstAttribute="top" secondItem="1YN-3c-K2U" secondAttribute="top" id="rJe-jy-goa"/>
-                                        <constraint firstItem="MQp-h1-ZQH" firstAttribute="leading" secondItem="1YN-3c-K2U" secondAttribute="leading" constant="55" id="zks-up-Wqk"/>
+                                        <constraint firstItem="Rwv-uE-uhF" firstAttribute="top" secondItem="1YN-3c-K2U" secondAttribute="top" id="c3g-sy-ra6"/>
+                                        <constraint firstItem="MQp-h1-ZQH" firstAttribute="leading" secondItem="1YN-3c-K2U" secondAttribute="leading" constant="8" id="hUA-tX-xqJ"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <inset key="separatorInset" minX="30" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -840,7 +842,7 @@
                                                 <constraint firstAttribute="height" constant="1" id="GoA-rD-c3n"/>
                                             </constraints>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="اطلاعات شخصی" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbA-P3-gw6">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="شرایط و ضوابط" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbA-P3-gw6">
                                             <rect key="frame" x="0.0" y="5" width="600" height="53"/>
                                             <fontDescription key="fontDescription" name="BYekan+-Bold" family="B Yekan+" pointSize="20"/>
                                             <color key="textColor" red="0.1797664142" green="0.1797664142" blue="0.1797664142" alpha="1" colorSpace="calibratedRGB"/>
@@ -1128,8 +1130,8 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="28" id="mOK-9f-xxa"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="BYekan+" family="B Yekan+" pointSize="13"/>
-                                        <state key="normal" title="کلمه ی عبور خود را فراموش کرده اید؟">
+                                        <fontDescription key="fontDescription" name="BYekan+-Bold" family="B Yekan+" pointSize="13"/>
+                                        <state key="normal" title="شرایط و ضوابط">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1244,7 +1246,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xLn-h3-oIq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2767" y="835"/>
+            <point key="canvasLocation" x="2065" y="729"/>
         </scene>
         <!--ثبت نام-->
         <scene sceneID="IKm-wR-6Yp">
@@ -1500,9 +1502,9 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0IN-7G-8vg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3465" y="835"/>
+            <point key="canvasLocation" x="2767" y="729"/>
         </scene>
-        <!--بازیابی رمز عبور-->
+        <!--شرایط و ضوابط-->
         <scene sceneID="nQG-Kl-XDY">
             <objects>
                 <viewController id="eaB-XI-07a" customClass="_ResetPasswordViewController" sceneMemberID="viewController">
@@ -1516,8 +1518,11 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_bottom.png" translatesAutoresizingMaskIntoConstraints="NO" id="uaC-x9-1uF">
                                 <rect key="frame" x="0.0" y="451" width="600" height="149"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="149" id="bzu-8m-raV"/>
+                                </constraints>
                             </imageView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lm1-CA-pWD">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lm1-CA-pWD">
                                 <rect key="frame" x="20" y="100" width="560" height="400"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="نام کاربری" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C09-F2-Bif">
@@ -1587,30 +1592,334 @@
                                     <constraint firstItem="C09-F2-Bif" firstAttribute="centerX" secondItem="Lm1-CA-pWD" secondAttribute="centerX" constant="4" id="rYd-qt-Ilp"/>
                                 </constraints>
                             </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16b-WU-kcV">
+                                <rect key="frame" x="0.0" y="64" width="600" height="352"/>
+                                <attributedString key="attributedText">
+                                    <fragment>
+                                        <string key="content">شما با ساخت حساب کاربری موافقت و پذیرش خود در خصوص شرایط و ضوابط  اپلیکیشن را اعلام می نمایید. ما این حق را برای خود محفوظ می داریم که در هر زمان با اختیار خود، نسبت به تحول، تغییر، اصلاح، اضافه کردن و پاک کردن بخش هایی از شرایط و ضوابط عضویت، اپلیکیشن تلفن همراه بدون ارائه اخطار قبلی اقدام نماییم.
+استفاده از شماره تلفن همراه معتبر به منظور ثبت نام  الزامی می باشد.
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="16" name="BYekan+"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="28">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="56">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="84">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="112">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="140">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="168">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="196">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="224">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="252">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="280">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="308">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="336">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">اطلاعات اعضا، به صورت محرمانه در سامانه نگهداری شده و سامانه مجاز است از محتوای بارگذاری شده و اطلاعاتی که در انواع مسابقه‌ها توسط اعضا ارائه می‌شود، استفاده نماید. همچنین سامانه مجاز است با توجه به اطلاعات ارائه شده توسط کاربر، پیشنهاد شرکت در مسابقات را به اطلاع او برساند.
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="16" name="BYekan+"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="rightToLeft" lineHeightMultiple="1.3" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="28">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="56">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="84">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="112">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="140">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="168">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="196">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="224">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="252">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="280">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="308">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="336">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">مسابقات در قالب سوالات چهار گزینه ای برگزار می گردند.
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="16" name="BYekan+"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="rightToLeft" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="28">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="56">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="84">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="112">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="140">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="168">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="196">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="224">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="252">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="280">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="308">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="336">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">افراد با عضويت در اين سامانه، صاحب يك شناسه شده و مي‌توانند در مسابقات متنوع شرکت نمايند.
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="16" name="BYekan+"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="rightToLeft" lineHeightMultiple="1.3" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="28">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="56">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="84">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="112">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="140">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="168">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="196">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="224">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="252">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="280">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="308">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="336">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content">تمامی جوایز توسط شرکت خودرو سرویس شهر تامین می شوند.
+
+</string>
+                                        <attributes>
+                                            <font key="NSFont" size="16" name="BYekan+"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="right" lineBreakMode="wordWrapping" baseWritingDirection="rightToLeft" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="28">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="56">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="84">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="112">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="140">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="168">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="196">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="224">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="252">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="280">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="308">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="336">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="apple is not the sponsor of this app and also the prizes are not Apple products">
+                                        <attributes>
+                                            <font key="NSFont" size="16" name="BYekan+"/>
+                                            <real key="NSKern" value="0.0"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="rightToLeft" lineHeightMultiple="1.3" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="28">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="56">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="84">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="112">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="140">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="168">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="196">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="224">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="252">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="280">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="308">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="336">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                            <color key="NSStrokeColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Lm1-CA-pWD" firstAttribute="centerY" secondItem="Luq-sd-Qmc" secondAttribute="centerY" id="2KT-j2-dDa"/>
-                            <constraint firstItem="uaC-x9-1uF" firstAttribute="top" secondItem="Luq-sd-Qmc" secondAttribute="top" constant="451" id="2Lt-pJ-k39"/>
                             <constraint firstItem="Lm1-CA-pWD" firstAttribute="centerX" secondItem="Luq-sd-Qmc" secondAttribute="centerX" id="3Sx-JV-nT9"/>
+                            <constraint firstAttribute="bottom" secondItem="uaC-x9-1uF" secondAttribute="bottom" id="6e8-Eo-lev"/>
+                            <constraint firstItem="16b-WU-kcV" firstAttribute="top" secondItem="Luq-sd-Qmc" secondAttribute="topMargin" constant="64" id="Bpi-9x-IW6"/>
                             <constraint firstItem="Lm1-CA-pWD" firstAttribute="leading" secondItem="Luq-sd-Qmc" secondAttribute="leading" constant="20" id="EWP-a1-iod"/>
-                            <constraint firstItem="Lm1-CA-pWD" firstAttribute="top" secondItem="1YV-1L-BtY" secondAttribute="bottom" constant="80" id="HId-pK-KKP"/>
-                            <constraint firstItem="bJV-UL-gxs" firstAttribute="top" secondItem="uaC-x9-1uF" secondAttribute="bottom" constant="-49" id="JU8-n9-2XR"/>
+                            <constraint firstItem="16b-WU-kcV" firstAttribute="leading" secondItem="uaC-x9-1uF" secondAttribute="leading" id="Gg8-7j-OqP"/>
+                            <constraint firstItem="Lm1-CA-pWD" firstAttribute="top" secondItem="1YV-1L-BtY" secondAttribute="bottom" constant="36" id="HId-pK-KKP"/>
                             <constraint firstAttribute="trailing" secondItem="Lm1-CA-pWD" secondAttribute="trailing" constant="20" id="N69-c7-03N"/>
-                            <constraint firstAttribute="trailing" secondItem="uaC-x9-1uF" secondAttribute="trailing" id="aQy-6u-2oQ"/>
-                            <constraint firstItem="uaC-x9-1uF" firstAttribute="leading" secondItem="Luq-sd-Qmc" secondAttribute="leading" id="lG1-S5-Ycy"/>
+                            <constraint firstItem="16b-WU-kcV" firstAttribute="bottom" secondItem="bJV-UL-gxs" secondAttribute="top" constant="-135" id="ZeE-Ak-DEQ"/>
+                            <constraint firstItem="16b-WU-kcV" firstAttribute="trailing" secondItem="uaC-x9-1uF" secondAttribute="trailing" id="cgH-fe-gRS"/>
+                            <constraint firstItem="uaC-x9-1uF" firstAttribute="centerX" secondItem="Lm1-CA-pWD" secondAttribute="centerX" id="hXp-Iu-J7B"/>
+                            <constraint firstItem="uaC-x9-1uF" firstAttribute="leading" secondItem="Luq-sd-Qmc" secondAttribute="leading" id="pHg-n4-VWN"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="بازیابی رمز عبور" id="dK9-bX-ByV"/>
+                    <navigationItem key="navigationItem" title="شرایط و ضوابط" id="dK9-bX-ByV"/>
                     <connections>
+                        <outlet property="rules" destination="16b-WU-kcV" id="ZKn-aT-r9k"/>
                         <outlet property="usernameTextField" destination="C09-F2-Bif" id="VkH-Xe-OrR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KzT-zi-jSL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2767" y="1508"/>
+            <point key="canvasLocation" x="2065" y="1393"/>
         </scene>
-        <!--نظرسنجی ها-->
+        <!--مسابقات-->
         <scene sceneID="oHx-uh-hjh">
             <objects>
                 <tableViewController id="CJq-Dj-dDi" customClass="PolListViewController" sceneMemberID="viewController">
@@ -1728,7 +2037,7 @@
                             <outlet property="delegate" destination="CJq-Dj-dDi" id="lCG-ww-aHK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="نظرسنجی ها" id="15m-SP-aGn"/>
+                    <navigationItem key="navigationItem" title="مسابقات" id="15m-SP-aGn"/>
                     <connections>
                         <segue destination="OJQ-xm-krU" kind="show" identifier="detail" id="zwq-nb-ghp"/>
                         <segue destination="JDR-3u-q4W" kind="presentation" identifier="first" modalTransitionStyle="coverVertical" id="wgk-Ud-gqA"/>
@@ -1754,7 +2063,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7gF-JG-gO4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3472" y="-1383"/>
+            <point key="canvasLocation" x="2767" y="-587"/>
         </scene>
         <!--رسانه ها-->
         <scene sceneID="bUN-HC-bcm">
@@ -2334,7 +2643,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J4G-am-48H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3465" y="-587"/>
+            <point key="canvasLocation" x="3465" y="729"/>
         </scene>
         <!--رسانه ها-->
         <scene sceneID="KqJ-1b-65e">

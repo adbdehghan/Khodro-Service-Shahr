@@ -58,7 +58,7 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
     label.textAlignment = NSTextAlignmentCenter;
     self.navigationItem.titleView=label;
 
-    self.tableView.estimatedRowHeight = 60;
+    self.tableView.estimatedRowHeight = 80;
     
     NSMutableArray *userData =  [self load];
     
@@ -554,7 +554,7 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"📢"
                                                         message:@"لطفا ارتباط خود با اینترنت را بررسی نمایید."
                                                        delegate:self
-                                              cancelButtonTitle:@"خب"
+                                              cancelButtonTitle:@"تایید"
                                               otherButtonTitles:nil];
         [alert show];
         
