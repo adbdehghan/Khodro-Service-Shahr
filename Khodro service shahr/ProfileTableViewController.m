@@ -69,7 +69,7 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
         user.mobile = userData[2];
         user.password = userData[3];
         user.itemId =userData[0];
-        
+        user.PicThumb = userData[4];
     }
     
 
@@ -134,25 +134,32 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
                 
             }
             
+            [cell.activityView startAnimating];
+        
+            NSString *fullURL = [NSString stringWithFormat:@"%@%@",PicURL,user.PicThumb];
             
-            if ([self loadCustomObjectWithKey:@"propic"] == nil) {
-                 [cell.activityView startAnimating];
-                NSString *fullURL = [NSString stringWithFormat:@"%@%@",PicURL,self.user.PicThumb];
-                
-                UIImageView *proPic = [[UIImageView alloc]init];
-                [proPic sd_setImageWithURL:[NSURL URLWithString:fullURL] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL){
-                
-                    cell.mmimageView.image = image;
-                    [self saveCustomObject:image key:@"propic"];
-                    [cell.activityView stopAnimating];
-                }];
+            [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:fullURL]
+                                                                options:0
+                                                               progress:^(NSInteger receivedSize, NSInteger expectedSize)
+             {
+                 // progression tracking code
+             }
+                                                              completed:^(UIImage *image, NSData *data2, NSError *error, BOOL finished)
+             {
+                 if (image && finished)
+                 {
+                     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+                         //Background Thread
+                         dispatch_async(dispatch_get_main_queue(), ^(void){
 
-            }
-            else
-                cell.mmimageView.image = [self loadCustomObjectWithKey:@"propic"];
-            
-            
-         
+                             cell.mmimageView.image = image;
+                             [self saveCustomObject:image key:@"propic"];
+                             [cell.activityView stopAnimating];
+                         });
+                     });
+                     
+                 }
+             }];
             
             cell.mmimageView.layer.cornerRadius = cell.mmimageView.frame.size.width / 2;
             cell.mmimageView.layer.masksToBounds = YES;

@@ -72,7 +72,7 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"📢"
                                                             message:@"لطفا ارتباط خود با اینترنت را بررسی نمایید."
                                                            delegate:self
-                                                  cancelButtonTitle:@"خب"
+                                                  cancelButtonTitle:@"تایید"
                                                   otherButtonTitles:nil];
             [alert show];
             
@@ -116,7 +116,7 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"📢"
                                                                 message:@"مکان مورد نظر یافت نشد"
                                                                delegate:self
-                                                      cancelButtonTitle:@"خب"
+                                                      cancelButtonTitle:@"تایید"
                                                       otherButtonTitles:nil];
                 [alert show];
             }
@@ -132,7 +132,7 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"📢"
                                                             message:@"لطفا ارتباط خود با اینترنت را بررسی نمایید."
                                                            delegate:self
-                                                  cancelButtonTitle:@"خب"
+                                                  cancelButtonTitle:@"تایید"
                                                   otherButtonTitles:nil];
             [alert show];
             

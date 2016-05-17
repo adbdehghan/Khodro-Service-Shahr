@@ -188,7 +188,7 @@ static NSString *const ServerURL2 = @"http://khodroservice.kara.systems/api/mobi
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"📢"
                                                             message:@"لطفا ارتباط خود با اینترنت را بررسی نمایید."
                                                            delegate:self
-                                                  cancelButtonTitle:@"خب"
+                                                  cancelButtonTitle:@"تایید"
                                                   otherButtonTitles:nil];
             [alert show];
             
@@ -205,9 +205,26 @@ static NSString *const ServerURL2 = @"http://khodroservice.kara.systems/api/mobi
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+    [self load];
+}
+
+-(void)load
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+    // get documents path
+    NSString *documentsPath = [paths objectAtIndex:0];
+    // get the path to our Data/plist file
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"user.plist"];
     
-    self.user = app.user;
+    NSMutableArray *array = [NSMutableArray arrayWithContentsOfFile:plistPath];
+    
+    self.user = [User alloc];
+    if (array.count>0) {
+        self.user.itemId =[array objectAtIndex:0];
+        self.user.mobile = [array objectAtIndex:2];
+        self.user.password = [array objectAtIndex:3];
+        // self.user.PicThumb = [array objectAtIndex:4];
+    }
 }
 
 -(void)getAnswersPressed:(id)sender
@@ -306,7 +323,7 @@ static NSString *const ServerURL2 = @"http://khodroservice.kara.systems/api/mobi
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"📢"
                                                             message:@" ابتدا وارد شوید"
                                                            delegate:self
-                                                  cancelButtonTitle:@"خب"
+                                                  cancelButtonTitle:@"تایید"
                                                   otherButtonTitles:nil];
             [alert show];
         }

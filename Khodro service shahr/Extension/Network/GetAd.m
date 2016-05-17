@@ -29,9 +29,12 @@
         
         NSLog(@"Success %@", responseObject);
         if (responseObject != nil) {
+            NSDictionary* dict = [NSDictionary dictionaryWithObject:
+                                  responseObject
+                                                             forKey:@"data"];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"AD"
                                                                 object:nil
-                                                              userInfo:nil];
+                                                              userInfo:dict];
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

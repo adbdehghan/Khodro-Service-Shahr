@@ -88,6 +88,7 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
             [self.view addSubview:parallaxView];
             [loadingCircle.view removeFromSuperview];
             loadingCircle = nil;
+            [self CreateMenuButton];
         }
         
         else
@@ -139,6 +140,7 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
 
 -(void)CloseView
 {
+
     [self dismissViewControllerAnimated:YES completion:nil];
 
 }

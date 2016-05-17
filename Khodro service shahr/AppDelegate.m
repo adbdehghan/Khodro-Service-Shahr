@@ -89,7 +89,7 @@
         self.user.itemId =[array objectAtIndex:0];
         self.user.mobile = [array objectAtIndex:2];
         self.user.password = [array objectAtIndex:3];
-        self.user.PicThumb = [array objectAtIndex:4];
+       // self.user.PicThumb = [array objectAtIndex:4];
     }
 }
 

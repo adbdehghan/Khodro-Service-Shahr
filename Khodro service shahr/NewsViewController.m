@@ -53,7 +53,6 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     
     self.user = app.user;
     [self CreateMenuButton];
-    [self requestData];
     
     _scrollProxy = [[NJKScrollFullScreen alloc] initWithForwardTarget:self]; // UIScrollViewDelegate and UITableViewDelegate methods proxy to ViewController
     
@@ -94,6 +93,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     
     [self setNeedsStatusBarAppearanceUpdate];
     
+    [self requestData];
 }
 
 #pragma mark -
@@ -208,7 +208,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"📢"
                                                             message:@"لطفا ارتباط خود با اینترنت را بررسی نمایید."
                                                            delegate:self
-                                                  cancelButtonTitle:@"خب"
+                                                  cancelButtonTitle:@"تایید"
                                                   otherButtonTitles:nil];
             [alert show];
             
@@ -308,9 +308,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
 {
     [super viewWillAppear:animated];
     
-    AppDelegate *app = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-    
-    self.user = app.user;
+    [self load];
     
     NSIndexPath *tableSelection = [self.tableView indexPathForSelectedRow];
     [self.tableView deselectRowAtIndexPath:tableSelection animated:NO];
@@ -320,6 +318,25 @@ static NSString *const menuCellIdentifier = @"rotationCell";
 
     [[NSNotificationCenter defaultCenter ] addObserver:self selector:@selector(notify) name:@"Dismiss" object:nil];
 
+}
+
+-(void)load
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
+    // get documents path
+    NSString *documentsPath = [paths objectAtIndex:0];
+    // get the path to our Data/plist file
+    NSString *plistPath = [documentsPath stringByAppendingPathComponent:@"user.plist"];
+    
+    NSMutableArray *array = [NSMutableArray arrayWithContentsOfFile:plistPath];
+    
+    self.user = [User alloc];
+    if (array.count>0) {
+        self.user.itemId =[array objectAtIndex:0];
+        self.user.mobile = [array objectAtIndex:2];
+        self.user.password = [array objectAtIndex:3];
+        // self.user.PicThumb = [array objectAtIndex:4];
+    }
 }
 
 #pragma mark - Scroll View Delegate
@@ -371,8 +388,8 @@ static NSString *const menuCellIdentifier = @"rotationCell";
         
         
         [activityIndicator startAnimating];
-        [self.tableItems removeAllObjects];
-        [self.galleryDataSource removeAllObjects];
+        self.tableItems =[[ NSMutableArray alloc]init];
+        self.galleryDataSource =[[ NSMutableArray alloc]init];
         [self.tableView reloadData];
 
         
@@ -470,8 +487,8 @@ static NSString *const menuCellIdentifier = @"rotationCell";
             RequestCompleteBlock callback = ^(BOOL wasSuccessful,NSObject *data) {
                 if (wasSuccessful) {
                     
-                    [self.tableItems removeAllObjects];
-                    [self.galleryDataSource removeAllObjects];
+                    self.tableItems = [[ NSMutableArray alloc]init];
+                    self.galleryDataSource = [[ NSMutableArray alloc]init];
                     
                     for (NSDictionary *item in (NSMutableArray*)data) {
                         
@@ -541,7 +558,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"📢"
                                                                     message:@"لطفا ارتباط خود با اینترنت را بررسی نمایید."
                                                                    delegate:self
-                                                          cancelButtonTitle:@"خب"
+                                                          cancelButtonTitle:@"تایید"
                                                           otherButtonTitles:nil];
                     [alert show];
                     
