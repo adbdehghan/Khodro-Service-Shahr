@@ -432,6 +432,8 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
 {
     if (searchBar.searchField.text.length > 0) {
         
+        self.searchedString = searchBar.searchField.text;
+        
         [self.view.window showHUDWithText:@"لطفا صبر کنید" Type:ShowLoading Enabled:YES];
         
         self.places = [[NSMutableArray alloc]init];
@@ -1297,6 +1299,7 @@ didFailAutocompleteWithError:(NSError *)error {
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     SearchViewController  *destination = [segue destinationViewController];
     destination.searchedString = self.searchedString;
+    destination.myLocation = self.deviceLocation;
 }
 
 

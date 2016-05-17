@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
 @interface ByDistanceTableViewController : UITableViewController
-
+@property (nonatomic, strong) NSString *searchedString;
+@property (nonatomic)CLLocation *myLocation;
 @end

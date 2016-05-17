@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "MXSegmentedPagerController.h"
+#import <MapKit/MapKit.h>
 
 @interface SearchViewController : MXSegmentedPagerController
-
+@property (nonatomic)CLLocation *myLocation;
 @property (nonatomic, strong) NSString *searchedString;
 @end
