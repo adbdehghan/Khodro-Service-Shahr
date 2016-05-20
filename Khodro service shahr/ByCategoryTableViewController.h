@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MapPlace.h"
 
 @interface ByCategoryTableViewController : UITableViewController
+{
+    NSMutableIndexSet *expandedSections;
+}
 @property (nonatomic, strong) NSString *searchedString;
+@property (nonatomic, strong) MapPlace *markerLocation;
 @end

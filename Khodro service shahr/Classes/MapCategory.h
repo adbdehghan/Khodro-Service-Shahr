@@ -12,6 +12,8 @@
 @interface MapCategory : MBJSONModel
 @property(nonatomic,copy) NSString *ID;
 @property(nonatomic,copy) NSString *Name;
+@property(nonatomic,copy) NSString *CatName;
 @property(nonatomic,copy) NSString *ImageUrl;
 @property(nonatomic,copy) NSString *Comment;
+@property(nonatomic,strong) NSArray  *items;
 @end

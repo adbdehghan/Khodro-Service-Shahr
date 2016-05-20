@@ -22,5 +22,4 @@
 @property(nonatomic,copy) NSString *Fax;
 @property(nonatomic,copy) NSString *Mobile;
 @property(nonatomic,strong) NSNumber *distance;
-
 @end

@@ -15,6 +15,7 @@
 #import "MapCategory.h"
 #import "JTProgressHUD.h"
 #import <MapKit/MapKit.h>
+#import "MapViewController.h"
 
 @interface ByDistanceTableViewController ()
 @property (nonatomic, strong) NSMutableArray *results;
@@ -34,6 +35,7 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
     
     self.places = [[NSMutableArray alloc]init];
     self.placesCopy=[[NSMutableArray alloc]init];
@@ -153,13 +155,16 @@
         [[cell textLabel] setTextAlignment:NSTextAlignmentRight];
         [[cell textLabel] setFont:[UIFont fontWithName:@"B Yekan+" size:17]];
         [[cell textLabel] setTextColor:[UIColor blackColor]];
+        [[cell textLabel] setBackgroundColor:[UIColor clearColor]];
     }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    MapPlace *place =(MapPlace*)[self.places objectAtIndex:indexPath.row];
+    self.markerLocation = place;
+    [self performSegueWithIdentifier:@"map" sender:self];
 }
 
 
@@ -172,14 +177,15 @@
     return _getData;
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    MapViewController *destination = [segue destinationViewController];
+    destination.isSegue = YES;
+    destination.markerLocation = self.markerLocation;
 }
-*/
+
 
 @end

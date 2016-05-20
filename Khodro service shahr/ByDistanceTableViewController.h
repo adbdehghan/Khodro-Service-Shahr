@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "MapPlace.h"
 
 @interface ByDistanceTableViewController : UITableViewController
 @property (nonatomic, strong) NSString *searchedString;
 @property (nonatomic)CLLocation *myLocation;
+@property (nonatomic, strong) MapPlace *markerLocation;
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "MapCategory.h"
+#import "MapPlace.h"
 
 @implementation MapCategory
 + (NSDictionary *)JSONKeyTranslationDictionary
@@ -14,8 +15,10 @@
     return @{
              @"ID" : @"ID",
              @"Name" : @"Name",
+             @"CatName" : @"CatName",
              @"ImageUrl" : @"ImageUrl",
              @"Comment" : @"Comment",
+             @"data.mapcategory.Items" : @{@"class" : NSStringFromClass([MapPlace class]), @"relationship" : @"items", @"isArray" : @YES},
              };
 }
 @end

@@ -224,7 +224,33 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
     self.navigationItem.titleView=label;
     
 
+    [self DropMarker:self.isSegue];
     
+    
+
+}
+
+-(void)DropMarker:(BOOL)isSegue
+{
+
+    if (isSegue) {
+        GMSMarker *marker = [[GMSMarker alloc] init];
+        
+        marker.position = CLLocationCoordinate2DMake([self.markerLocation.Lat doubleValue],[self.markerLocation.Lng doubleValue]);
+        marker.title = self.markerLocation.Title;
+        marker.snippet = @"";
+        marker.appearAnimation = kGMSMarkerAnimationPop;
+        
+        marker.icon = [self image:[UIImage imageNamed:@"marker.png"] scaledToSize:CGSizeMake(32, 38)];
+        marker.map = mapView;
+        
+        GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:marker.position.latitude
+                                                                longitude:marker.position.longitude
+                                                                     zoom:16.0];
+        [mapView animateToCameraPosition:camera];
+        
+        
+    }
 
 }
 
@@ -454,9 +480,6 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
                     marker.title = place.Title;
                     marker.snippet = @"";
                     marker.appearAnimation = kGMSMarkerAnimationPop;
-//                    marker.icon =[UIImage imageNamed:@"marker.png"]; //markerImage.image;
-                    
-  
                     
                     marker.icon = [self image:[UIImage imageNamed:@"marker.png"] scaledToSize:CGSizeMake(32, 38)];
                     marker.map = mapView;
@@ -938,12 +961,17 @@ didFailAutocompleteWithError:(NSError *)error {
     self.myLocation = location;
     self.deviceLocation = location;
     
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.myLocation.coordinate.latitude
-                                                            longitude:self.myLocation.coordinate.longitude
-                                                                 zoom:11.0];
-    [mapView animateToCameraPosition:camera];
-
-    [self performSelector:@selector(ScrollUpMap:) withObject:[NSNumber numberWithFloat:self.latitudeUserUp] afterDelay:.25];
+    if (!self.isSegue) {
+        
+        
+        
+        GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:self.myLocation.coordinate.latitude
+                                                                longitude:self.myLocation.coordinate.longitude
+                                                                     zoom:11.0];
+        [mapView animateToCameraPosition:camera];
+        
+        [self performSelector:@selector(ScrollUpMap:) withObject:[NSNumber numberWithFloat:self.latitudeUserUp] afterDelay:.25];
+    }
     
     [self.locationManager stopUpdatingLocation];
     
