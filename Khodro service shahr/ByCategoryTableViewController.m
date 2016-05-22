@@ -39,7 +39,10 @@
         expandedSections = [[NSMutableIndexSet alloc] init];
     }
     
-    [self.view.window showHUDWithText:@"لطفا صبر کنید" Type:ShowLoading Enabled:YES];
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [self.view addSubview:activityIndicator];
+    activityIndicator.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
+    [activityIndicator startAnimating];
     
     self.places = [[NSMutableArray alloc]init];
     self.categories = [[NSMutableArray alloc]init];
@@ -62,6 +65,7 @@
                 }
             }
             
+            [activityIndicator stopAnimating];
             [self.tableView reloadData];
             
             
@@ -89,11 +93,11 @@
                                                   otherButtonTitles:nil];
             [alert show];
             
+            [activityIndicator stopAnimating];
             
             NSLog( @"Unable to fetch Data. Try again.");
         }
     };
-    
     
     [self.getData SearchByCat:self.searchedString withCallback:callback];
 
@@ -169,6 +173,7 @@
     CGRect frame = CGRectMake(0, 3, self.view.frame.size.width , 60);
     UIView *view = [[UIView alloc]initWithFrame:frame];
     
+    view.backgroundColor = [UIColor whiteColor];
     
     UILabel *catName = [[UILabel alloc]initWithFrame:CGRectMake(10, 3, self.view.frame.size.width-54 , 54)];
     
@@ -185,7 +190,7 @@
     [view addSubview:sepratorView];
     
     UIImageView *icon = [[UIImageView alloc]initWithFrame:CGRectMake(self.view.frame.size.width-45, 10, 40, 40)];
-    icon.image = [UIImage imageNamed:@"park"];
+    icon.image =[self getCategoryImage:[NSString stringWithFormat:@"%@",((MapCategory*)[self.categories objectAtIndex:section]).catId]];
     
     [view addSubview:icon];
 //    cell.imageView.image = [self getCategoryImage:@"park"];
@@ -218,60 +223,64 @@
 
 -(UIImage*)getCategoryImage:(NSString*)name
 {
-    if ([name isEqualToString:@"police"]) {
-        return [UIImage imageNamed:@"police"];
+    if ([name isEqualToString:@"12"]||[name isEqualToString:@"13"]||[name isEqualToString:@"15"]||[name isEqualToString:@"16"]) {
+        return [self image:[UIImage imageNamed:@"police"] scaledToSize:CGSizeMake(40, 40)];
     }
     else if ([name isEqualToString:@"around"]) {
-        return [UIImage imageNamed:@"around"];
+        return [self image:[UIImage imageNamed:@"around"] scaledToSize:CGSizeMake(40, 40)];
     }
-    else if ([name isEqualToString:@"building"]) {
-        return [UIImage imageNamed:@"building"];
+    else if ([name isEqualToString:@"18"]||[name isEqualToString:@"19"]||[name isEqualToString:@"21"]||[name isEqualToString:@"14"]) {
+        return [self image:[UIImage imageNamed:@"building"] scaledToSize:CGSizeMake(40, 40)];
     }
-    else if ([name isEqualToString:@"bus"]) {
-        return [UIImage imageNamed:@"bus"];
+    else if ([name isEqualToString:@"1"]) {
+        return [self image:[UIImage imageNamed:@"bus"] scaledToSize:CGSizeMake(40, 40)];
     }
-    else if ([name isEqualToString:@"carRe"]) {
-        return [UIImage imageNamed:@"carRe"];
+    else if ([name isEqualToString:@"2"]) {
+        return [self image:[UIImage imageNamed:@"carRe"] scaledToSize:CGSizeMake(40, 40)];
     }
-    else if ([name isEqualToString:@"carwash"]) {
-        return [UIImage imageNamed:@"carwash"];
+    else if ([name isEqualToString:@"22"]) {
+        return [self image:[UIImage imageNamed:@"carwash"] scaledToSize:CGSizeMake(40, 40)];
     }
-    else if ([name isEqualToString:@"cinema"]) {
-        return [UIImage imageNamed:@"cinema"];
+    else if ([name isEqualToString:@"17"]) {
+        return [self image:[UIImage imageNamed:@"cinema"] scaledToSize:CGSizeMake(40, 40)];
     }
-    else if ([name isEqualToString:@"drug"]) {
-        return [UIImage imageNamed:@"drug"];
+    else if ([name isEqualToString:@"11"]) {
+        return [self image:[UIImage imageNamed:@"drug"] scaledToSize:CGSizeMake(40, 40)];
     }
-    else if ([name isEqualToString:@"gas"]) {
-        return [UIImage imageNamed:@"gas"];
+    else if ([name isEqualToString:@"10"]||[name isEqualToString:@"9"]) {
+        return [self image:[UIImage imageNamed:@"gas"] scaledToSize:CGSizeMake(40, 40)];
     }
-    else if ([name isEqualToString:@"history"]) {
-        return [UIImage imageNamed:@"history"];
+    else if ([name isEqualToString:@"25"]||[name isEqualToString:@"3"]) {
+        return [self image:[UIImage imageNamed:@"history"] scaledToSize:CGSizeMake(40, 40)];
     }
-    else if ([name isEqualToString:@"park"]) {
-        return [self image:[UIImage imageNamed:@"park"] scaledToSize:CGSizeMake(42, 42)];
+    else if ([name isEqualToString:@"6"]) {
+        return [self image:[UIImage imageNamed:@"park"] scaledToSize:CGSizeMake(40, 40)];
     }
-    else if ([name isEqualToString:@"mosque"]) {
-        return [UIImage imageNamed:@"mosque"];
+    else if ([name isEqualToString:@"4"]) {
+        return [self image:[UIImage imageNamed:@"mosque"] scaledToSize:CGSizeMake(40, 40)];
     }
-    else if ([name isEqualToString:@"office"]) {
-        return [UIImage imageNamed:@"office"];
+    else if ([name isEqualToString:@"20"]||[name isEqualToString:@"26"]) {
+        return [self image:[UIImage imageNamed:@"office"] scaledToSize:CGSizeMake(40, 40)];
     }
-    else if ([name isEqualToString:@"train"]) {
-        return [UIImage imageNamed:@"train"];
+    else if ([name isEqualToString:@"24"]) {
+        return [self image:[UIImage imageNamed:@"train"] scaledToSize:CGSizeMake(40, 40)];
     }
-    else if ([name isEqualToString:@"passport"]) {
-     return [UIImage imageNamed:@"passport"];
+    else if ([name isEqualToString:@"23"]) {
+        return [self image:[UIImage imageNamed:@"passport"] scaledToSize:CGSizeMake(40, 40)];
     }
-    else if ([name isEqualToString:@"shop"]) {
-     return [UIImage imageNamed:@"shop"];
+    else if ([name isEqualToString:@"5"]) {
+        return [self image:[UIImage imageNamed:@"shop"] scaledToSize:CGSizeMake(40, 40)];
     }
-    else if ([name isEqualToString:@"train"]) {
-        return [UIImage imageNamed:@"train"];
+    else if ([name isEqualToString:@"8"]) {
+        return [self image:[UIImage imageNamed:@"train"] scaledToSize:CGSizeMake(40, 40)];
 
     }
-
-    return [self image:[UIImage imageNamed:@"marker.png"] scaledToSize:CGSizeMake(38, 38)];
+    else if ([name isEqualToString:@"7"]) {
+        return [self image:[UIImage imageNamed:@"parking"] scaledToSize:CGSizeMake(40, 40)];
+        
+    }
+    
+    return [self image:[UIImage imageNamed:@"marker.png"] scaledToSize:CGSizeMake(32, 40)];
 }
 
 

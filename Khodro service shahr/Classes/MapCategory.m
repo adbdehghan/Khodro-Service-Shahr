@@ -16,6 +16,7 @@
              @"ID" : @"ID",
              @"Name" : @"Name",
              @"CatName" : @"CatName",
+             @"CatId" : @"catId",
              @"ImageUrl" : @"ImageUrl",
              @"Comment" : @"Comment",
              @"data.mapcategory.Items" : @{@"class" : NSStringFromClass([MapPlace class]), @"relationship" : @"items", @"isArray" : @YES},

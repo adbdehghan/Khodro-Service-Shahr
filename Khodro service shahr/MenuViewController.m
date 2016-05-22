@@ -140,7 +140,7 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
                              dialogView.titleText = [[NSMutableAttributedString alloc] initWithString:[data objectForKey:@"Title"]];
                              dialogView.messageText =[[NSMutableAttributedString alloc]initWithString:[data objectForKey:@"Comment"]];
                              
-                             dialogView.firstBtnText = [@"شرکت" uppercaseString];
+                             dialogView.firstBtnText = [@"تایید" uppercaseString];
                              dialogView.dialogBackgroundColor = [UIColor whiteColor];
                              dialogView.cornerRadius = 8.0;
                              dialogView.backgroundShadowOpacity = 0.2;
@@ -162,8 +162,9 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
 
 - (void)draggableDialogView:(SFDraggableDialogView *)dialogView didPressFirstButton:(UIButton *)firstButton
 {
-    self.MenuSelectedIndex = [NSNumber numberWithInteger:2];
-    [self NextBoard];
+//    self.MenuSelectedIndex = [NSNumber numberWithInteger:2];
+//    [self NextBoard];
+    [dialogView dismissWithDrop:YES];
 }
 
 -(void)notify:(NSNotification *)notification{

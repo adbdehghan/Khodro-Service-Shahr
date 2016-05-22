@@ -40,6 +40,11 @@
     self.places = [[NSMutableArray alloc]init];
     self.placesCopy=[[NSMutableArray alloc]init];
     
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [self.view addSubview:activityIndicator];
+    activityIndicator.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
+    [activityIndicator startAnimating];
+    
     RequestCompleteBlock callback = ^(BOOL wasSuccessful,NSObject *data) {
         if (wasSuccessful) {
             
@@ -52,7 +57,7 @@
                 
                 
             }
-            
+            [activityIndicator stopAnimating];
             
             self.placesCopy = [self.places mutableCopy];
             
@@ -92,20 +97,8 @@
             }
             else
             {
-                //                    self.actualRequest2 = [[FTGooglePlacesAPITextSearchRequest alloc] initWithQuery:searchBar.searchField.text];
-                //                    [self startSearching];
-                [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
-                
-                //                    GMSAutocompleteViewController *acController = [[GMSAutocompleteViewController alloc] init];
-                //                    acController.delegate = self;
-                //                    [self presentViewController:acController animated:YES completion:nil];
-                
-                //                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"📢"
-                //                                                                    message:@"مکان مورد نظر یافت نشد"
-                //                                                                   delegate:self
-                //                                                          cancelButtonTitle:@"تایید"
-                //                                                          otherButtonTitles:nil];
-                //                    [alert show];
+               [activityIndicator stopAnimating];
+              
             }
             
             

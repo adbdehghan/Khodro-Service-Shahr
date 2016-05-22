@@ -20,7 +20,7 @@
     [super viewDidLoad];
 
     UILabel* label=[[UILabel alloc] initWithFrame:CGRectMake(0,0, self.navigationItem.titleView.frame.size.width, 40)];
-    label.text=@"نتیجه جستوجو";
+    label.text=@"نتیجه جستجو";
     label.textColor=[UIColor whiteColor];
     label.backgroundColor =[UIColor clearColor];
     label.adjustsFontSizeToFitWidth=YES;
