@@ -44,6 +44,7 @@ static const CGFloat CalloutYOffset = 50.0f;
 @property (nonatomic)           BOOL                    isShutterOpen;
 @property (nonatomic)           BOOL                    isAuthorised;
 @property (nonatomic)           BOOL                    displayMap;
+@property (nonatomic)           BOOL                    myCarInitiate;
 @property (nonatomic)           float                   heightMap;
 @property (nonatomic)           CLLocation              *myLocation;
 @property (nonatomic)           CLLocation              *deviceLocation;
@@ -96,6 +97,7 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
     [self setupMapView];
     [self CreateMenuButton];
     
+    self.myCarInitiate = NO;
     
     self.searchBarWithDelegate = [[INSSearchBar alloc] initWithFrame:CGRectMake(10, 72, CGRectGetWidth(self.view.bounds) - 20.0, 38.0)];
     self.searchBarWithDelegate.delegate = self;
@@ -165,8 +167,10 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
                 self.navigationItem.rightBarButtonItem = rightButton;
                 
                 NSMutableArray *serial = [self loadSerial];
+                self.myCarInitiate = YES;
                 
-                if (serial.count > 0) {
+                if (serial.count > 0 ) {
+                    
                     
                     UIButton *menuButton =  [UIButton buttonWithType:UIButtonTypeCustom];
                     UIImage *settingImage = [[UIImage imageNamed:@"mycar"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -258,7 +262,7 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
 {
     NSMutableArray *serial = [self loadSerial];
     
-    if (serial.count > 0) {
+    if (serial.count > 0 && self.myCarInitiate == YES) {
         
         UIButton *menuButton =  [UIButton buttonWithType:UIButtonTypeCustom];
         UIImage *settingImage = [[UIImage imageNamed:@"mycar"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
@@ -268,9 +272,7 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
         [menuButton addTarget:self action:@selector(ShowMyCar)forControlEvents:UIControlEventTouchUpInside];
         [menuButton setFrame:CGRectMake(0, 0, 32, 32)];
         
-        
         UIBarButtonItem *settingBarButton = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
-        
         
         self.navigationItem.rightBarButtonItems = @[rightButton,settingBarButton];
         
@@ -1325,9 +1327,12 @@ didFailAutocompleteWithError:(NSError *)error {
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"search"]) {
+    
     SearchViewController  *destination = [segue destinationViewController];
     destination.searchedString = self.searchedString;
     destination.myLocation = self.deviceLocation;
+    }
 }
 
 

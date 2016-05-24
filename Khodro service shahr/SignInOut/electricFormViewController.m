@@ -140,8 +140,27 @@
             
             }
             else
+            {
+                NSString * password= @"";
+                
+                for (int i = 0; i< [[((NSDictionary*)data) objectForKey:@"res"] length]; i++) {
+                    
+                    
+                    NSString *current =[NSString stringWithFormat:@"%c",[[((NSDictionary*)data) objectForKey:@"res"] characterAtIndex:i]];
+                    if (![current isEqualToString:@""]) {
+                        
+                        
+                        password = [password stringByAppendingString:[NSString stringWithFormat:@"%c",[[((NSDictionary*)data) objectForKey:@"res"] characterAtIndex:i]]];
+                        password = [password stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+                    }
+                    
+                }
+                
+                password = [password stringByReplacingOccurrencesOfString:@"C:\\\\inetpub\\\\WebFish\\\\FishFolder\\\\" withString:@""];
+                password = [NSString stringWithFormat:@"http://2.144.197.202/WebFish/FishFolder/%@",password];
+                pdfURL = password;
                 [self performSegueWithIdentifier:@"showpdf" sender:self];
-            
+            }
         }
         
         else
@@ -203,10 +222,7 @@
     
     // Associate the barButtonItem to the previous view
     [previousVC.navigationItem setBackBarButtonItem:barButtonItem];
-    
-    
 
-    
 }
 
 //hide keyboard

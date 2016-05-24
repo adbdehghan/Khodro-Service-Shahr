@@ -7,6 +7,7 @@
 //
 
 #import "PDFViewController.h"
+#import "UIWindow+YzdHUD.h"
 
 @interface PDFViewController ()
 
@@ -21,7 +22,9 @@
     
     NSURL *targetURL = [NSURL URLWithString:self.pdfUrl];
     NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
-    
+    webView.opaque = NO;
+    webView.backgroundColor = [UIColor clearColor];
+    [self.view.window showHUDWithText:@"لطفا صبر کنید" Type:ShowLoading Enabled:YES];
     [webView loadRequest:request];
     
 }
@@ -32,7 +35,7 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-   
+    [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
 }
 
 
