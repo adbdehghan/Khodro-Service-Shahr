@@ -20,6 +20,7 @@
 #import "NYAlertViewController.h"
 #import "TNSexyImageUploadProgress.h"
 #import "AppDelegate.h"
+#import "UIImage+Blur.h"
 
 static NSString *const ServerURL = @"http://khodroservice.kara.systems/api/mobile/UploadUserPic";
 static NSString *const PicURL = @"http://khodroservice.kara.systems";
@@ -111,7 +112,7 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 8;
+    return 6;
 }
 
 
@@ -134,6 +135,8 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
                 
             }
             
+            [cell.coinButton addTarget:self action:@selector(ChangePic:)forControlEvents:UIControlEventTouchUpInside];
+            
             [cell.activityView startAnimating];
         
             NSString *fullURL = [NSString stringWithFormat:@"%@%@",PicURL,user.PicThumb];
@@ -153,8 +156,16 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
                          dispatch_async(dispatch_get_main_queue(), ^(void){
 
                              cell.mmimageView.image = image;
+                             cell.mmimageView.layer.borderColor = [UIColor whiteColor].CGColor;
+                             cell.mmimageView.layer.borderWidth = 2;
                              [self saveCustomObject:image key:@"propic"];
                              [cell.activityView stopAnimating];
+                             
+//                             NSData *imageData = UIImageJPEGRepresentation(image,  .00001f);
+//                             UIImage *blurredImage = [[UIImage imageWithData:imageData] blurredImage:.5f];
+//                             
+//                             cell.backimageView.contentMode = UIViewContentModeScaleAspectFill;
+//                             cell.backimageView.image = blurredImage;
                          });
                      });
                      
@@ -177,37 +188,7 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
         }
             break;
             
-        case 1:
-        {
-            static NSString *cellIdentifier = @"ChangePicCellIdentifier";
-            MMCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-            
-            if (cell==nil) {
-                
-                cell = [[MMCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-                
-            }
-            
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            [cell.coinButton addTarget:self action:@selector(ChangePic:)forControlEvents:UIControlEventTouchUpInside];
-            
-            return cell;
-        }
-        case 2:
-        {
-            static NSString *cellIdentifier = @"EmptyCellIdentifier1";
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-            
-            if (cell==nil) {
-                
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-                
-            }
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            return cell;
-        }
-        case 3:
+               case 1:
         {
             static NSString *cellIdentifier = @"PersonalCellIdentifier";
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
@@ -219,7 +200,7 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
             }
             return cell;
         }
-        case 4:
+        case 2:
         {
             static NSString *cellIdentifier = @"InviteCellIdentifier";
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
@@ -231,7 +212,7 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
             }
             return cell;
         }
-        case 5:
+        case 3:
         {
             static NSString *cellIdentifier = @"AboutCellIdentifier";
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
@@ -243,7 +224,7 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
             }
             return cell;
         }
-        case 6:
+        case 4:
         {
             static NSString *cellIdentifier = @"EmptyCellIdentifier2";
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
@@ -257,7 +238,7 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
             
             return cell;
         }
-        case 7:
+        case 5:
         {
             
             static NSString *cellIdentifier = @"LogoutCellIdentifier";
@@ -288,32 +269,24 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
     switch (indexPath.row) {
         case 0:
         {
-            return 176;
+            return 200;
         }
             break;
             
         case 1:
-        {     return 40;
-        }
-        case 2:
-        {
-            
-            return 20;
-        }
-        case 3:
         {
             return 1;
         }
-        case 4:
+        case 2:
         {   return 57;
+        }
+        case 3:
+        {   return 57;
+        }
+        case 4:
+        {   return 10;
         }
         case 5:
-        {   return 57;
-        }
-        case 6:
-        {   return 20;
-        }
-        case 7:
         {
             
             

@@ -10,7 +10,9 @@
 #import "UIWindow+YzdHUD.h"
 
 @interface PDFViewController ()
-
+{
+    UIActivityIndicatorView *activityIndicator;
+}
 @end
 
 @implementation PDFViewController
@@ -24,7 +26,12 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
     webView.opaque = NO;
     webView.backgroundColor = [UIColor clearColor];
-    [self.view.window showHUDWithText:@"لطفا صبر کنید" Type:ShowLoading Enabled:YES];
+
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    [self.view addSubview:activityIndicator];
+    activityIndicator.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
+    [activityIndicator startAnimating];
+    
     [webView loadRequest:request];
     
 }
@@ -35,7 +42,7 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    [self.view.window showHUDWithText:nil Type:ShowDismiss Enabled:YES];
+    [activityIndicator stopAnimating];
 }
 
 
