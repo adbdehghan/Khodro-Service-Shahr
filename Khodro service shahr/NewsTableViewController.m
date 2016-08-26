@@ -429,9 +429,6 @@ UIActivityIndicatorView *activityIndicator;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    
-    
         HomeTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         
         if (cell==nil) {

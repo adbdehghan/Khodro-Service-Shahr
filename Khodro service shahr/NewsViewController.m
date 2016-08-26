@@ -65,15 +65,12 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     
     [[NSNotificationCenter defaultCenter ] addObserver:self selector:@selector(notify) name:@"Dismiss" object:nil];
     
-
-    
     activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [self.view addSubview:activityIndicator];
     activityIndicator.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2);
     [activityIndicator startAnimating];
-        self.tableView.backgroundColor = [UIColor colorWithRed:235/255.f green:235/255.f blue:250/255.f alpha:1];
+    self.tableView.backgroundColor = [UIColor colorWithRed:235/255.f green:235/255.f blue:250/255.f alpha:1];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    
     
     UILabel* label=[[UILabel alloc] initWithFrame:CGRectMake(0,0, self.navigationItem.titleView.frame.size.width, 40)];
     label.text=self.navigationItem.title;
@@ -83,7 +80,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     label.font = [UIFont fontWithName:@"B Yekan+" size:19];
     label.textAlignment = NSTextAlignmentCenter;
     self.navigationItem.titleView=label;
-
+    
     self.titles = [[NSMutableArray alloc]init];
     self.images = [[NSMutableArray alloc]init];
     self.tableItems = [[NSMutableArray alloc]init];
@@ -133,8 +130,6 @@ static NSString *const menuCellIdentifier = @"rotationCell";
 
 -(void)requestData
 {
-
-
     RequestCompleteBlock callback = ^(BOOL wasSuccessful,NSObject *data) {
         if (wasSuccessful) {
             
@@ -174,26 +169,26 @@ static NSString *const menuCellIdentifier = @"rotationCell";
                 for (NewsMedia *item in news.Medias) {
                     
                     if ([item.MIMEType isEqualToString:@"image"]) {
-                          NSString *fullURL = [NSString stringWithFormat:@"%@%@",ServerURL,item.ThumbUrl];
+                        NSString *fullURL = [NSString stringWithFormat:@"%@%@",ServerURL,item.ThumbUrl];
                         MHGalleryItem *tailored = [MHGalleryItem.alloc initWithURL:fullURL
                                                                        galleryType:MHGalleryTypeImage];
                         tailored.attributedString = string2;
                         
                         [gallery addObject:tailored];
-//                        tailored.attributedTitle = title;
+                        //                        tailored.attributedTitle = title;
                     }
                     else
                     {
-                          NSString *fullURL = [NSString stringWithFormat:@"%@%@",ServerURL,item.Url];
+                        NSString *fullURL = [NSString stringWithFormat:@"%@%@",ServerURL,item.Url];
                         MHGalleryItem *tailored3 = [MHGalleryItem.alloc initWithURL:fullURL
                                                                         galleryType:MHGalleryTypeVideo];
                         tailored3.attributedString = string2;
-                      //  tailored3.attributedTitle = title;
+                        //  tailored3.attributedTitle = title;
                         [gallery addObject:tailored3];
                     }
-
+                    
                 }
-             
+                
                 [self.galleryDataSource addObject:gallery];
             }
             
@@ -250,13 +245,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
                 [self.newsCategories addObject:news];
                 [self.titles addObject:news.Name];
                 [self.images addObject:[UIImage imageNamed:@"mNews"]];
-                
-                
-                
             }
-            
-            
-            
         }
         
         else
@@ -273,9 +262,8 @@ static NSString *const menuCellIdentifier = @"rotationCell";
         }
     };
     
-    
     [self.getData GetEventsCats:@"" withCallback:callback2];
-
+    
 }
 
 -(void)CreateMenuButton
@@ -291,8 +279,6 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     
     UIBarButtonItem *settingBarButton = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
     self.navigationItem.leftBarButtonItem = settingBarButton;
-    
-    
 }
 
 -(void)GoToMenu
@@ -315,9 +301,8 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     [_scrollProxy reset];
     [self showNavigationBar:YES];
     [self showToolbar:YES];
-
+    
     [[NSNotificationCenter defaultCenter ] addObserver:self selector:@selector(notify) name:@"Dismiss" object:nil];
-
 }
 
 -(void)load
@@ -342,27 +327,27 @@ static NSString *const menuCellIdentifier = @"rotationCell";
 #pragma mark - Scroll View Delegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-   // [self.navigationController.shyNavigationBar scrollViewDidScroll:scrollView];
+    // [self.navigationController.shyNavigationBar scrollViewDidScroll:scrollView];
 }
 
 -(void)notify
 {
     [UIView animateWithDuration:0.2 animations:^{
-
+        
         self.view.alpha = 1;
         
     } completion:^(BOOL finished) {
-  
+        
     }];
-  
+    
 }
 
 -(void)ShowStackMenu
 {
-
+    
     [UIView animateWithDuration:0.2 animations:^{
         
-         self.view.alpha = .3;
+        self.view.alpha = .3;
         
     } completion:^(BOOL finished) {
         
@@ -391,7 +376,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
         self.tableItems =[[ NSMutableArray alloc]init];
         self.galleryDataSource =[[ NSMutableArray alloc]init];
         [self.tableView reloadData];
-
+        
         
         if (selectedMenuIndex == 0) {
             RequestCompleteBlock callback = ^(BOOL wasSuccessful,NSObject *data) {
@@ -459,7 +444,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
                     [activityIndicator stopAnimating];
                     [self.tableView reloadData];
                     
-
+                    
                     
                     
                 }
@@ -571,11 +556,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
             
             [self.getData GetEventByCat:catID withCallback:callback];
         }
-        
     }];
-    
-    
-    
 }
 
 - (void)controlTappedAtIndex:(int)index Sender:(id)sender
@@ -588,7 +569,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
         
         CGPoint hitPoint = [sender convertPoint:CGPointZero toView:self.tableView];
         NSIndexPath *hitIndex = [self.tableView indexPathForRowAtPoint:hitPoint];
-       
+        
         HomeTableViewCell *cell=[self.tableView cellForRowAtIndexPath:hitIndex];
         
         News *item = [self.tableItems objectAtIndex:hitIndex.section];
@@ -605,11 +586,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
             
             RequestCompleteBlock callback = ^(BOOL wasSuccessful,NSObject *data) {
                 if (wasSuccessful) {
-                    
-                    for (NSDictionary *item in (NSMutableArray*)data) {
-                        
-                    }
-                    
+                
                 }
                 
                 else
@@ -682,7 +659,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     }
     else
         return 400;
-
+    
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -710,9 +687,9 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     
     if (news.Medias.count > 0) {
         
-
-    
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        
+        
+        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         
         if (self.view.frame.size.height>700) {
             layout.itemSize = CGSizeMake(self.view.frame.size.width - 20, 430);
@@ -720,12 +697,12 @@ static NSString *const menuCellIdentifier = @"rotationCell";
         else
             layout.itemSize = CGSizeMake(self.view.frame.size.width - 20, 225);
         
-    layout.minimumLineSpacing = 10;
-    layout.minimumInteritemSpacing = 10;
-    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    cell.collectionView.collectionViewLayout = layout;
+        layout.minimumLineSpacing = 10;
+        layout.minimumInteritemSpacing = 10;
+        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        cell.collectionView.collectionViewLayout = layout;
     }
-
+    
     [cell.collectionView registerClass:[MHMediaPreviewCollectionViewCell class] forCellWithReuseIdentifier:@"MHMediaPreviewCollectionViewCell"];
     
     cell.collectionView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
@@ -736,7 +713,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
     [cell.collectionView setTag:indexPath.section];
     [cell.collectionView reloadData];
     
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     if (news.Medias.count > 0) {
         cell.ImageViewContainer.hidden = YES;
@@ -755,6 +732,8 @@ static NSString *const menuCellIdentifier = @"rotationCell";
         cell.likeContainerView.tag = [news.ID integerValue];
         
         cell.likeContainerView.delegate = self;
+        [cell setNeedsDisplay];
+        [cell setNeedsLayout];
     }
     else
     {
@@ -766,7 +745,7 @@ static NSString *const menuCellIdentifier = @"rotationCell";
         cell.likeContainerView.tag = [news.ID integerValue];
         
         cell.likeContainerView.delegate = self;
-
+        
     }
     if ([[NSString stringWithFormat:@"%@",news.IsLiked] isEqualToString:@"1"]) {
         [cell.likeContainerView ManualTap];
@@ -800,52 +779,52 @@ static NSString *const menuCellIdentifier = @"rotationCell";
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-//    UIImageView *imageView = [(MHMediaPreviewCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath] thumbnail];
-//    
-//    NSArray *galleryData = self.galleryDataSource[collectionView.tag];
-//    
-//    MHGalleryController *gallery = [MHGalleryController galleryWithPresentationStyle:MHGalleryViewModeImageViewerNavigationBarShown];
-//    gallery.galleryItems = galleryData;
-//    gallery.presentingFromImageView = imageView;
-//    gallery.presentationIndex = indexPath.row;
-//    
-//    // gallery.UICustomization.hideShare = YES;
-//    gallery.galleryDelegate = self;
-//    //  gallery.dataSource = self;
-//    __weak MHGalleryController *blockGallery = gallery;
-//    
-//    gallery.finishedCallback = ^(NSInteger currentIndex,UIImage *image,MHTransitionDismissMHGallery *interactiveTransition,MHGalleryViewMode viewMode){
-//        if (viewMode == MHGalleryViewModeOverView) {
-//            [blockGallery dismissViewControllerAnimated:YES completion:^{
-//                [self setNeedsStatusBarAppearanceUpdate];
-//            }];
-//        }else{
-//            NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:currentIndex inSection:0];
-//            CGRect cellFrame  = [[collectionView collectionViewLayout] layoutAttributesForItemAtIndexPath:newIndexPath].frame;
-//            [collectionView scrollRectToVisible:cellFrame
-//                                       animated:NO];
-//            
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                [collectionView reloadItemsAtIndexPaths:@[newIndexPath]];
-//                [collectionView scrollToItemAtIndexPath:newIndexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
-//                
-//                MHMediaPreviewCollectionViewCell *cell = (MHMediaPreviewCollectionViewCell*)[collectionView cellForItemAtIndexPath:newIndexPath];
-//                
-//                [blockGallery dismissViewControllerAnimated:YES dismissImageView:cell.thumbnail completion:^{
-//                    
-//                    [self setNeedsStatusBarAppearanceUpdate];
-//                    
-//                    MPMoviePlayerController *player = interactiveTransition.moviePlayer;
-//                
-//                    player.controlStyle = MPMovieControlStyleEmbedded;
-//                    player.view.frame = cell.bounds;
-//                    player.scalingMode = MPMovieScalingModeAspectFill;
-//                    [cell.contentView addSubview:player.view];
-//                }];
-//            });
-//        }
-//    };
-//    [self presentMHGalleryController:gallery animated:YES completion:nil];
+    //    UIImageView *imageView = [(MHMediaPreviewCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath] thumbnail];
+    //
+    //    NSArray *galleryData = self.galleryDataSource[collectionView.tag];
+    //
+    //    MHGalleryController *gallery = [MHGalleryController galleryWithPresentationStyle:MHGalleryViewModeImageViewerNavigationBarShown];
+    //    gallery.galleryItems = galleryData;
+    //    gallery.presentingFromImageView = imageView;
+    //    gallery.presentationIndex = indexPath.row;
+    //
+    //    // gallery.UICustomization.hideShare = YES;
+    //    gallery.galleryDelegate = self;
+    //    //  gallery.dataSource = self;
+    //    __weak MHGalleryController *blockGallery = gallery;
+    //
+    //    gallery.finishedCallback = ^(NSInteger currentIndex,UIImage *image,MHTransitionDismissMHGallery *interactiveTransition,MHGalleryViewMode viewMode){
+    //        if (viewMode == MHGalleryViewModeOverView) {
+    //            [blockGallery dismissViewControllerAnimated:YES completion:^{
+    //                [self setNeedsStatusBarAppearanceUpdate];
+    //            }];
+    //        }else{
+    //            NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:currentIndex inSection:0];
+    //            CGRect cellFrame  = [[collectionView collectionViewLayout] layoutAttributesForItemAtIndexPath:newIndexPath].frame;
+    //            [collectionView scrollRectToVisible:cellFrame
+    //                                       animated:NO];
+    //
+    //            dispatch_async(dispatch_get_main_queue(), ^{
+    //                [collectionView reloadItemsAtIndexPaths:@[newIndexPath]];
+    //                [collectionView scrollToItemAtIndexPath:newIndexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:NO];
+    //
+    //                MHMediaPreviewCollectionViewCell *cell = (MHMediaPreviewCollectionViewCell*)[collectionView cellForItemAtIndexPath:newIndexPath];
+    //
+    //                [blockGallery dismissViewControllerAnimated:YES dismissImageView:cell.thumbnail completion:^{
+    //
+    //                    [self setNeedsStatusBarAppearanceUpdate];
+    //
+    //                    MPMoviePlayerController *player = interactiveTransition.moviePlayer;
+    //
+    //                    player.controlStyle = MPMovieControlStyleEmbedded;
+    //                    player.view.frame = cell.bounds;
+    //                    player.scalingMode = MPMovieScalingModeAspectFill;
+    //                    [cell.contentView addSubview:player.view];
+    //                }];
+    //            });
+    //        }
+    //    };
+    //    [self presentMHGalleryController:gallery animated:YES completion:nil];
 }
 
 
@@ -888,8 +867,8 @@ static NSString *const menuCellIdentifier = @"rotationCell";
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-
-   if([segue.identifier isEqualToString:@"detail"])
+    
+    if([segue.identifier isEqualToString:@"detail"])
     {
         NewsDetailViewController *destination = [segue destinationViewController];
         destination.news = self.newsTO;

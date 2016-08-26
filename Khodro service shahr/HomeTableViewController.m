@@ -441,8 +441,8 @@ static NSString *const ServerURL = @"http://khodroservice.kara.systems";
     if (![self.newsLiked containsObject:media.ID]) {
         cell.likeCountLabel.text = [NSString stringWithFormat:@"%@",media.LikeCount];
         
-        UIImage *image0 = [UIImage imageNamed:@"nonlike"];
-        UIImage *image1 = [UIImage imageNamed:@"like"];
+        UIImage *image0 = [UIImage imageNamed:@"nonlike.png"];
+        UIImage *image1 = [UIImage imageNamed:@"like.png"];
         NSArray *images = @[image0, image1];
         
         [cell.likeContainerView SetmultiImages:images];

@@ -79,13 +79,13 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.row) {
-        case 4:
+        case 2:
             [self performSegueWithIdentifier:@"elec" sender:self];
             break;
-        case 5:
+        case 3:
             [self performSegueWithIdentifier:@"gps" sender:self];
             break;
-        case 7:
+        case 5:
             [self showCustomUIAlertView];
             break;
     }
@@ -158,6 +158,8 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
                              cell.mmimageView.image = image;
                              cell.mmimageView.layer.borderColor = [UIColor whiteColor].CGColor;
                              cell.mmimageView.layer.borderWidth = 2;
+                             cell.mmimageView.layer.cornerRadius = cell.mmimageView.frame.size.width / 2;
+                             cell.mmimageView.layer.masksToBounds = YES;
                              [self saveCustomObject:image key:@"propic"];
                              [cell.activityView stopAnimating];
                              
