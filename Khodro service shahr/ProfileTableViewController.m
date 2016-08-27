@@ -46,10 +46,10 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
     
     self.user = app.user;
     
-      [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     
     self.navigationItem.hidesBackButton = YES;
-
+    
     UILabel* label=[[UILabel alloc] initWithFrame:CGRectMake(0,0, self.navigationItem.titleView.frame.size.width, 40)];
     label.text=@"حساب کاربری";
     label.textColor=[UIColor whiteColor];
@@ -58,7 +58,7 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
     label.font = [UIFont fontWithName:@"B Yekan+" size:19];
     label.textAlignment = NSTextAlignmentCenter;
     self.navigationItem.titleView=label;
-
+    
     self.tableView.estimatedRowHeight = 80;
     
     NSMutableArray *userData =  [self load];
@@ -73,17 +73,21 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
         user.PicThumb = userData[4];
     }
     
-
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     switch (indexPath.row) {
-        case 2:
+        case 1:
+            
             [self performSegueWithIdentifier:@"elec" sender:self];
             break;
-        case 3:
+        case 2:
             [self performSegueWithIdentifier:@"gps" sender:self];
+            break;
+        case 3:
+            [self performSegueWithIdentifier:@"resetpass" sender:self];
             break;
         case 5:
             [self showCustomUIAlertView];
@@ -138,7 +142,7 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
             [cell.coinButton addTarget:self action:@selector(ChangePic:)forControlEvents:UIControlEventTouchUpInside];
             
             [cell.activityView startAnimating];
-        
+            
             NSString *fullURL = [NSString stringWithFormat:@"%@%@",PicURL,user.PicThumb];
             
             [SDWebImageDownloader.sharedDownloader downloadImageWithURL:[NSURL URLWithString:fullURL]
@@ -154,7 +158,7 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
                      dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
                          //Background Thread
                          dispatch_async(dispatch_get_main_queue(), ^(void){
-
+                             
                              cell.mmimageView.image = image;
                              cell.mmimageView.layer.borderColor = [UIColor whiteColor].CGColor;
                              cell.mmimageView.layer.borderWidth = 2;
@@ -163,11 +167,11 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
                              [self saveCustomObject:image key:@"propic"];
                              [cell.activityView stopAnimating];
                              
-//                             NSData *imageData = UIImageJPEGRepresentation(image,  .00001f);
-//                             UIImage *blurredImage = [[UIImage imageWithData:imageData] blurredImage:.5f];
-//                             
-//                             cell.backimageView.contentMode = UIViewContentModeScaleAspectFill;
-//                             cell.backimageView.image = blurredImage;
+                             //                             NSData *imageData = UIImageJPEGRepresentation(image,  .00001f);
+                             //                             UIImage *blurredImage = [[UIImage imageWithData:imageData] blurredImage:.5f];
+                             //
+                             //                             cell.backimageView.contentMode = UIViewContentModeScaleAspectFill;
+                             //                             cell.backimageView.image = blurredImage;
                          });
                      });
                      
@@ -179,18 +183,18 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
-           // [cell.activityView startAnimating];
+            // [cell.activityView startAnimating];
             //cell.startTimeLabel.text = st.settingId;
             
             cell.mmlabel.text =name;
             cell.scorePerPic.text = user.itemId;
-      
+            
             
             return cell;
         }
             break;
             
-               case 1:
+        case 1:
         {
             static NSString *cellIdentifier = @"PersonalCellIdentifier";
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
@@ -277,7 +281,7 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
             
         case 1:
         {
-            return 1;
+            return 57;
         }
         case 2:
         {   return 57;
@@ -312,7 +316,7 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
     
     self.user = app.user;
     
-        [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
     // this UIViewController is about to re-appear, make sure we remove the current selection in our table view
     NSIndexPath *tableSelection = [self.tableView indexPathForSelectedRow];
     [self.tableView deselectRowAtIndexPath:tableSelection animated:NO];
@@ -333,6 +337,17 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
     self.navigationItem.leftBarButtonItem = settingBarButton;
     
     
+    UIButton *notificationButton =  [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *notificationImage = [[UIImage imageNamed:@"notification.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [notificationButton setImage:notificationImage forState:UIControlStateNormal];
+    
+    notificationButton.tintColor = [UIColor whiteColor];
+    [notificationButton addTarget:self action:@selector(GoToNotification)forControlEvents:UIControlEventTouchUpInside];
+    [notificationButton setFrame:CGRectMake(0, 0, 24, 24)];
+    
+    
+    UIBarButtonItem *notificationBarButton = [[UIBarButtonItem alloc] initWithCustomView:notificationButton];
+    self.navigationItem.rightBarButtonItem = notificationBarButton;
 }
 
 -(void)GoToMenu
@@ -340,6 +355,13 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
     
     [self performSegueWithIdentifier:@"first" sender:self];
 }
+
+-(void)GoToNotification
+{
+[self performSegueWithIdentifier:@"notification" sender:self];
+}
+
+
 
 -(void)ChangePic:(id)sender
 {
@@ -490,7 +512,7 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
     self.imageUploadProgress.progressColor = [UIColor greenColor];
     self.imageUploadProgress.progress = 0;
     [self.imageUploadProgress show];
-
+    
     NSString *fileName = [NSString stringWithFormat:@"%ld%c%c.jpg", (long)[[NSDate date] timeIntervalSince1970], arc4random_uniform(26) + 'a', arc4random_uniform(26) + 'a'];
     
     NSDictionary *parameters = @{@"cellphone": user.mobile,
@@ -520,7 +542,7 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
         
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         MMCell *cell = (MMCell *)[self.tableView cellForRowAtIndexPath:indexPath];
- 
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             self.imageUploadProgress.progress = 1;
             cell.mmimageView.alpha = 1;
@@ -633,7 +655,7 @@ static NSString *const PicURL = @"http://khodroservice.kara.systems";
                                                               [self ClearSerial];
                                                               [self dismissViewControllerAnimated:YES completion:nil];
                                                               [self performSegueWithIdentifier:@"login" sender:self];
-
+                                                              
                                                           }]];
     
     [alertViewController addAction:[NYAlertAction actionWithTitle:NSLocalizedString(@"خیر", nil)

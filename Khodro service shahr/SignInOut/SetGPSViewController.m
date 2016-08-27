@@ -33,7 +33,6 @@
     }
 }
 
-
 - (IBAction)ResetPassword:(id)sender
 {
     RequestCompleteBlock callback = ^(BOOL wasSuccessful,NSObject *data) {

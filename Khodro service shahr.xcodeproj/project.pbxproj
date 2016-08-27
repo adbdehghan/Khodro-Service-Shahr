@@ -108,6 +108,11 @@
 		3AB1766B1CEE6FCF0051D0CD /* ALCustomColoredAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB176681CEE6FCF0051D0CD /* ALCustomColoredAccessory.m */; };
 		3AB1766C1CEE6FCF0051D0CD /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AB1766A1CEE6FCF0051D0CD /* DetailViewController.m */; };
 		3ACE4CD41CF244E00055DF44 /* PDFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ACE4CD31CF244E00055DF44 /* PDFViewController.m */; };
+		3AD477DF1D709A3500EF2C0E /* NotificationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD477DE1D709A3500EF2C0E /* NotificationTableViewController.m */; };
+		3AD477E21D709AD300EF2C0E /* notification.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD477E01D709AD300EF2C0E /* notification.png */; };
+		3AD477E31D709AD300EF2C0E /* notification@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3AD477E11D709AD300EF2C0E /* notification@2x.png */; };
+		3AD477E61D70B69500EF2C0E /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD477E51D70B69500EF2C0E /* CustomTableViewCell.m */; };
+		3AD477E91D70F8B900EF2C0E /* Notification.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD477E81D70F8B900EF2C0E /* Notification.m */; };
 		640D14DD1C17B7A800E769F7 /* MainTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 640D14DC1C17B7A800E769F7 /* MainTabBarViewController.m */; };
 		640F6C1E1C3869FA00C63583 /* checked.png in Resources */ = {isa = PBXBuildFile; fileRef = 640F6C0D1C3869FA00C63583 /* checked.png */; };
 		640F6C1F1C3869FA00C63583 /* GWQuestionnaire.m in Sources */ = {isa = PBXBuildFile; fileRef = 640F6C0F1C3869FA00C63583 /* GWQuestionnaire.m */; };
@@ -397,6 +402,14 @@
 		3AB1766A1CEE6FCF0051D0CD /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		3ACE4CD21CF244E00055DF44 /* PDFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PDFViewController.h; sourceTree = "<group>"; };
 		3ACE4CD31CF244E00055DF44 /* PDFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PDFViewController.m; sourceTree = "<group>"; };
+		3AD477DD1D709A3500EF2C0E /* NotificationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationTableViewController.h; sourceTree = "<group>"; };
+		3AD477DE1D709A3500EF2C0E /* NotificationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationTableViewController.m; sourceTree = "<group>"; };
+		3AD477E01D709AD300EF2C0E /* notification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification.png; sourceTree = "<group>"; };
+		3AD477E11D709AD300EF2C0E /* notification@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notification@2x.png"; sourceTree = "<group>"; };
+		3AD477E41D70B69500EF2C0E /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
+		3AD477E51D70B69500EF2C0E /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
+		3AD477E71D70F8B900EF2C0E /* Notification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Notification.h; sourceTree = "<group>"; };
+		3AD477E81D70F8B900EF2C0E /* Notification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notification.m; sourceTree = "<group>"; };
 		640D14DB1C17B7A800E769F7 /* MainTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBarViewController.h; sourceTree = "<group>"; };
 		640D14DC1C17B7A800E769F7 /* MainTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBarViewController.m; sourceTree = "<group>"; };
 		640F6C0D1C3869FA00C63583 /* checked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checked.png; sourceTree = "<group>"; };
@@ -718,6 +731,8 @@
 		3A3C60D71D310BFB00287BCB /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				3AD477E01D709AD300EF2C0E /* notification.png */,
+				3AD477E11D709AD300EF2C0E /* notification@2x.png */,
 				3A3C60D81D310BFB00287BCB /* about.png */,
 				3A3C60D91D310BFB00287BCB /* annotationPin.png */,
 				3A3C60DA1D310BFB00287BCB /* avatar.png */,
@@ -928,6 +943,8 @@
 		641EB1171C2F07CB00A1A51E /* TableCell */ = {
 			isa = PBXGroup;
 			children = (
+				3AD477E41D70B69500EF2C0E /* CustomTableViewCell.h */,
+				3AD477E51D70B69500EF2C0E /* CustomTableViewCell.m */,
 				64DF80531C44645C001CAF9D /* SignupTableViewCell.h */,
 				64DF80541C44645C001CAF9D /* SignupTableViewCell.m */,
 				64DF7F621C409B6E001CAF9D /* MMCell.h */,
@@ -1421,6 +1438,8 @@
 				64EC63881C715C990032F777 /* electricFormViewController.m */,
 				3ACE4CD21CF244E00055DF44 /* PDFViewController.h */,
 				3ACE4CD31CF244E00055DF44 /* PDFViewController.m */,
+				3AD477DD1D709A3500EF2C0E /* NotificationTableViewController.h */,
+				3AD477DE1D709A3500EF2C0E /* NotificationTableViewController.m */,
 			);
 			path = SignInOut;
 			sourceTree = "<group>";
@@ -1450,6 +1469,8 @@
 				64EC63831C711A240032F777 /* CompetitionQuestion.m */,
 				64458F0C1C62C61B00A27432 /* Comment.h */,
 				64458F0D1C62C61B00A27432 /* Comment.m */,
+				3AD477E71D70F8B900EF2C0E /* Notification.h */,
+				3AD477E81D70F8B900EF2C0E /* Notification.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1739,6 +1760,7 @@
 				64EC637E1C702E760032F777 /* 4.html in Resources */,
 				3A3C61641D310BFB00287BCB /* iranFlag.png in Resources */,
 				3A3C615C1D310BFB00287BCB /* icon1.png in Resources */,
+				3AD477E31D709AD300EF2C0E /* notification@2x.png in Resources */,
 				3A3C615D1D310BFB00287BCB /* icon2.png in Resources */,
 				3A3C617F1D310BFB00287BCB /* mProfile.png in Resources */,
 				64E5C9FE1C66F8E800077F57 /* NavBarIconSearchCircle_blue.png in Resources */,
@@ -1821,6 +1843,7 @@
 				3A3C61771D310BFB00287BCB /* marker.png in Resources */,
 				3A3C618E1D310BFB00287BCB /* top1.png in Resources */,
 				64B9BA3F1C945B9000AF6956 /* icArrow.png in Resources */,
+				3AD477E21D709AD300EF2C0E /* notification.png in Resources */,
 				3A3C61921D310BFB00287BCB /* top5.png in Resources */,
 				64B9BA451C945B9000AF6956 /* icCross@2x.png in Resources */,
 				3A3C61631D310BFB00287BCB /* inbox.png in Resources */,
@@ -1918,6 +1941,7 @@
 				64DF7F711C409B8F001CAF9D /* RSKTouchView.m in Sources */,
 				64DFBCD11C4C51BF00D4E526 /* UIView+Genie.m in Sources */,
 				645F4F2F1C71F95E00A0373F /* AFNetworkReachabilityManager.m in Sources */,
+				3AD477E61D70B69500EF2C0E /* CustomTableViewCell.m in Sources */,
 				64DFBCD81C4C57C200D4E526 /* LNERadialMenu.m in Sources */,
 				64DF80511C44636C001CAF9D /* YzdHUDIndicator.m in Sources */,
 				64DF7FF31C409D91001CAF9D /* FMDatabase.m in Sources */,
@@ -2006,10 +2030,12 @@
 				64458EFC1C62373800A27432 /* NewsDetailViewController.m in Sources */,
 				64C9F0D81C5D0F7F0032C8FB /* NSDictionary+MBJSONModel.m in Sources */,
 				64FDBF171C6D3A7800426088 /* NewsTableViewCell.m in Sources */,
+				3AD477E91D70F8B900EF2C0E /* Notification.m in Sources */,
 				645F4F301C71F95E00A0373F /* AFSecurityPolicy.m in Sources */,
 				3AB1766C1CEE6FCF0051D0CD /* DetailViewController.m in Sources */,
 				64FDBF381C6D87C200426088 /* JKPopMenuItem.m in Sources */,
 				642DB3D21C770CF9003F28CB /* MZLoadingCircle.m in Sources */,
+				3AD477DF1D709A3500EF2C0E /* NotificationTableViewController.m in Sources */,
 				64DF80551C44645C001CAF9D /* SignupTableViewCell.m in Sources */,
 				64EC63891C715C990032F777 /* electricFormViewController.m in Sources */,
 				64DF804E1C44636C001CAF9D /* UIWindow+YzdHUD.m in Sources */,
