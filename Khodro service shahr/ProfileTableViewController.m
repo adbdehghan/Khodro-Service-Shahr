@@ -22,8 +22,8 @@
 #import "AppDelegate.h"
 #import "UIImage+Blur.h"
 
-static NSString *const ServerURL = @"http://khodroservice.kara.systems/api/mobile/UploadUserPic";
-static NSString *const PicURL = @"http://khodroservice.kara.systems";
+static NSString *const ServerURL = @"http://admin.safirangps.ir/api/mobile/UploadUserPic";
+static NSString *const PicURL = @"http://admin.safirangps.ir";
 @interface ProfileTableViewController () <UINavigationControllerDelegate, UIImagePickerControllerDelegate,UIActionSheetDelegate,RSKImageCropViewControllerDelegate>
 {
     User *user;

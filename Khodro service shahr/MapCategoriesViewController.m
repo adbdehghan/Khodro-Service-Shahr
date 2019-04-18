@@ -17,7 +17,7 @@
 #import "MapPlace.h"
 #import "UIWindow+YzdHUD.h"
 
-static NSString *const ServerURL = @"http://khodroservice.kara.systems";
+static NSString *const ServerURL = @"http://admin.safirangps.ir";
 @interface MapCategoriesViewController () <UIScrollViewDelegate,INSSearchBarDelegate>
 {
     UIActivityIndicatorView *activityIndicator;

@@ -22,7 +22,7 @@
 
 
 static NSString *const cellIdentifier = @"TestCell";
-static NSString *const ServerURL = @"http://khodroservice.kara.systems";
+static NSString *const ServerURL = @"http://admin.safirangps.ir";
 
 @interface HomeTableViewController ()
 {

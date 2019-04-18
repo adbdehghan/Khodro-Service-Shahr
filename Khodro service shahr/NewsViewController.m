@@ -21,7 +21,7 @@
 #import "NewsTableViewCell.h"
 #import "NewsDetailViewController.h"
 
-static NSString *const ServerURL = @"http://khodroservice.kara.systems";
+static NSString *const ServerURL = @"http://admin.safirangps.ir";
 static NSString *const cellIdentifier = @"identifier";
 static NSString *const menuCellIdentifier = @"rotationCell";
 

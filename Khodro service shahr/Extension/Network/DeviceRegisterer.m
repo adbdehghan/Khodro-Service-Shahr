@@ -10,7 +10,7 @@
 #import "AFNetworking.h"
 #import "Settings.h"
 #import "DBManager.h"
-#define URLaddress "http://khodroservice.kara.systems/api/mobile/SetKeyIos"
+#define URLaddress "http://admin.safirangps.ir/api/mobile/SetKeyIos"
 
 @implementation DeviceRegisterer
 

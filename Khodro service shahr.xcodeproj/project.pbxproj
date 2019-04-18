@@ -1678,7 +1678,7 @@
 				TargetAttributes = {
 					64DDB00D1C14957100416B22 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 2Y3WDQ97KT;
+						DevelopmentTeam = D5G8SK67F3;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -2192,12 +2192,12 @@
 				CODE_SIGN_ENTITLEMENTS = "خودرو سرویس.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 2Y3WDQ97KT;
+				DEVELOPMENT_TEAM = D5G8SK67F3;
 				GCC_PREFIX_HEADER = "Khodro service shahr/App-Prefix.pch";
 				INFOPLIST_FILE = "Khodro service shahr/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Gama.Khodro-service";
+				PRODUCT_BUNDLE_IDENTIFIER = Gama.Khodroservice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -2211,12 +2211,12 @@
 				CODE_SIGN_ENTITLEMENTS = "خودرو سرویس.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 2Y3WDQ97KT;
+				DEVELOPMENT_TEAM = D5G8SK67F3;
 				GCC_PREFIX_HEADER = "Khodro service shahr/App-Prefix.pch";
 				INFOPLIST_FILE = "Khodro service shahr/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Gama.Khodro-service";
+				PRODUCT_BUNDLE_IDENTIFIER = Gama.Khodroservice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

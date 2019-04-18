@@ -17,8 +17,8 @@
 #import "CompetitionQuestion.h"
 
 #define RGBCOLOR(r,g,b)     [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1]
-static NSString *const ServerURL = @"http://khodroservice.kara.systems";
-static NSString *const ServerURL2 = @"http://khodroservice.kara.systems/api/mobile/ParticipationPost";
+static NSString *const ServerURL = @"http://admin.safirangps.ir";
+static NSString *const ServerURL2 = @"http://admin.safirangps.ir/api/mobile/ParticipationPost";
 @interface PolViewController ()<LCBannerViewDelegate>
 {
     GWQuestionnaire *surveyController;
